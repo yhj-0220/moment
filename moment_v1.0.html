@@ -1,0 +1,1085 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+<title>Moment · 私人记忆杂志</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:16px;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+body{font-family:'Inter','-apple-system','Helvetica Neue',sans-serif;background:#f5f4f0;color:#1a1a1a;min-height:100vh;overflow-x:hidden}
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1rem 1.5rem;display:flex;align-items:center;justify-content:space-between;background:rgba(245,244,240,0.85);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid rgba(0,0,0,0.04)}
+.nav-brand{font-family:'Noto Serif SC','Songti SC',serif;font-size:1.125rem;font-weight:600;letter-spacing:0.08em;color:#1a1a1a;display:flex;align-items:center;gap:0.4rem;cursor:pointer}
+.nav-brand svg{width:18px;height:18px}
+.nav-actions{display:flex;gap:0.75rem;align-items:center}
+.nav-btn{background:transparent;border:none;cursor:pointer;padding:0.4rem;color:#555;display:flex;align-items:center;justify-content:center;transition:color 0.2s}
+.nav-btn:hover{color:#1a1a1a}
+.nav-btn svg{width:20px;height:20px}
+.nav-btn.primary{background:#1a1a1a;color:#f5f4f0;padding:0.5rem 1rem;border-radius:24px;font-size:0.8125rem;font-weight:500;gap:0.35rem}
+.nav-btn.primary:hover{background:#333}
+.nav-btn.primary svg{width:16px;height:16px}
+.new-issue-dot{display:none;width:6px;height:6px;background:#c0392b;border-radius:50%;margin-left:0.3rem;vertical-align:middle;animation:pulse-dot 2s ease-in-out infinite}
+.new-issue-dot.show{display:inline-block}
+@keyframes pulse-dot{0%,100%{opacity:1}50%{opacity:0.4}}
+.page{display:none;padding-top:4rem;padding-bottom:3rem;min-height:100vh;animation:fadeIn 0.4s ease}
+.page.active{display:block}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.wall-header{padding:2rem 1.5rem 0.5rem}
+.wall-header h1{font-family:'Noto Serif SC','Songti SC',serif;font-size:1.5rem;font-weight:600;letter-spacing:0.06em;margin-bottom:0.3rem}
+.wall-header .sub{color:#8a8a8a;font-size:0.8125rem;letter-spacing:0.02em}
+.empty-wall{text-align:center;padding:4rem 2rem;color:#aaa}
+.empty-wall .empty-icon{font-size:3rem;margin-bottom:1rem;display:block;color:#ddd}
+.empty-wall .empty-text{font-family:'Noto Serif SC','Songti SC',serif;font-size:0.9375rem;line-height:1.8;letter-spacing:0.04em}
+.empty-wall .empty-hint{font-size:0.75rem;color:#bbb;margin-top:0.5rem;letter-spacing:0.02em}
+.wall-stats{display:flex;gap:2rem;padding:1.25rem 1.5rem;border-bottom:1px solid rgba(0,0,0,0.06)}
+.wall-stat{display:flex;flex-direction:column}
+.wall-stat .num{font-family:'Noto Serif SC','Songti SC',serif;font-size:1.5rem;font-weight:600;line-height:1.2}
+.wall-stat .label{font-size:0.6875rem;color:#8a8a8a;letter-spacing:0.06em;text-transform:uppercase;margin-top:0.2rem}
+.wall-stat .num .plus{font-size:0.875rem;font-weight:400;color:#8a8a8a}
+.wall-month-section{padding:0 1.5rem}
+.wall-month-label{font-family:'Noto Serif SC','Songti SC',serif;font-size:0.9375rem;font-weight:600;letter-spacing:0.1em;color:#1a1a1a;padding:1.5rem 0 0.75rem;border-bottom:1px solid rgba(0,0,0,0.06)}
+.wall-month-label .year{font-size:0.6875rem;color:#8a8a8a;font-weight:400;letter-spacing:0.04em;margin-left:0.5rem}
+.wall-grid{column-count:2;column-gap:0.75rem;padding:0.75rem 1.5rem 2rem}
+@media(min-width:500px){.wall-grid{column-count:3}}
+@media(min-width:768px){.wall-grid{column-count:4}}
+.mag-card{break-inside:avoid;margin-bottom:0.75rem;display:inline-block;width:100%;background:#fff;border-radius:2px;overflow:hidden;cursor:pointer;transition:transform 0.3s ease,box-shadow 0.3s ease;box-shadow:0 1px 3px rgba(0,0,0,0.04);position:relative}
+.mag-card:hover{transform:translateY(-2px);box-shadow:0 4px 12px rgba(0,0,0,0.06)}
+.mag-card .img-wrap{width:100%;background:#e8e6e0}
+.mag-card .img-wrap img{width:100%;height:auto;display:block}
+.mag-card .card-body{padding:0.75rem 0.875rem 0.875rem}
+.mag-card .card-text{font-family:'Noto Serif SC','Songti SC',serif;font-size:0.8125rem;line-height:1.6;letter-spacing:0.02em;color:#1a1a1a;margin-bottom:0.25rem}
+.mag-card .card-meta{font-size:0.625rem;color:#8a8a8a;letter-spacing:0.04em;display:flex;justify-content:space-between;align-items:center}
+.mag-card .card-tags{display:inline}
+.mag-card .tag{display:inline-block;font-size:0.5625rem;color:#8a8a8a;background:#f0eee8;padding:0.1rem 0.4rem;border-radius:2px;letter-spacing:0.04em;margin-left:0.3rem}
+.mag-card .ocr-note{font-family:'Inter',sans-serif;font-size:0.5625rem;color:#999;margin-top:0.25rem;border-top:1px solid #f0eee8;padding-top:0.25rem;letter-spacing:0.02em}
+.today-reminder{margin:1rem 1.5rem 1.5rem;padding:1.25rem;background:#fff;border-radius:2px;box-shadow:0 1px 3px rgba(0,0,0,0.04);display:none;align-items:center;gap:1rem}
+.today-reminder.show{display:flex}
+.today-reminder .thumb{width:56px;height:56px;border-radius:2px;overflow:hidden;flex-shrink:0;background:#e8e6e0}
+.today-reminder .thumb img{width:100%;height:100%;object-fit:cover}
+.today-reminder .content{flex:1}
+.today-reminder .content .label{font-size:0.625rem;color:#8a8a8a;letter-spacing:0.04em;margin-bottom:0.15rem;text-transform:uppercase}
+.today-reminder .content .quote{font-family:'Noto Serif SC','Songti SC',serif;font-size:0.875rem;line-height:1.5;letter-spacing:0.02em;color:#1a1a1a}
+.today-reminder .content .date{font-size:0.625rem;color:#8a8a8a;margin-top:0.2rem}
+.today-reminder .dismiss{background:transparent;border:none;color:#bbb;cursor:pointer;font-size:1.1rem;padding:0.2rem;line-height:1;transition:color 0.2s}
+.today-reminder .dismiss:hover{color:#555}
+.issue-banner{margin:0 1.5rem 1.5rem;padding:1.5rem;background:#1a1a1a;color:#f5f4f0;border-radius:2px;display:none;justify-content:space-between;align-items:center;cursor:pointer;transition:opacity 0.3s}
+.issue-banner.show{display:flex}
+.issue-banner:hover{opacity:0.95}
+.issue-banner .left .label{font-size:0.5625rem;letter-spacing:0.08em;text-transform:uppercase;opacity:0.6;margin-bottom:0.3rem}
+.issue-banner .left .title{font-family:'Noto Serif SC','Songti SC',serif;font-size:1.125rem;font-weight:600;letter-spacing:0.06em}
+.issue-banner .left .desc{font-size:0.75rem;opacity:0.6;margin-top:0.3rem;letter-spacing:0.02em}
+.issue-banner .arrow{font-size:1.25rem;opacity:0.6}
+.record-container{max-width:520px;margin:0 auto;padding:2rem 1.5rem}
+.record-container h2{font-family:'Noto Serif SC','Songti SC',serif;font-size:1.25rem;font-weight:600;letter-spacing:0.06em;margin-bottom:0.3rem}
+.record-container .hint{font-size:0.75rem;color:#8a8a8a;letter-spacing:0.02em;margin-bottom:1.5rem}
+.image-picker{display:flex;gap:0.75rem;margin-bottom:1.25rem}
+.image-picker .pick-btn{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0.4rem;padding:1rem 0.5rem;background:#fff;border:1px solid #e0ddd6;border-radius:2px;cursor:pointer;transition:all 0.2s;color:#555}
+.image-picker .pick-btn:hover{border-color:#1a1a1a;color:#1a1a1a;background:#faf9f6}
+.image-picker .pick-btn svg{width:22px;height:22px}
+.image-picker .pick-btn span{font-size:0.6875rem;letter-spacing:0.04em}
+input[type="file"]{display:none}
+.selected-image-wrap{width:100%;max-height:280px;overflow:hidden;background:#e8e6e0;border-radius:2px;margin-bottom:1.25rem;position:relative;display:none}
+.selected-image-wrap.show{display:block}
+.selected-image-wrap img{width:100%;height:auto;display:block;min-height:160px;object-fit:cover}
+.selected-image-wrap .remove-img{position:absolute;top:0.5rem;right:0.5rem;background:rgba(0,0,0,0.5);color:#fff;border:none;border-radius:50%;width:28px;height:28px;font-size:0.875rem;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.text-input-wrap{position:relative;margin-bottom:1.25rem}
+.text-input-wrap textarea{width:100%;padding:1rem 1rem 2rem;border:1px solid #e0ddd6;border-radius:2px;font-family:'Noto Serif SC','Songti SC',serif;font-size:0.9375rem;line-height:1.7;letter-spacing:0.02em;resize:none;outline:none;background:#fff;transition:border-color 0.2s;color:#1a1a1a}
+.text-input-wrap textarea:focus{border-color:#1a1a1a}
+.text-input-wrap .char-count{position:absolute;bottom:0.5rem;right:0.75rem;font-size:0.625rem;color:#bbb;pointer-events:none}
+.text-input-wrap .char-count.warn{color:#c0392b}
+.add-tag-row{display:flex;gap:0.4rem;margin-top:0.5rem;align-items:stretch}
+.add-tag-row input{flex:1;padding:0.35rem 0.6rem;border:1px solid #e0ddd6;border-radius:2px;font-size:0.6875rem;outline:none;background:#fff;color:#1a1a1a;font-family:'Inter',sans-serif;min-width:0}
+.add-tag-row input:focus{border-color:#1a1a1a}
+.add-tag-row input::placeholder{color:#bbb}
+.add-tag-row .add-tag-btn{padding:0.35rem 0.7rem;background:#1a1a1a;color:#f5f4f0;border:none;border-radius:2px;font-size:0.625rem;cursor:pointer;white-space:nowrap;letter-spacing:0.04em;font-family:'Inter',sans-serif}
+.add-tag-row .add-tag-btn:hover{background:#333}
+.ai-tags{margin-bottom:1.5rem}
+.ai-tags .label-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:0.5rem}
+.ai-tags .label-row span{font-size:0.6875rem;color:#8a8a8a;letter-spacing:0.04em}
+.ai-tags .label-row .regen{background:transparent;border:none;font-size:0.625rem;color:#aaa;cursor:pointer;text-decoration:underline;text-underline-offset:2px}
+.ai-tags .label-row .regen:hover{color:#555}
+.tag-list{display:flex;flex-wrap:wrap;gap:0.4rem}
+.tag-pill{display:inline-flex;align-items:center;gap:0.3rem;padding:0.3rem 0.65rem;font-size:0.6875rem;color:#555;background:#f0eee8;border-radius:16px;cursor:pointer;transition:all 0.2s;border:1px solid transparent;user-select:none}
+.tag-pill:hover{border-color:#ccc}
+.tag-pill.selected{background:#1a1a1a;color:#f5f4f0;border-color:#1a1a1a}
+.ocr-info{background:#faf9f6;border:1px solid #f0eee8;border-radius:2px;padding:0.75rem 1rem;margin-bottom:1.25rem;display:none}
+.ocr-info.show{display:block}
+.ocr-info .ocr-label{font-size:0.5625rem;color:#8a8a8a;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:0.2rem}
+.ocr-info .ocr-text{font-size:0.75rem;color:#555;line-height:1.6;letter-spacing:0.02em}
+.preview-wrap{margin-bottom:1.5rem;display:none}
+.preview-wrap.show{display:block}
+.preview-card{background:#fff;border:1px solid #e0ddd6;border-radius:2px;overflow:hidden}
+.preview-card .preview-img{width:100%;background:#e8e6e0}
+.preview-card .preview-img img{width:100%;height:auto;display:block}
+.preview-card .preview-body{padding:1rem}
+.preview-card .preview-body .preview-text{font-family:'Noto Serif SC','Songti SC',serif;font-size:0.875rem;line-height:1.6;letter-spacing:0.02em;color:#1a1a1a}
+.preview-card .preview-body .preview-meta{display:flex;justify-content:space-between;align-items:center;margin-top:0.5rem}
+.preview-card .preview-body .preview-meta .date{font-size:0.625rem;color:#8a8a8a;letter-spacing:0.04em}
+.preview-card .preview-body .preview-meta .tags{display:flex;gap:0.25rem}
+.preview-card .preview-body .preview-meta .tags .t{font-size:0.5625rem;color:#8a8a8a;background:#f0eee8;padding:0.05rem 0.35rem;border-radius:2px}
+.save-btn{width:100%;padding:0.85rem;background:#1a1a1a;color:#f5f4f0;border:none;border-radius:2px;font-size:0.8125rem;font-weight:500;letter-spacing:0.06em;cursor:pointer;transition:background 0.2s;font-family:'Noto Serif SC','Songti SC',serif}
+.save-btn:hover{background:#333}
+.save-btn:disabled{background:#ccc;cursor:not-allowed}
+.magazine-reader{max-width:480px;margin:0 auto;padding:1rem 0 2rem}
+.reader-nav{display:flex;align-items:center;justify-content:space-between;padding:0.5rem 1.5rem;margin-bottom:0.5rem}
+.reader-nav .back-btn{background:transparent;border:none;font-size:0.8125rem;color:#555;cursor:pointer;display:flex;align-items:center;gap:0.3rem;padding:0.3rem 0;letter-spacing:0.02em}
+.reader-nav .back-btn:hover{color:#1a1a1a}
+.reader-nav .issue-label{font-family:'Noto Serif SC','Songti SC',serif;font-size:0.75rem;color:#8a8a8a;letter-spacing:0.08em}
+.mag-page{background:#fff;margin:0 0.75rem 0.75rem;border-radius:2px;overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,0.04);animation:fadeIn 0.5s ease}
+.mag-page:last-child{margin-bottom:2rem}
+.mag-cover{position:relative;background:#1a1a1a;color:#f5f4f0;min-height:70vh;display:flex;flex-direction:column;justify-content:flex-end}
+.mag-cover .cover-bg{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;opacity:0.5}
+.mag-cover .cover-overlay{position:absolute;top:0;left:0;width:100%;height:100%;background:linear-gradient(to top,rgba(0,0,0,0.7) 0%,rgba(0,0,0,0.2) 60%,rgba(0,0,0,0.1) 100%)}
+.mag-cover .cover-content{position:relative;z-index:2;padding:2rem 1.5rem 2.5rem}
+.mag-cover .cover-label{font-size:0.5625rem;letter-spacing:0.1em;text-transform:uppercase;opacity:0.5;margin-bottom:0.75rem}
+.mag-cover .cover-title{font-family:'Noto Serif SC','Songti SC',serif;font-size:1.5rem;font-weight:600;letter-spacing:0.08em;line-height:1.4;margin-bottom:0.3rem}
+.mag-cover .cover-editorial{font-family:'Noto Serif SC','Songti SC',serif;font-size:1rem;opacity:0.8;font-weight:400;letter-spacing:0.04em;line-height:1.6}
+.mag-cover .cover-meta{font-size:0.625rem;opacity:0.4;margin-top:0.75rem;letter-spacing:0.04em}
+.mag-inner{padding:1.5rem}
+.mag-inner .inner-section-title{font-family:'Noto Serif SC','Songti SC',serif;font-size:0.8125rem;font-weight:600;letter-spacing:0.08em;color:#1a1a1a;margin-bottom:0.75rem;padding-bottom:0.4rem;border-bottom:1px solid #f0eee8}
+.mag-inner .inner-img{width:100%;border-radius:2px;overflow:hidden;background:#e8e6e0;margin-bottom:0.75rem}
+.mag-inner .inner-img img{width:100%;height:auto;display:block}
+.mag-inner .inner-quote{font-family:'Noto Serif SC','Songti SC',serif;font-size:0.9375rem;line-height:1.7;letter-spacing:0.03em;color:#1a1a1a;margin-bottom:0.3rem}
+.mag-inner .inner-note{font-size:0.6875rem;color:#8a8a8a;letter-spacing:0.02em;font-style:italic}
+.mag-inner .inner-date{font-size:0.625rem;color:#bbb;margin-top:0.5rem;letter-spacing:0.04em}
+.mood-chart-wrap{padding:1rem 0 0.5rem}
+.mood-chart{width:100%;height:80px;position:relative;margin:0.5rem 0 1rem}
+.mood-chart svg{width:100%;height:100%}
+.mood-chart .mood-label{font-size:0.5625rem;color:#8a8a8a;letter-spacing:0.02em;margin-top:0.3rem;display:flex;justify-content:space-between}
+.silent-page{background:#faf9f6;padding:2rem 1.5rem;text-align:center}
+.silent-page .silent-icon{font-size:2.5rem;color:#ddd;margin-bottom:0.75rem;display:block;font-family:'Noto Serif SC',serif}
+.silent-page .silent-text{font-family:'Noto Serif SC','Songti SC',serif;font-size:0.875rem;color:#8a8a8a;line-height:1.8;letter-spacing:0.04em;max-width:280px;margin:0 auto}
+.detail-overlay{position:fixed;top:0;left:0;right:0;bottom:0;z-index:150;display:flex;align-items:center;justify-content:center;padding:1.5rem;opacity:0;visibility:hidden;pointer-events:none;transition:opacity 0.35s ease,visibility 0.35s ease}
+.detail-overlay.show{opacity:1;visibility:visible;pointer-events:auto}
+.detail-overlay.show .detail-card{opacity:1;transform:translateY(0) scale(1)}
+.detail-overlay .backdrop{position:absolute;top:0;left:0;right:0;bottom:0;background:rgba(26,26,26,0.6);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px)}
+.detail-card{position:relative;z-index:1;background:#fff;border-radius:2px;max-width:480px;width:100%;max-height:90vh;overflow-y:auto;box-shadow:0 12px 40px rgba(0,0,0,0.25);opacity:0;transform:translateY(20px) scale(0.97);transition:opacity 0.35s ease,transform 0.35s ease}
+.detail-card .detail-close{position:absolute;top:0.75rem;right:0.75rem;z-index:2;background:rgba(0,0,0,0.45);color:#fff;border:none;border-radius:50%;width:32px;height:32px;font-size:0.9375rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background 0.2s}
+.detail-card .detail-close:hover{background:rgba(0,0,0,0.65)}
+.detail-card .detail-img{width:100%;background:#e8e6e0}
+.detail-card .detail-img img{width:100%;height:auto;display:block}
+.detail-card .detail-body{padding:1.5rem}
+.detail-card .detail-quote{font-family:"Noto Serif SC","Songti SC",serif;font-size:1.25rem;line-height:1.7;letter-spacing:0.04em;color:#1a1a1a;margin-bottom:0.35rem}
+.detail-card .detail-date{font-size:0.6875rem;color:#8a8a8a;letter-spacing:0.04em;margin-bottom:0.75rem}
+.detail-card .detail-tags{display:flex;flex-wrap:wrap;gap:0.4rem;margin-bottom:0.75rem}
+.detail-card .detail-tags .dtag{font-size:0.625rem;color:#555;background:#f0eee8;padding:0.2rem 0.55rem;border-radius:2px;letter-spacing:0.04em}
+.detail-card .detail-ocr{background:#faf9f6;border:1px solid #f0eee8;border-radius:2px;padding:0.75rem 1rem}
+.detail-card .detail-ocr .docr-label{font-size:0.5625rem;color:#8a8a8a;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:0.2rem}
+.detail-card .detail-ocr .docr-text{font-size:0.75rem;color:#555;line-height:1.6;letter-spacing:0.02em}
+.detail-card .detail-actions{border-top:1px solid #f0eee8;margin-top:1rem;padding-top:0.75rem;display:flex;gap:0.5rem}
+.detail-card .detail-del{background:transparent;border:1px solid #e0ddd6;border-radius:2px;padding:0.4rem 0.75rem;font-size:0.625rem;color:#999;cursor:pointer;transition:all 0.2s;letter-spacing:0.04em;font-family:'Inter',sans-serif}
+.detail-card .detail-del:hover{border-color:#c0392b;color:#c0392b}
+.toast{position:fixed;bottom:2rem;left:50%;transform:translateX(-50%);background:#1a1a1a;color:#f5f4f0;padding:0.75rem 1.5rem;border-radius:24px;font-size:0.75rem;letter-spacing:0.04em;opacity:0;transition:opacity 0.4s ease,transform 0.4s ease;pointer-events:none;z-index:200}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.toast.hiding{opacity:0;transform:translateX(-50%) translateY(8px)}
+::-webkit-scrollbar{width:4px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:#ddd;border-radius:4px}
+::-webkit-scrollbar-thumb:hover{background:#bbb}
+@media(max-width:380px){.wall-grid{column-gap:0.5rem;padding:0.5rem 1rem 1.5rem}.wall-stat .num{font-size:1.25rem}}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-brand" onclick="showPage('wall')">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H19a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1H6.5A2.5 2.5 0 0 1 4 19.5Z"/><path d="M8 7h8"/><path d="M8 11h6"/><path d="M8 15h4"/></svg>
+    Moment
+  </div>
+  <div class="nav-actions">
+    <button class="nav-btn" onclick="showPage('wall')" title="杂志墙"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg></button>
+    <button class="nav-btn" onclick="showPage('reader')" title="最新杂志"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg><span class="new-issue-dot" id="issueDot"></span></button>
+    <button class="nav-btn primary" onclick="showPage('record')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>记录</button>
+  </div>
+</nav>
+
+<div class="page active" id="page-wall">
+  <div class="wall-header"><h1>Moment · 我的记忆杂志</h1><div class="sub" id="wallSub">你的第一个瞬间，正在等你写下。</div></div>
+  <div class="wall-stats" id="wallStats">
+    <div class="wall-stat"><span class="num" id="statMoments">0</span><span class="label">瞬间</span></div>
+    <div class="wall-stat"><span class="num" id="statMagazines">0</span><span class="label">期杂志</span></div>
+    <div class="wall-stat"><span class="num" id="statDays"><span class="plus">—</span></span><span class="label">陪伴</span></div>
+  </div>
+  <div class="today-reminder" id="todayReminder">
+    <div class="thumb"><img id="reminderThumb" src="" alt=""></div>
+    <div class="content">
+      <div class="label">⏤ 去年的今天</div>
+      <div class="quote" id="reminderQuote"></div>
+      <div class="date" id="reminderDate"></div>
+    </div>
+    <button class="dismiss" onclick="dismissReminder()">✕</button>
+  </div>
+  <div class="issue-banner" id="newIssueBanner" onclick="showPage('reader')">
+    <div class="left"><div class="label">✦ 新刊上架</div><div class="title" id="issueTitle"></div><div class="desc" id="issueDesc"></div></div>
+    <div class="arrow">→</div>
+  </div>
+  <div class="wall-month-section"><div class="wall-month-label" id="wallMonthLabel"></div></div>
+  <div class="wall-grid" id="wallGrid"></div>
+</div>
+
+<div class="page" id="page-record">
+  <div class="record-container">
+    <h2>记录此刻</h2>
+    <div class="hint">一张图，一句话，一个瞬间就完整了。</div>
+    <div class="image-picker">
+      <button class="pick-btn" id="btnCamera">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2Z"/><circle cx="12" cy="13" r="4"/></svg>
+        <span>拍照</span>
+      </button>
+      <button class="pick-btn" id="btnAlbum">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+        <span>相册</span>
+      </button>
+      <button class="pick-btn" id="btnScreenshot">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 22V2"/></svg>
+        <span>截图</span>
+      </button>
+    </div>
+    <input type="file" id="fileInput" accept="image/*">
+    <div class="selected-image-wrap" id="selectedImageWrap">
+      <img id="selectedImage" src="" alt="">
+      <button class="remove-img" id="removeImageBtn">✕</button>
+    </div>
+    <div class="text-input-wrap">
+      <textarea id="recordText" rows="2" maxlength="50" placeholder="写一句话…（≤ 50 字）" oninput="onTextInput()"></textarea>
+      <div class="char-count" id="charCount">0 / 50</div>
+    </div>
+    <div class="ai-tags">
+      <div class="label-row"><span>AI 建议标签</span><button class="regen" onclick="generateTags()">刷新</button></div>
+      <div class="tag-list" id="tagList"></div>
+      <div class="add-tag-row">
+        <input type="text" id="customTagInput" placeholder="+ 自定义标签" maxlength="8">
+        <button class="add-tag-btn" onclick="addCustomTag()">添加</button>
+      </div>
+    </div>
+    <div class="ocr-info" id="ocrInfo">
+      <div class="ocr-label">截图识别</div>
+      <div class="ocr-text" id="ocrText"></div>
+    </div>
+    <div class="preview-wrap" id="previewWrap">
+      <div style="font-size:0.6875rem;color:#8a8a8a;letter-spacing:0.04em;margin-bottom:0.4rem">预览 · 杂志剪报卡片</div>
+      <div class="preview-card">
+        <div class="preview-img"><img id="previewImg" src="" alt=""></div>
+        <div class="preview-body">
+          <div class="preview-text" id="previewText"></div>
+          <div class="preview-meta">
+            <span class="date" id="previewDate"></span>
+            <span class="tags" id="previewTags"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <button class="save-btn" id="saveBtn" disabled onclick="saveMoment()">存入杂志</button>
+  </div>
+</div>
+
+<div class="page" id="page-reader">
+  <div class="magazine-reader" id="magazineReader">
+    <div class="reader-nav">
+      <button class="back-btn" onclick="showPage('wall')">← 杂志墙</button>
+      <span class="issue-label" id="readerIssueLabel"></span>
+    </div>
+    <div id="magazinePages"></div>
+  </div>
+</div>
+
+<div class="detail-overlay" id="detailOverlay">
+  <div class="backdrop" onclick="closeDetail()"></div>
+  <div class="detail-card" id="detailCard">
+    <button class="detail-close" onclick="closeDetail()">✕</button>
+    <div class="detail-img"><img id="detailImg" src="" alt=""></div>
+    <div class="detail-body">
+      <div class="detail-quote" id="detailQuote"></div>
+      <div class="detail-date" id="detailDate"></div>
+      <div class="detail-tags" id="detailTags"></div>
+      <div class="detail-ocr" id="detailOcr" style="display:none">
+        <div class="docr-label">截图识别</div>
+        <div class="docr-text" id="detailOcrText"></div>
+      </div>
+      <div class="detail-actions">
+        <button class="detail-del" id="detailDelBtn" onclick="deleteMoment()">删除此记录</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+(function(){
+'use strict';
+
+// ── Tag Library ──
+var TAG_OPTIONS = ['高光时刻','平静','躁动','温柔','深夜','午后','日常','独处','数字生活','旅途','疲惫','共鸣','收藏','等待','开始','结束','重复','变化','回归','逃离','安静','锋利','空','满','轻','重','转折'];
+
+// ── Screenshot OCR Simulation ──
+var SS_OCR_TEXTS = [
+  '全场 MVP · 战绩 15/3/7 · KDA 排名第一',
+  '对话：你说得太对了 · 点赞 2.3k',
+  '订单：红烧牛腩饭 ¥32 · 已送达',
+  '成就解锁：连胜 5 场 · 段位提升',
+  '评论：说得太好了吧 · 收藏 1.2k',
+  '通知：项目已部署 · 耗时 23 分钟'
+];
+
+// ── State ──
+var state = {
+  moments: [],
+  magazines: [],
+  nextId: 1,
+  imageUrl: null,
+  imageDataUrl: null,
+  selectedTags: [],
+  customTags: [],
+  pickMode: 'album',
+  currentDetailId: null,
+};
+
+function loadState() {
+  try {
+    var saved = localStorage.getItem('moment_data');
+    if (saved) {
+      var data = JSON.parse(saved);
+      state.moments = data.moments || [];
+      state.nextId = data.nextId || 1;
+      // Re-inflate magazines from moments
+      buildMagazines();
+      return true;
+    }
+  } catch(e) {}
+  // Seed with sample data for first visit
+  seedSampleData();
+  return false;
+}
+
+function saveState() {
+  try {
+    localStorage.setItem('moment_data', JSON.stringify({
+      moments: state.moments,
+      nextId: state.nextId,
+    }));
+  } catch(e) {
+    // localStorage might be full (images too large)
+    showToast('存储空间不足，图片可能过大');
+  }
+}
+
+// ── Sample Data ──
+function seedSampleData() {
+  var ms = generateSampleMoments();
+  state.moments = ms;
+  state.nextId = ms.length + 1;
+  buildMagazines();
+  saveState();
+}
+
+function generateSampleMoments() {
+  var samples = [
+    { quote:'今天手感神了', tags:['高光时刻','深夜'], ocr:'全场 MVP · 战绩 15/3/7', date:'2026.06.03' },
+    { quote:'终于', tags:['释然','夜晚'], ocr:'', date:'2026.06.01' },
+    { quote:'世另我', tags:['共鸣','数字生活'], ocr:'评论：说得太好了吧', date:'2026.05.28' },
+    { quote:'原来我讨厌热闹', tags:['顿悟','旅途'], ocr:'', date:'2026.05.20' },
+    { quote:'加班夜的最后一班地铁', tags:['疲惫','日常'], ocr:'', date:'2026.05.15' },
+    { quote:'耳机里放着高三循环的那首歌', tags:['怀旧','独处'], ocr:'', date:'2026.05.10' },
+    { quote:'这个月第5次点同一家外卖', tags:['日常','重复'], ocr:'订单：红烧牛腩饭 ¥32', date:'2026.05.08' },
+    { quote:'拍到一只像在笑的猫', tags:['温柔','日常'], ocr:'', date:'2026.05.05' },
+    { quote:'读到一句：人是一团时间', tags:['收藏','安静'], ocr:'人是一团时间——博尔赫斯', date:'2026.05.02' },
+    { quote:'今天天气好到不真实', tags:['平静','午后'], ocr:'', date:'2026.04.28' },
+  ];
+  return samples.map(function(s, i) {
+    var palette = ['#353632','#4a4842','#2d2d2a','#3d3b36','#403e38','#525048','#2a2a28','#383630','#4e4c44','#33332e'];
+    var color = palette[i % palette.length];
+    return {
+      id: i + 1,
+      imageDataUrl: generatePlaceholderImage(color, 400, s.quote),
+      quote: s.quote,
+      date: s.date,
+      tags: s.tags,
+      ocr: s.ocr,
+    };
+  });
+}
+
+// ── Placeholder Image Generator ──
+function generatePlaceholderImage(bgColor, w, text) {
+  w = w || 400;
+  var h = Math.round(w * (0.6 + Math.random() * 0.6));
+  try {
+    var c = document.createElement('canvas');
+    c.width = w;
+    c.height = h;
+    var ctx = c.getContext('2d');
+    ctx.fillStyle = bgColor || '#353632';
+    ctx.fillRect(0, 0, w, h);
+    // subtle pattern
+    ctx.fillStyle = 'rgba(255,255,255,0.03)';
+    for (var i = 0; i < 20; i++) {
+      var cx = Math.random() * w;
+      var cy = Math.random() * h;
+      var r = 10 + Math.random() * 40;
+      ctx.beginPath();
+      ctx.arc(cx, cy, r, 0, Math.PI * 2);
+      ctx.fill();
+    }
+    // text
+    ctx.fillStyle = 'rgba(255,255,255,0.4)';
+    ctx.font = (w > 300 ? 14 : 12) + 'px "Noto Serif SC", "Songti SC", serif';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    var lines = wordWrap(text, ctx, w - 40);
+    var lineH = (w > 300 ? 22 : 18);
+    var startY = h / 2 - (lines.length - 1) * lineH / 2;
+    lines.forEach(function(line, idx) {
+      ctx.fillText(line, w / 2, startY + idx * lineH);
+    });
+    return c.toDataURL('image/jpeg', 0.7);
+  } catch(e) {
+    return 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="' + w + '" height="' + h + '"%3E%3Crect width="' + w + '" height="' + h + '" fill="' + encodeURIComponent(bgColor) + '"/%3E%3C/svg%3E';
+  }
+}
+
+function wordWrap(text, ctx, maxWidth) {
+  var words = text.split('');
+  var lines = [];
+  var cur = '';
+  for (var i = 0; i < words.length; i++) {
+    var test = cur + words[i];
+    if (ctx.measureText(test).width > maxWidth && cur) {
+      lines.push(cur);
+      cur = words[i];
+    } else {
+      cur = test;
+    }
+  }
+  if (cur) lines.push(cur);
+  return lines.length ? lines : [text];
+}
+
+// ── Magazine Builder ──
+function buildMagazines() {
+  if (!state.moments.length) { state.magazines = []; return; }
+
+  // Group moments by month
+  var groups = {};
+  state.moments.forEach(function(m) {
+    var parts = m.date.split('.');
+    var key = parts[0] + '.' + parts[1];
+    if (!groups[key]) groups[key] = [];
+    groups[key].push(m);
+  });
+
+  var ISSUE_COUNT = 0;
+  state.magazines = Object.keys(groups).sort().map(function(key) {
+    ISSUE_COUNT++;
+    var ms = groups[key];
+    var parts = key.split('.');
+    var year = parts[0];
+    var month = parts[1];
+    var monthNames = ['','一月','二月','三月','四月','五月','六月','七月','八月','九月','十月','十一月','十二月'];
+    var monthName = monthNames[parseInt(month)];
+
+    // Cover: pick first moment's image, generate editorial
+    var coverMoment = ms[0];
+    var editorial = generateEditorial(ms);
+    var coverTitle = editorial.title;
+
+    // Theme analysis
+    var tagCounts = {};
+    var nightCount = 0;
+    ms.forEach(function(m) {
+      m.tags.forEach(function(t) {
+        tagCounts[t] = (tagCounts[t] || 0) + 1;
+      });
+      var hour = m.date ? parseInt(m.date.split('.')[2] || '12') : 12;
+      if (hour >= 22 || hour < 5) nightCount++;
+    });
+
+    var sortedTags = Object.keys(tagCounts).sort(function(a,b) { return tagCounts[b] - tagCounts[a]; });
+    var topTag = sortedTags[0] || '日常';
+
+    // Selected pages: 3-5 entries with highest emotional intensity
+    var selected = ms.slice(0, Math.min(5, ms.length));
+    var silentDays = 30 - ms.length;
+    if (silentDays < 0) silentDays = 0;
+
+    return {
+      key: key,
+      year: year,
+      month: month,
+      monthName: monthName,
+      issueNum: ISSUE_COUNT,
+      coverMoment: coverMoment,
+      coverTitle: editorial.title,
+      coverEditorial: editorial.editorial,
+      coverMeta: month + '月 · ' + ms.length + ' 个瞬间' + (nightCount > 0 ? ' · ' + nightCount + ' 个深夜' : ''),
+      selected: selected,
+      topTag: topTag,
+      nightCount: nightCount,
+      tagCounts: tagCounts,
+      silentDays: silentDays,
+      totalMoments: ms.length,
+    };
+  }).reverse();
+}
+
+function generateEditorial(ms) {
+  var total = ms.length;
+  var nightCount = 0;
+  var hasGame = false;
+  var hasNight = false;
+  ms.forEach(function(m) {
+    m.tags.forEach(function(t) {
+      if (t === '深夜' || t === '夜晚') hasNight = true;
+      if (t === '高光时刻' || t === '数字生活') hasGame = true;
+    });
+    var h = parseInt(m.date.split('.')[2] || '12');
+    if (h >= 22 || h < 5) nightCount++;
+  });
+  if (nightCount >= 3 && hasGame) {
+    return { title:'这个月，你在很多个深夜记录了屏幕的光', editorial:'那些深夜亮着的屏幕、安静的喘息、还有一句"终于"' };
+  }
+  if (hasNight) {
+    return { title:'这个月，深夜是你安静的同伴', editorial:'你说得不多，但深夜听了很多' };
+  }
+  if (total <= 3) {
+    return { title:'这个月，你记录了一些安静的瞬间', editorial:'寥寥几次，但每一次都值得被记住' };
+  }
+  if (ms.some(function(m) { return m.quote.indexOf('终于') > -1; })) {
+    return { title:'这个月，你提到了"终于"', editorial:'有些事结束了，有些事刚刚开始' };
+  }
+  if (ms.some(function(m) { return m.quote.indexOf('猫') > -1; })) {
+    return { title:'这个月，你遇见了一些温柔的事物', editorial:'一只猫、一片天空、一句刚好读到的话' };
+  }
+  return { title:'这个月，你留下了 ' + total + ' 个瞬间', editorial:'每一刻都是世界在你心中激起的形状' };
+}
+
+// ── INIT ──
+document.addEventListener('DOMContentLoaded', function() {
+  loadState();
+  renderWall();
+  renderMagazine();
+  setupFileUpload();
+  generateTags();
+  updateNewIssueDot();
+
+  document.getElementById('customTagInput').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') { e.preventDefault(); addCustomTag(); }
+  });
+});
+
+// ── Navigation ──
+function showPage(page) {
+  closeDetail();
+  document.querySelectorAll('.page').forEach(function(p) { p.classList.remove('active'); });
+  document.getElementById('page-' + page).classList.add('active');
+  if (page === 'reader') { renderMagazine(); document.getElementById('issueDot').classList.remove('show'); }
+  if (page === 'wall') { renderWall(); document.getElementById('issueDot').classList.remove('show'); }
+}
+
+// ── Render Wall ──
+function renderWall() {
+  var grid = document.getElementById('wallGrid');
+  grid.innerHTML = '';
+  var ms = state.moments;
+
+  // Update stats
+  document.getElementById('statMoments').textContent = ms.length;
+  document.getElementById('statMagazines').textContent = state.magazines.length;
+
+  // Calculate total days since first moment
+  if (ms.length > 0) {
+    var dates = ms.map(function(m) { return m.date; }).sort();
+    var first = dates[dates.length - 1]; // oldest
+    var parts1 = first.split('.');
+    var d1 = new Date(parseInt(parts1[0]), parseInt(parts1[1]) - 1, parseInt(parts1[2]));
+    var d2 = new Date();
+    var diffDays = Math.round((d2 - d1) / (1000 * 60 * 60 * 24));
+    if (diffDays < 1) diffDays = 1;
+    document.getElementById('statDays').innerHTML = diffDays + ' <span class="plus">天</span>';
+    document.getElementById('wallSub').textContent = '已积累了 ' + ms.length + ' 个瞬间';
+  } else {
+    document.getElementById('statDays').innerHTML = '<span class="plus">—</span>';
+    document.getElementById('wallSub').textContent = '你的第一个瞬间，正在等你写下。';
+  }
+
+  if (!ms.length) {
+    grid.innerHTML = '<div class="empty-wall"><span class="empty-icon">◻</span><div class="empty-text">还没有记录任何瞬间。<br>点击右上角的"记录"开始吧。</div><div class="empty-hint">一张图，一句话，一个瞬间就完整了。</div></div>';
+    document.getElementById('todayReminder').classList.remove('show');
+    document.getElementById('newIssueBanner').classList.remove('show');
+    return;
+  }
+
+  // Group by month for wall
+  var groups = {};
+  ms.forEach(function(m) {
+    var parts = m.date.split('.');
+    var key = parts[0] + '.' + parts[1];
+    if (!groups[key]) groups[key] = [];
+    groups[key].push(m);
+  });
+
+  var keys = Object.keys(groups).sort().reverse();
+  var monthNames = ['','一月','二月','三月','四月','五月','六月','七月','八月','九月','十月','十一月','十二月'];
+
+  // Wall month label
+  var latestKey = keys[0];
+  if (latestKey) {
+    var lp = latestKey.split('.');
+    document.getElementById('wallMonthLabel').textContent = monthNames[parseInt(lp[1])] + ' ' + lp[0];
+  }
+
+  // Render cards
+  ms.forEach(function(m) {
+    var tagsHtml = m.tags.map(function(t) { return '<span class="tag">' + escapeHtml(t) + '</span>'; }).join('');
+    var ocrHtml = m.ocr ? '<div class="ocr-note">识别到：' + escapeHtml(m.ocr) + '</div>' : '';
+    var div = document.createElement('div');
+    div.className = 'mag-card';
+    div.innerHTML = '<div class="img-wrap"><img src="' + m.imageDataUrl + '" alt="" loading="lazy"></div><div class="card-body"><div class="card-text">"' + escapeHtml(m.quote) + '"</div><div class="card-meta"><span>' + m.date + '</span><span class="card-tags">' + tagsHtml + '</span></div>' + ocrHtml + '</div>';
+    div.addEventListener('click', function() { openDetail(m); });
+    grid.appendChild(div);
+  });
+
+  // "Last year today" reminder
+  updateReminder();
+
+  // New issue banner
+  updateNewIssueDot();
+  if (state.magazines.length > 0) {
+    var latest = state.magazines[0]; // most recent
+    document.getElementById('issueTitle').textContent = latest.monthName + ' · 总第 ' + ('00' + latest.issueNum).slice(-3) + ' 期';
+    document.getElementById('issueDesc').textContent = '「' + latest.coverTitle + '」';
+    document.getElementById('newIssueBanner').classList.add('show');
+  }
+}
+
+function updateReminder() {
+  var reminder = document.getElementById('todayReminder');
+  var now = new Date();
+  var mm = String(now.getMonth() + 1).padStart(2, '0');
+  var dd = String(now.getDate()).padStart(2, '0');
+  var lastYear = now.getFullYear() - 1;
+  var match = null;
+
+  for (var i = 0; i < state.moments.length; i++) {
+    var parts = state.moments[i].date.split('.');
+    if (parts.length >= 3) {
+      var m = parts[1];
+      var d = parts[2].substring(0, 2);
+      if (m === mm && d === dd && parseInt(parts[0]) === lastYear) {
+        match = state.moments[i];
+        break;
+      }
+    }
+  }
+
+  if (match) {
+    var m = match;
+    document.getElementById('reminderThumb').src = m.imageDataUrl;
+    document.getElementById('reminderQuote').textContent = '"' + m.quote + '"';
+    document.getElementById('reminderDate').textContent = lastYear + '.' + mm + '.' + dd;
+    reminder.classList.add('show');
+    // Click to open detail
+    var contentDiv = reminder.querySelector('.content');
+    contentDiv.style.cursor = 'pointer';
+    var newContent = contentDiv.cloneNode(true);
+    contentDiv.parentNode.replaceChild(newContent, contentDiv);
+    newContent.addEventListener('click', function() { openDetail(m); });
+  } else {
+    reminder.classList.remove('show');
+  }
+}
+
+function dismissReminder() {
+  document.getElementById('todayReminder').classList.remove('show');
+}
+
+function updateNewIssueDot() {
+  if (state.magazines.length > 0) {
+    document.getElementById('issueDot').classList.add('show');
+  }
+}
+
+// ── File Upload ──
+function setupFileUpload() {
+  var input = document.getElementById('fileInput');
+
+  document.getElementById('btnCamera').addEventListener('click', function() {
+    state.pickMode = 'camera';
+    input.value = '';
+    try { input.setAttribute('capture', 'environment'); } catch(e) {}
+    input.click();
+  });
+
+  document.getElementById('btnAlbum').addEventListener('click', function() {
+    state.pickMode = 'album';
+    input.value = '';
+    try { input.removeAttribute('capture'); } catch(e) {}
+    input.click();
+  });
+
+  document.getElementById('btnScreenshot').addEventListener('click', function() {
+    state.pickMode = 'screenshot';
+    input.value = '';
+    try { input.removeAttribute('capture'); } catch(e) {}
+    input.click();
+  });
+
+  input.addEventListener('change', function(e) {
+    var file = e.target.files && e.target.files[0];
+    if (!file) return;
+    var mode = state.pickMode || 'album';
+    processFile(mode, file);
+    this.value = '';
+  });
+
+  document.getElementById('removeImageBtn').addEventListener('click', removeSelectedImage);
+}
+
+function processFile(mode, file) {
+  var reader = new FileReader();
+  reader.onload = function(e) {
+    state.imageUrl = URL.createObjectURL(file);
+    state.imageDataUrl = e.target.result;
+
+    var wrap = document.getElementById('selectedImageWrap');
+    var img = document.getElementById('selectedImage');
+    img.src = state.imageUrl;
+    wrap.classList.add('show');
+
+    // OCR simulation for screenshots
+    var ocrInfo = document.getElementById('ocrInfo');
+    var ocrText = document.getElementById('ocrText');
+    if (mode === 'screenshot') {
+      ocrText.textContent = SS_OCR_TEXTS[Math.floor(Math.random() * SS_OCR_TEXTS.length)];
+      ocrInfo.classList.add('show');
+    } else {
+      ocrInfo.classList.remove('show');
+    }
+
+    // Suggest tags based on mode
+    var tagMap = {
+      camera: ['平静','午后','日常'],
+      album: ['温柔','旅途','日常'],
+      screenshot: ['高光时刻','数字生活','深夜'],
+    };
+    state.selectedTags = (tagMap[mode] || ['日常']).slice();
+    state.tagPool = state.selectedTags.slice();
+    generateTags();
+    updatePreview();
+  };
+  reader.readAsDataURL(file);
+}
+
+function removeSelectedImage() {
+  if (state.imageUrl && state.imageUrl.startsWith('blob:')) {
+    URL.revokeObjectURL(state.imageUrl);
+  }
+  state.imageUrl = null;
+  state.imageDataUrl = null;
+  document.getElementById('selectedImageWrap').classList.remove('show');
+  document.getElementById('ocrInfo').classList.remove('show');
+  updatePreview();
+}
+
+// ── Text Input ──
+function onTextInput() {
+  var ta = document.getElementById('recordText');
+  var count = document.getElementById('charCount');
+  var len = ta.value.length;
+  count.textContent = len + ' / 50';
+  count.classList.toggle('warn', len >= 45);
+  updatePreview();
+}
+
+// ── Tags ──
+function generateTags() {
+  var pool = state.selectedTags.length ? state.selectedTags : (state.tagPool || ['平静','日常']);
+  var shuffled = TAG_OPTIONS.slice().sort(function() { return Math.random() - 0.5; });
+  var tags = [];
+  // custom tags first
+  state.customTags.forEach(function(t) {
+    if (tags.indexOf(t) === -1) tags.push(t);
+  });
+  // pool tags
+  pool.forEach(function(t) {
+    if (tags.indexOf(t) === -1) tags.push(t);
+  });
+  // fill from shuffled
+  for (var i = 0; i < shuffled.length && tags.length < 8; i++) {
+    if (tags.indexOf(shuffled[i]) === -1) tags.push(shuffled[i]);
+  }
+
+  var list = document.getElementById('tagList');
+  list.innerHTML = tags.map(function(t) {
+    var sel = state.selectedTags.indexOf(t) > -1 ? 'selected' : '';
+    return '<span class="tag-pill ' + sel + '" data-tag="' + escapeHtml(t) + '">' + escapeHtml(t) + '</span>';
+  }).join('');
+
+  Array.from(list.children).forEach(function(el) {
+    el.addEventListener('click', function() {
+      var tag = this.getAttribute('data-tag');
+      this.classList.toggle('selected');
+      var idx = state.selectedTags.indexOf(tag);
+      if (idx > -1) state.selectedTags.splice(idx, 1);
+      else state.selectedTags.push(tag);
+      updatePreview();
+    });
+  });
+}
+
+function addCustomTag() {
+  var input = document.getElementById('customTagInput');
+  var name = input.value.trim();
+  if (!name) return;
+  if (state.customTags.indexOf(name) > -1) { showToast('该标签已存在'); input.value = ''; return; }
+  if (name.length > 8) name = name.slice(0, 8);
+  state.customTags.push(name);
+  if (state.selectedTags.indexOf(name) === -1) state.selectedTags.push(name);
+  input.value = '';
+  generateTags();
+  updatePreview();
+}
+
+// ── Preview ──
+function updatePreview() {
+  var wrap = document.getElementById('previewWrap');
+  var btn = document.getElementById('saveBtn');
+  var text = document.getElementById('recordText').value.trim();
+  var img = state.imageUrl;
+
+  if (text && img) {
+    wrap.classList.add('show');
+    document.getElementById('previewImg').src = img;
+    document.getElementById('previewText').textContent = text;
+    var now = new Date();
+    var y = now.getFullYear();
+    var m = ('0' + (now.getMonth()+1)).slice(-2);
+    var d = ('0' + now.getDate()).slice(-2);
+    document.getElementById('previewDate').textContent = y + '.' + m + '.' + d;
+    document.getElementById('previewTags').innerHTML = state.selectedTags.map(function(t) { return '<span class="t">' + escapeHtml(t) + '</span>'; }).join('');
+    btn.disabled = false;
+  } else {
+    wrap.classList.remove('show');
+    btn.disabled = true;
+  }
+}
+
+// ── Save ──
+function saveMoment() {
+  var text = document.getElementById('recordText').value.trim();
+  if (!text || !state.imageDataUrl) return;
+
+  var now = new Date();
+  var y = now.getFullYear();
+  var m = ('0' + (now.getMonth()+1)).slice(-2);
+  var d = ('0' + now.getDate()).slice(-2);
+  var h = ('0' + now.getHours()).slice(-2);
+  var ocrInfo = document.getElementById('ocrInfo');
+  var hasOcr = ocrInfo.classList.contains('show');
+  var ocrText = hasOcr ? document.getElementById('ocrText').textContent : '';
+
+  var moment = {
+    id: state.nextId++,
+    imageDataUrl: state.imageDataUrl,
+    quote: text,
+    date: y + '.' + m + '.' + d,
+    tags: state.selectedTags.slice(),
+    ocr: ocrText,
+  };
+
+  state.moments.unshift(moment);
+  buildMagazines();
+  saveState();
+
+  // Reset form
+  document.getElementById('recordText').value = '';
+  document.getElementById('charCount').textContent = '0 / 50';
+  document.getElementById('selectedImageWrap').classList.remove('show');
+  document.getElementById('selectedImage').src = '';
+  document.getElementById('ocrInfo').classList.remove('show');
+  if (state.imageUrl && state.imageUrl.startsWith('blob:')) URL.revokeObjectURL(state.imageUrl);
+  state.imageUrl = null;
+  state.imageDataUrl = null;
+  state.selectedTags = [];
+  document.getElementById('previewWrap').classList.remove('show');
+  document.getElementById('saveBtn').disabled = true;
+
+  showToast('已存入杂志 ✦');
+  document.getElementById('issueDot').classList.add('show');
+  setTimeout(function() { showPage('wall'); renderWall(); }, 500);
+}
+
+// ── Delete ──
+function deleteMoment() {
+  var id = state.currentDetailId;
+  if (!id) return;
+  if (!confirm('确定删除此记录？')) return;
+  var idx = -1;
+  for (var i = 0; i < state.moments.length; i++) {
+    if (state.moments[i].id === id) { idx = i; break; }
+  }
+  if (idx > -1) {
+    state.moments.splice(idx, 1);
+    buildMagazines();
+    saveState();
+    closeDetail();
+    showToast('已删除');
+    renderWall();
+  }
+}
+
+// ── Detail ──
+function openDetail(m) {
+  state.currentDetailId = m.id;
+  document.getElementById('detailImg').src = m.imageDataUrl;
+  document.getElementById('detailQuote').textContent = '"' + m.quote + '"';
+  document.getElementById('detailDate').textContent = m.date;
+  document.getElementById('detailTags').innerHTML = m.tags.map(function(t) { return '<span class="dtag">' + escapeHtml(t) + '</span>'; }).join('');
+  var ocr = document.getElementById('detailOcr');
+  var ocrText = document.getElementById('detailOcrText');
+  if (m.ocr) {
+    ocrText.textContent = m.ocr;
+    ocr.style.display = 'block';
+  } else {
+    ocr.style.display = 'none';
+  }
+  document.getElementById('detailOverlay').classList.add('show');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeDetail() {
+  state.currentDetailId = null;
+  document.getElementById('detailOverlay').classList.remove('show');
+  document.body.style.overflow = '';
+}
+
+// ── Magazine Render ──
+function renderMagazine() {
+  var container = document.getElementById('magazinePages');
+  if (!state.magazines.length) {
+    container.innerHTML = '<div style="text-align:center;padding:3rem 1.5rem;color:#aaa"><div style="font-size:2rem;margin-bottom:0.75rem;color:#ddd">◻</div><div style="font-family:\'Noto Serif SC\',serif;font-size:0.9375rem;line-height:1.8">还没有生成杂志。<br>记录一些瞬间后，你的第一期杂志就会出现。</div></div>';
+    document.getElementById('readerIssueLabel').textContent = '';
+    return;
+  }
+
+  var mag = state.magazines[0]; // most recent
+  document.getElementById('readerIssueLabel').textContent = mag.year + ' 年 ' + mag.month + ' 月 · 总第 ' + ('00' + mag.issueNum).slice(-3) + ' 期';
+
+  var html = '';
+
+  // Cover
+  html += '<div class="mag-page mag-cover">';
+  html += '<img class="cover-bg" src="' + mag.coverMoment.imageDataUrl + '" alt="">';
+  html += '<div class="cover-overlay"></div>';
+  html += '<div class="cover-content">';
+  html += '<div class="cover-label">Volume ' + ('00' + mag.issueNum).slice(-3) + ' · ' + mag.monthName + ' ' + mag.year + '</div>';
+  html += '<div class="cover-title">' + mag.coverTitle + '</div>';
+  html += '<div class="cover-editorial">——' + mag.coverEditorial + '</div>';
+  html += '<div class="cover-meta">' + mag.coverMeta + '</div>';
+  html += '</div></div>';
+
+  // Mood chart
+  var moodLabels = ['月初 · 平静', '中旬 · 记录最多的一周', '月末 · ' + mag.selected.length + ' 个瞬间'];
+  html += '<div class="mag-page"><div class="mag-inner">';
+  html += '<div class="inner-section-title">情绪脉络</div>';
+  html += '<div class="mood-chart-wrap"><div class="mood-chart"><svg viewBox="0 0 400 80" preserveAspectRatio="none">';
+  html += '<path d="M0 60 Q40 55 80 35 Q120 15 160 25 Q200 40 240 30 Q280 20 320 45 Q360 55 400 50" fill="none" stroke="#1a1a1a" stroke-width="1.5"/>';
+  html += '<circle cx="80" cy="35" r="4" fill="#1a1a1a"/><circle cx="200" cy="40" r="4" fill="#1a1a1a"/><circle cx="320" cy="45" r="4" fill="#1a1a1a"/>';
+  html += '</svg></div><div class="mood-label">' + moodLabels.map(function(l) { return '<span>' + l + '</span>'; }).join('') + '</div></div>';
+  html += '</div></div>';
+
+  // Selected pages
+  mag.selected.forEach(function(m, idx) {
+    var note = generateNote(m, idx, mag);
+    html += '<div class="mag-page"><div class="mag-inner">';
+    html += '<div class="inner-img"><img src="' + m.imageDataUrl + '" alt=""></div>';
+    html += '<div class="inner-quote">"' + escapeHtml(m.quote) + '"</div>';
+    if (note) html += '<div class="inner-note">' + escapeHtml(note) + '</div>';
+    html += '<div class="inner-date">' + m.date + (m.tags.length ? ' · ' + m.tags.join(' · ') : '') + '</div>';
+    html += '</div></div>';
+  });
+
+  // Theme column
+  if (mag.topTag && mag.nightCount > 0) {
+    html += '<div class="mag-page"><div class="mag-inner">';
+    html += '<div class="inner-section-title">主题专栏 · ' + mag.topTag + '</div>';
+    html += '<div style="font-family:\'Noto Serif SC\',serif;font-size:0.8125rem;line-height:1.7;margin-bottom:0.75rem">这个月你记录了 ' + mag.totalMoments + ' 次，其中 ' + mag.nightCount + ' 次在深夜。' + (mag.topTag === '深夜' ? '深夜的屏幕是你这个月回访最多的角落。' : '') + '</div>';
+    html += '<div style="font-size:0.6875rem;color:#8a8a8a;font-style:italic;letter-spacing:0.02em">有时是胜利，有时只是亮着。</div>';
+    html += '</div></div>';
+  }
+
+  // Silent corner
+  if (mag.silentDays > 0) {
+    html += '<div class="mag-page"><div class="silent-page"><span class="silent-icon">◻</span><div class="silent-text">这个月有 ' + mag.silentDays + ' 天你没有记录。<br>也许那些日子不需要被记住。<br>也许需要——但我们尊重空白。</div></div></div>';
+  }
+
+  // Cross-period echo
+  if (state.magazines.length > 1) {
+    var prev = state.magazines[1];
+    if (prev && prev.selected && prev.selected.length > 0 && mag.selected && mag.selected.length > 0 && prev.selected[0].quote !== mag.selected[0].quote) {
+      var prevM = prev.selected[0];
+      var curM = mag.selected[0];
+      html += '<div class="mag-page"><div class="mag-inner">';
+      html += '<div class="inner-section-title">跨期回响</div>';
+      html += '<div style="display:grid;grid-template-columns:1fr 1fr;gap:0.75rem;margin-bottom:0.75rem">';
+      html += '<div style="text-align:center"><div style="width:100%;height:120px;overflow:hidden;background:#e8e6e0;border-radius:2px;margin-bottom:0.4rem"><img src="' + prevM.imageDataUrl + '" style="width:100%;height:100%;object-fit:cover"></div><div style="font-family:\'Noto Serif SC\',serif;font-size:0.75rem">"' + escapeHtml(prevM.quote) + '"</div><div style="font-size:0.5625rem;color:#bbb;margin-top:0.2rem">' + prevM.date + '</div></div>';
+      html += '<div style="text-align:center"><div style="width:100%;height:120px;overflow:hidden;background:#e8e6e0;border-radius:2px;margin-bottom:0.4rem"><img src="' + curM.imageDataUrl + '" style="width:100%;height:100%;object-fit:cover"></div><div style="font-family:\'Noto Serif SC\',serif;font-size:0.75rem">"' + escapeHtml(curM.quote) + '"</div><div style="font-size:0.5625rem;color:#bbb;margin-top:0.2rem">' + curM.date + '</div></div>';
+      html += '</div>';
+      html += '<div style="font-size:0.6875rem;color:#8a8a8a;font-style:italic;letter-spacing:0.02em;text-align:center;border-top:1px solid #f0eee8;padding-top:0.75rem">上一期你说"' + prevM.quote + '"，这一期是"' + curM.quote + '"。<br>有些变化不需要被夸奖，只需要被看见。</div>';
+      html += '</div></div>';
+    }
+  }
+
+  container.innerHTML = html;
+}
+
+function generateNote(m, idx, mag) {
+  var notes = [
+    '一场酣畅淋漓的记录之后，这句话情绪最饱满',
+    '只有几个字，但那张图帮你说了所有未尽的话',
+    '这个瞬间让你停了一下，也让我们停了一下',
+    '在众多记录中，这张的安静格外突出',
+    '画面和文字之间的留白，比说满更有力量',
+    '你记录的时候可能没意识到，但这是一个重要的节点',
+  ];
+  if (idx < notes.length) return notes[idx];
+  return '一个值得被记住的瞬间';
+}
+
+// ── Toast ──
+function showToast(msg) {
+  var t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.remove('hiding');
+  t.classList.add('show');
+  setTimeout(function() {
+    t.classList.add('hiding');
+    setTimeout(function() { t.classList.remove('show', 'hiding'); }, 400);
+  }, 2000);
+}
+
+// ── Utilities ──
+function escapeHtml(str) {
+
+  if (!str) return '';
+  return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+// Expose functions to onclick handlers
+window.showPage = showPage;
+window.onTextInput = onTextInput;
+window.generateTags = generateTags;
+window.addCustomTag = addCustomTag;
+window.saveMoment = saveMoment;
+window.closeDetail = closeDetail;
+window.deleteMoment = deleteMoment;
+window.dismissReminder = dismissReminder;
+window.removeSelectedImage = removeSelectedImage;
+
+})();
+</script>
+</body>
+</html>
