@@ -1492,6 +1492,134 @@
       opacity: 0.4;
     }
 
+    /* Title page (扉页) */
+    .pg-titlepage {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+      text-align: center;
+      padding: 3rem 2rem;
+    }
+    .pg-titlepage .tp-brand {
+      font-size: 9px;
+      letter-spacing: 0.5em;
+      color: var(--accent);
+      text-transform: uppercase;
+      margin-bottom: 2rem;
+    }
+    .pg-titlepage .tp-name {
+      font-family: var(--serif);
+      font-size: 32px;
+      font-weight: 400;
+      color: var(--ink);
+      letter-spacing: 0.08em;
+      line-height: 1.2;
+      margin-bottom: 0.4rem;
+    }
+    .pg-titlepage .tp-sub {
+      font-size: 11px;
+      color: var(--muted);
+      letter-spacing: 0.15em;
+      margin-bottom: 2.5rem;
+    }
+    .pg-titlepage .tp-rule {
+      width: 40px;
+      height: 1.5px;
+      background: var(--accent);
+      margin-bottom: 2rem;
+    }
+    .pg-titlepage .tp-issue {
+      font-family: var(--serif);
+      font-size: 16px;
+      color: var(--ink);
+      margin-bottom: 0.3rem;
+    }
+    .pg-titlepage .tp-date {
+      font-size: 11px;
+      color: var(--muted);
+      letter-spacing: 0.1em;
+    }
+
+    /* Copyright page (版权页) */
+    .pg-copyright {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 2.4rem 2rem;
+    }
+    .pg-copyright .cp-title {
+      font-family: var(--serif);
+      font-size: 14px;
+      color: var(--ink);
+      margin-bottom: 1.2rem;
+    }
+    .pg-copyright .cp-line {
+      font-size: 10px;
+      color: var(--muted);
+      line-height: 2;
+      letter-spacing: 0.03em;
+    }
+    .pg-copyright .cp-line b {
+      color: var(--ink);
+      font-weight: 500;
+    }
+    .pg-copyright .cp-divider {
+      width: 100%;
+      height: 1px;
+      background: var(--rule);
+      margin: 1.2rem 0;
+      opacity: 0.3;
+    }
+    .pg-copyright .cp-note {
+      font-size: 10px;
+      color: var(--muted);
+      font-style: italic;
+      line-height: 1.6;
+    }
+
+    /* Table of contents (目录) */
+    .pg-toc {
+      padding: 2.4rem 2rem;
+    }
+    .pg-toc .toc-header {
+      font-size: 9px;
+      letter-spacing: 0.3em;
+      color: var(--accent);
+      text-transform: uppercase;
+      font-weight: 600;
+      margin-bottom: 0.8rem;
+    }
+    .pg-toc .toc-rule {
+      width: 100%;
+      height: 1px;
+      background: var(--rule);
+      margin-bottom: 1.2rem;
+    }
+    .pg-toc .toc-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding: 0.55rem 0;
+      border-bottom: 1px dotted var(--rule);
+      opacity: 0.8;
+    }
+    .pg-toc .toc-item:last-child { border-bottom: none; }
+    .pg-toc .toc-title {
+      font-family: var(--serif);
+      font-size: 13px;
+      color: var(--ink);
+      line-height: 1.3;
+      flex: 1;
+      margin-right: 1rem;
+    }
+    .pg-toc .toc-page {
+      font-size: 11px;
+      color: var(--muted);
+      flex-shrink: 0;
+    }
+
     /* Theme / Echo section */
     .sp-section {
       display: flex;
@@ -1751,6 +1879,99 @@
       font-family: var(--serif);
       font-weight: 400;
       font-size: 0.95rem;
+    }
+
+    /* Monthly stats grid */
+    .mag-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.6rem;
+      margin-bottom: 0.8rem;
+    }
+    .mag-stat-item {
+      text-align: center;
+      padding: 0.8rem 0.4rem;
+      background: var(--paper);
+      border: 1px solid var(--rule);
+      border-radius: 0.4rem;
+    }
+    .mag-stat-num {
+      font-family: var(--serif);
+      font-size: 1.6rem;
+      color: var(--ink);
+      line-height: 1;
+      margin-bottom: 0.2rem;
+    }
+    .mag-stat-label {
+      font-size: 0.62rem;
+      color: var(--muted);
+      letter-spacing: 0.06em;
+    }
+
+    /* Editor picks */
+    .mag-picks {
+      display: flex;
+      flex-direction: column;
+      gap: 0.7rem;
+    }
+    .mag-pick-item {
+      display: flex;
+      gap: 0.7rem;
+      align-items: flex-start;
+      padding: 0.7rem;
+      background: var(--paper);
+      border-radius: 0.4rem;
+      border-left: 3px solid var(--accent);
+    }
+    .mag-pick-item .pick-num {
+      font-family: var(--serif);
+      font-size: 1.2rem;
+      color: var(--accent);
+      line-height: 1;
+      flex-shrink: 0;
+      width: 1.4rem;
+      text-align: center;
+    }
+    .mag-pick-item .pick-body {
+      flex: 1;
+    }
+    .mag-pick-item .pick-quote {
+      font-family: var(--serif);
+      font-size: 0.88rem;
+      color: var(--ink);
+      line-height: 1.3;
+      margin-bottom: 0.2rem;
+    }
+    .mag-pick-item .pick-meta {
+      font-size: 0.68rem;
+      color: var(--muted);
+    }
+
+    /* Quote of the month */
+    .mag-qotm {
+      text-align: center;
+      padding: 1.8rem 1.2rem;
+      background: linear-gradient(135deg, var(--paper) 0%, rgba(0,0,0,0.03) 100%);
+      border: 1px solid var(--rule);
+      border-radius: 0.5rem;
+    }
+    .mag-qotm .qotm-label {
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      color: var(--accent);
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+    .mag-qotm .qotm-text {
+      font-family: var(--serif);
+      font-size: 1.15rem;
+      line-height: 1.4;
+      color: var(--ink);
+      margin-bottom: 0.8rem;
+    }
+    .mag-qotm .qotm-date {
+      font-size: 0.7rem;
+      color: var(--muted);
     }
 
     /* === Echo Screen === */
@@ -2800,6 +3021,13 @@
 
     <!-- ====== Magazine Screen ====== -->
     <div class="screen" id="screen-magazine">
+      <!-- Data import/export tools -->
+      <div style="display:flex;gap:0.5rem;padding:1rem 1.2rem 0;justify-content:flex-end;">
+        <button onclick="exportData()" style="font-size:11px;padding:5px 12px;border:1px solid var(--rule);border-radius:4px;background:var(--paper);color:var(--muted);cursor:pointer;font-family:var(--font);letter-spacing:0.04em;">导出数据</button>
+        <button onclick="document.getElementById('importInput').click()" style="font-size:11px;padding:5px 12px;border:1px solid var(--accent);border-radius:4px;background:transparent;color:var(--accent);cursor:pointer;font-family:var(--font);letter-spacing:0.04em;">导入数据</button>
+        <input type="file" id="importInput" accept=".json" style="display:none" onchange="importData(event)">
+      </div>
+
       <!-- Magazine stack switcher -->
       <div class="magazine-stack">
         <div class="mag-stack-item active" data-issue="june" onclick="switchMagazine('june')">
@@ -2905,6 +3133,60 @@
                 </div>
               </div>
             </div>
+
+            <div class="mag-section">
+              <div class="mag-section-label">本月数据</div>
+              <div class="mag-stats">
+                <div class="mag-stat-item">
+                  <div class="mag-stat-num">18</div>
+                  <div class="mag-stat-label">记录天数</div>
+                </div>
+                <div class="mag-stat-item">
+                  <div class="mag-stat-num">4</div>
+                  <div class="mag-stat-label">深夜记录</div>
+                </div>
+                <div class="mag-stat-item">
+                  <div class="mag-stat-num">12</div>
+                  <div class="mag-stat-label">沉默天数</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="mag-section">
+              <div class="mag-section-label">编辑推荐</div>
+              <div class="mag-picks">
+                <div class="mag-pick-item">
+                  <div class="pick-num">1</div>
+                  <div class="pick-body">
+                    <div class="pick-quote">"终于。"</div>
+                    <div class="pick-meta">6月22日 · 只有两个字，但用了感叹号</div>
+                  </div>
+                </div>
+                <div class="mag-pick-item">
+                  <div class="pick-num">2</div>
+                  <div class="pick-body">
+                    <div class="pick-quote">"原来我讨厌热闹。"</div>
+                    <div class="pick-meta">6月10日 · 和上个月的旅行记录很不一样</div>
+                  </div>
+                </div>
+                <div class="mag-pick-item">
+                  <div class="pick-num">3</div>
+                  <div class="pick-body">
+                    <div class="pick-quote">"这次说开阔。"</div>
+                    <div class="pick-meta">6月8日 · 和去年同一天，隔着整年</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="mag-section">
+              <div class="mag-section-label">本月之句</div>
+              <div class="mag-qotm">
+                <div class="qotm-label">Quote of the Month</div>
+                <div class="qotm-text">"终于。"</div>
+                <div class="qotm-date">6月22日</div>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -2987,6 +3269,71 @@
                   比四月多了 4 天。<br>
                   也许是因为春天的尾巴让人分心。
                 </div>
+              </div>
+            </div>
+
+            <div class="mag-section">
+              <div class="mag-section-label">跨期回响</div>
+              <div class="echo-card">
+                <img class="echo-img" src="assets/photo-rain.jpg" alt="雨">
+                <div class="echo-text">
+                  <strong>四月的雨天你也拍过。</strong><br>
+                  那次你说烦，这次你说空气很好。
+                </div>
+              </div>
+            </div>
+
+            <div class="mag-section">
+              <div class="mag-section-label">本月数据</div>
+              <div class="mag-stats">
+                <div class="mag-stat-item">
+                  <div class="mag-stat-num">15</div>
+                  <div class="mag-stat-label">记录天数</div>
+                </div>
+                <div class="mag-stat-item">
+                  <div class="mag-stat-num">3</div>
+                  <div class="mag-stat-label">咖啡馆</div>
+                </div>
+                <div class="mag-stat-item">
+                  <div class="mag-stat-num">16</div>
+                  <div class="mag-stat-label">沉默天数</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="mag-section">
+              <div class="mag-section-label">编辑推荐</div>
+              <div class="mag-picks">
+                <div class="mag-pick-item">
+                  <div class="pick-num">1</div>
+                  <div class="pick-body">
+                    <div class="pick-quote">"通关了。"</div>
+                    <div class="pick-meta">5月5日 · 只有两个字，但用了感叹号</div>
+                  </div>
+                </div>
+                <div class="mag-pick-item">
+                  <div class="pick-num">2</div>
+                  <div class="pick-body">
+                    <div class="pick-quote">"今天的光很好看。"</div>
+                    <div class="pick-meta">5月20日 · 五月你最常出现的场景</div>
+                  </div>
+                </div>
+                <div class="mag-pick-item">
+                  <div class="pick-num">3</div>
+                  <div class="pick-body">
+                    <div class="pick-quote">"鞋子湿了，但空气很好。"</div>
+                    <div class="pick-meta">5月12日 · 五月你记录了3场雨</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="mag-section">
+              <div class="mag-section-label">本月之句</div>
+              <div class="mag-qotm">
+                <div class="qotm-label">Quote of the Month</div>
+                <div class="qotm-text">"通关了。"</div>
+                <div class="qotm-date">5月5日</div>
               </div>
             </div>
           </div>
@@ -3238,6 +3585,73 @@
       setTimeout(() => toast.classList.remove('show'), 2000);
     }
 
+    // === Data Import / Export ===
+    function exportData() {
+      try {
+        var clips = JSON.parse(localStorage.getItem('momentClips') || '[]');
+        if (clips.length === 0) { showToast('没有数据可导出'); return; }
+        var data = {
+          version: 1,
+          exportedAt: new Date().toISOString(),
+          clips: clips
+        };
+        var blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+        var url = URL.createObjectURL(blob);
+        var a = document.createElement('a');
+        var d = new Date();
+        a.href = url;
+        a.download = 'moment-backup-' + d.getFullYear() + String(d.getMonth() + 1).padStart(2, '0') + String(d.getDate()).padStart(2, '0') + '.json';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+        showToast('已导出 ' + clips.length + ' 条记录');
+      } catch (e) {
+        showToast('导出失败');
+      }
+    }
+
+    function importData(event) {
+      var file = event.target.files[0];
+      if (!file) return;
+      var reader = new FileReader();
+      reader.onload = function(e) {
+        try {
+          var data = JSON.parse(e.target.result);
+          if (!data.clips || !Array.isArray(data.clips)) {
+            showToast('文件格式不正确');
+            return;
+          }
+          // Merge: add imported clips that don't already exist (by quote+date)
+          var existing = JSON.parse(localStorage.getItem('momentClips') || '[]');
+          var existSet = {};
+          existing.forEach(function(c) {
+            existSet[(c.quote || '') + '|' + (c.date || '')] = true;
+          });
+          var newCount = 0;
+          data.clips.forEach(function(c) {
+            var key = (c.quote || '') + '|' + (c.date || '');
+            if (!existSet[key]) {
+              existing.push(c);
+              existSet[key] = true;
+              newCount++;
+            }
+          });
+          // Sort by date descending
+          existing.sort(function(a, b) { return (b.date || '').localeCompare(a.date || ''); });
+          localStorage.setItem('momentClips', JSON.stringify(existing));
+          showToast('导入完成，新增 ' + newCount + ' 条');
+          // Refresh the page to reflect changes
+          setTimeout(function() { location.reload(); }, 1200);
+        } catch (err) {
+          showToast('解析文件失败');
+        }
+      };
+      reader.readAsText(file);
+      // Reset input so same file can be re-imported
+      event.target.value = '';
+    }
+
     // === Photo Upload ===
     let photoSelected = false;
     let uploadedImageData = null;
@@ -3484,8 +3898,13 @@
     }
 
     function triggerFileInput() {
-      // Always open file picker, let user choose a new image
-      document.getElementById('fileInput').click();
+      var input = document.getElementById('fileInput');
+      // Mobile: open photo library; Desktop: open file picker
+      var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+      if (isMobile && input.getAttribute('capture')) {
+        input.removeAttribute('capture');
+      }
+      input.click();
     }
 
     function handleFileUpload(event) {
@@ -4576,26 +4995,62 @@
       var pages = [];
       var latest = clips[0] || {};
 
-      // P0: Cover spread
+      // P0: Title page + Copyright page
+      var monthNames = ['','\u4e00\u6708\u520a','\u4e8c\u6708\u520a','\u4e09\u6708\u520a','\u56db\u6708\u520a','\u4e94\u6708\u520a','\u516d\u6708\u520a','\u4e03\u6708\u520a','\u516b\u6708\u520a','\u4e5d\u6708\u520a','\u5341\u6708\u520a','\u5341\u4e00\u6708\u520a','\u5341\u4e8c\u6708\u520a'];
+      var monthNames2 = ['','\u4e00\u6708','\u4e8c\u6708','\u4e09\u6708','\u56db\u6708','\u4e94\u6708','\u516d\u6708','\u4e03\u6708','\u516b\u6708','\u4e5d\u6708','\u5341\u6708','\u5341\u4e00\u6708','\u5341\u4e8c\u6708'];
       var imgSrc = latest.image || '';
       var qText = latest.quote || '';
       var qShort = qText.length > 20 ? qText.substring(0, 18) + '\u2026' : qText;
 
-      var p0l = '<div class="pg-inner">' +
-        '<div class="pg-label">MOMENT</div>' +
-        '<div class="pg-rule"></div>' +
-        '<img src="' + imgSrc + '" class="pg-hero" alt="" onerror="this.style.display=\'none\'">' +
-        '<div class="pg-title">' + qShort + '</div>' +
-        '<div class="pg-line"></div>' +
-        '<div class="pg-body"><p>\u8fd9\u4e2a\u6708\u4f60\u7559\u4e0b\u4e86 ' + clips.length + ' \u6761\u8bb0\u5f55\u3002' +
-        (tt ? '<br>\u9891\u7e41\u63d0\u5230\u300c' + tt + '\u300d\u3002' : '') +
-        '</p></div>' +
-        '<div class="pg-footer"><span>VOL.' + month + '</span><span>2026</span></div>' +
+      var p0l = '<div class="pg-titlepage">' +
+        '<div class="tp-brand">MOMENT</div>' +
+        '<div class="tp-rule"></div>' +
+        '<div class="tp-name">MOMENT</div>' +
+        '<div class="tp-sub">Private Memory Journal</div>' +
+        '<div class="tp-rule"></div>' +
+        '<div class="tp-issue">' + monthNames[parseInt(month, 10) || 1] + '</div>' +
+        '<div class="tp-date">2026 \u00b7 No.' + month + '</div>' +
         '</div>';
 
-      var p0r = '<div class="pg-inner">' +
+      var p0r = '<div class="pg-copyright">' +
+        '<div class="cp-title">\u7248\u672c\u4fe1\u606f</div>' +
+        '<div class="cp-line"><b>\u520a\u540d</b>\u3000MOMENT</div>' +
+        '<div class="cp-line"><b>\u521b\u529e</b>\u3000Moment Lab</div>' +
+        '<div class="cp-line"><b>\u671f\u53f7</b>\u3000VOL.' + month + ' \u00b7 2026\u5e74' + month + '\u6708</div>' +
+        '<div class="cp-line"><b>\u8bb0\u5f55\u6570</b>\u3000' + clips.length + ' \u6761</div>' +
+        (st.length > 0 ? '<div class="cp-line"><b>\u70ed\u95e8\u8bdd\u9898</b>\u3000' + st.slice(0, 3).join('\u3001') + '</div>' : '') +
+        '<div class="cp-divider"></div>' +
+        '<div class="cp-note">\u672c\u520a\u7531 AI \u81ea\u52a8\u7f16\u8f91\u751f\u6210\uff0c\u57fa\u4e8e\u4e2a\u4eba\u771f\u5b9e\u8bb0\u5f55\u3002\u4ec5\u4f9b\u4e2a\u4eba\u6536\u85cf\u3002</div>' +
+        '<div class="cp-divider"></div>' +
+        '<div class="cp-note" style="font-style:normal;">MOMENT \u00b7 Private Memory Journal</div>' +
+        '</div>';
+
+      pages.push({ l: p0r, r: p0l, label: '\u6249\u9875' });
+
+      // P1: Table of contents + editor overview
+      var mLabel = monthNames2[parseInt(month, 10)] || month + '\u6708';
+      var tocItems = '';
+      tocItems += '<div class="toc-item"><div class="toc-title">\u7f16\u8f91\u7b14\u8bb0</div><div class="toc-page">3</div></div>';
+      for (var ti = 0; ti < Math.min(clips.length, 8); ti++) {
+        var tq = clips[ti].quote || '';
+        if (tq.length > 16) tq = tq.substring(0, 14) + '\u2026';
+        tocItems += '<div class="toc-item"><div class="toc-title">\u300c' + tq + '\u300d</div><div class="toc-page">' + (ti + 4) + '</div></div>';
+      }
+      if (clips.length > 8) {
+        tocItems += '<div class="toc-item"><div class="toc-title">\u00b7 \u00b7 \u00b7</div><div class="toc-page"></div></div>';
+      }
+      var totalContentPages = Math.ceil(clips.length / 2) + 4;
+      tocItems += '<div class="toc-item"><div class="toc-title">\u4e3b\u9898\u5206\u6790 / \u8de8\u671f\u56de\u54cd</div><div class="toc-page">' + totalContentPages + '</div></div>';
+
+      var p1l = '<div class="pg-toc">' +
+        '<div class="toc-header">Contents</div>' +
+        '<div class="toc-rule"></div>' +
+        tocItems +
+        '</div>';
+
+      var p1r = '<div class="pg-inner">' +
         '<div class="pg-label">EDITOR\u2019S NOTE</div>' +
-        '<div class="pg-title">' + month + '\u6708\u7684\u8bb0\u5fc6</div>' +
+        '<div class="pg-title">' + mLabel + '\u7684\u8bb0\u5fc6</div>' +
         '<div class="pg-rule"></div>' +
         '<div class="pg-body">' +
         '<p>\u6bcf\u4e00\u6761\u8bb0\u5f55\u90fd\u662f\u4e00\u6b21\u5fae\u5c0f\u7684\u505c\u987f\u3002</p>' +
@@ -4607,10 +5062,10 @@
         '<div class="pg-body" style="color:var(--muted);font-size:12px;">' +
         '<p>\u7ffb\u5f00\u4e0b\u4e00\u9875\uff0c\u91cd\u8bfb\u8fd9\u4e2a\u6708\u7684\u81ea\u5df1\u3002</p>' +
         '</div>' +
-        '<div class="pg-footer"><span>\u7f16\u8f91\u7b14\u8bb0</span><span>P.1</span></div>' +
+        '<div class="pg-footer"><span>\u7f16\u8f91\u7b14\u8bb0</span><span>P.3</span></div>' +
         '</div>';
 
-      pages.push({ l: p0l, r: p0r, label: '\u5c01\u9762' });
+      pages.push({ l: p1l, r: p1r, label: '\u76ee\u5f55' });
 
       // Content pages: 2 clips per spread
       for (var i = 0; i < clips.length; i += 2) {
