@@ -1,5 +1,23 @@
 # Changelog
 
+## [v1.3] - 2026-07-09
+
+### Added
+- **全文搜索**：首页新增搜索栏，支持实时过滤与智能提示（如「上个月的高光」「关于咖啡的记录」）
+- **年度特刊**：新增杂志年度特别版，包含年度卷首语、关键词排名、四季回顾、年度统计与主编寄语
+- **记忆盲盒**：新增独立页面，随机抽取一条已记录的瞬间，支持「再来一个」与返回
+- **AI 情感分析**：集成 HuggingFace BERT 多语言情感分类器（Xenova/bert-base-multilingual-uncased-sentiment），替代原有的规则打标系统
+- **首页入口重构**：Hero 区域新增 CTA 按钮组，支持搜索与盲盒两个入口，增加 Ghost Button 次要样式
+
+### Removed
+- 移除旧的 `generateTagsForImage` 基于文件名的标签生成函数
+- 移除旧的 `analyzeTextForTags` 基于关键词匹配的文本标签函数
+
+### Changed
+- 更新 `.gitignore`，排除 `test-report.html` 临时文件
+
+---
+
 ## [v1.2] - 2026-07-09
 
 ### Added
