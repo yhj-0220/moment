@@ -613,6 +613,68 @@
     }
     .calendar-view.active { display: block; }
     .waterfall.hidden { display: none; }
+
+    /* Search bar */
+    .search-bar {
+      padding: 0 1.2rem 0.6rem;
+    }
+    .search-input-wrap {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+    .search-input-wrap .search-icon {
+      position: absolute;
+      left: 0.7rem;
+      width: 14px; height: 14px;
+      color: var(--muted);
+      pointer-events: none;
+    }
+    .search-input-wrap input {
+      width: 100%;
+      padding: 0.55rem 2.2rem 0.55rem 2rem;
+      border: 1px solid var(--rule);
+      border-radius: 0.4rem;
+      background: var(--paper);
+      font-family: var(--sans);
+      font-size: 0.82rem;
+      color: var(--ink);
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .search-input-wrap input:focus {
+      border-color: var(--accent2);
+    }
+    .search-input-wrap input::placeholder {
+      color: var(--muted);
+      opacity: 0.7;
+    }
+    .search-clear {
+      position: absolute;
+      right: 0.5rem;
+      width: 22px; height: 22px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      color: var(--muted);
+      font-size: 1rem;
+      line-height: 1;
+      border-radius: 50%;
+      transition: background 0.15s, color 0.15s;
+    }
+    .search-clear:hover {
+      background: var(--rule);
+      color: var(--ink);
+    }
+    .search-hint {
+      font-size: 0.65rem;
+      color: var(--muted);
+      margin-top: 0.35rem;
+      padding-left: 0.1rem;
+      letter-spacing: 0.02em;
+    }
+
     .cal-grid {
       display: grid;
       grid-template-columns: repeat(7, 1fr);
@@ -1974,6 +2036,166 @@
       color: var(--muted);
     }
 
+    /* === Annual Special Edition === */
+    .mag-stack-item.annual-special {
+      width: 76px;
+      border-color: var(--accent2);
+    }
+    .mag-stack-item.annual-special .stack-label {
+      background: rgba(47,74,69,0.7);
+      font-weight: 700;
+      letter-spacing: 0.05em;
+    }
+    .mag-stack-item.annual-special.active {
+      border-color: var(--accent2);
+      box-shadow: 0 8px 24px rgba(47,74,69,0.3);
+    }
+
+    .annual-cover .cover-overlay {
+      background: linear-gradient(180deg, rgba(26,23,20,0.5) 0%, rgba(26,23,20,0.85) 100%);
+    }
+    .annual-cover .masthead-sub {
+      color: rgba(255,253,247,0.8);
+      letter-spacing: 0.15em;
+    }
+    .annual-divider {
+      background: var(--accent2);
+      width: 60px;
+    }
+    .annual-title {
+      font-size: 1.3rem;
+      line-height: 1.4;
+    }
+    .annual-cover .cover-issue-label {
+      color: var(--accent2);
+      letter-spacing: 0.15em;
+    }
+    .annual-cover .cover-month-num {
+      font-size: 0.6rem;
+      letter-spacing: 0.1em;
+    }
+
+    .annual-section .annual-label {
+      color: var(--accent2);
+      letter-spacing: 0.1em;
+    }
+    .annual-opening {
+      font-style: italic;
+      color: var(--ink);
+      line-height: 1.8;
+    }
+
+    /* Annual keywords */
+    .annual-keywords {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+    .annual-keyword {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      padding: 0.6rem 0.8rem;
+      background: color-mix(in srgb, var(--accent2) 5%, var(--paper));
+      border-radius: 0.4rem;
+      border-left: 3px solid var(--accent2);
+    }
+    .annual-keyword .kw-rank {
+      font-family: var(--serif);
+      font-size: 1.1rem;
+      color: var(--accent2);
+      width: 1.2rem;
+      text-align: center;
+    }
+    .annual-keyword .kw-word {
+      font-family: var(--serif);
+      font-size: 1rem;
+      color: var(--ink);
+      flex: 1;
+    }
+    .annual-keyword .kw-count {
+      font-size: 0.7rem;
+      color: var(--muted);
+    }
+
+    /* Four seasons */
+    .annual-seasons {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 0.8rem;
+    }
+    @media (min-width: 768px) {
+      .annual-seasons { grid-template-columns: 1fr 1fr; }
+    }
+    .annual-season {
+      padding: 1rem;
+      background: var(--paper);
+      border: 1px solid var(--rule);
+      border-radius: 0.4rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .annual-season .season-name {
+      font-family: var(--serif);
+      font-size: 1.8rem;
+      color: var(--accent2);
+      opacity: 0.15;
+      position: absolute;
+      top: 0.3rem;
+      right: 0.6rem;
+      line-height: 1;
+    }
+    .annual-season .season-text {
+      font-size: 0.8rem;
+      color: var(--ink);
+      line-height: 1.5;
+      margin-top: 0.3rem;
+    }
+    .annual-season .season-stat {
+      font-size: 0.65rem;
+      color: var(--accent);
+      margin-top: 0.5rem;
+      letter-spacing: 0.05em;
+    }
+
+    /* Annual stats */
+    .annual-stats {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.8rem;
+    }
+    @media (min-width: 768px) {
+      .annual-stats { grid-template-columns: repeat(4, 1fr); }
+    }
+
+    /* Annual qotm */
+    .annual-qotm {
+      background: linear-gradient(135deg, var(--paper) 0%, color-mix(in srgb, var(--accent2) 8%, var(--paper)) 100%);
+      border: 1px solid color-mix(in srgb, var(--accent2) 20%, var(--rule));
+    }
+    .annual-qotm .qotm-label {
+      color: var(--accent2);
+    }
+
+    /* Annual editor note */
+    .annual-editor-note {
+      padding: 1.2rem;
+      background: color-mix(in srgb, var(--accent2) 4%, var(--paper));
+      border-radius: 0.4rem;
+      border-left: 3px solid var(--accent2);
+      font-size: 0.82rem;
+      color: var(--ink);
+      line-height: 1.7;
+      font-style: italic;
+    }
+
+    .annual-silent {
+      background: color-mix(in srgb, var(--accent2) 3%, var(--paper));
+    }
+    .annual-echo {
+      border-left: 3px solid var(--accent2);
+    }
+
     /* === Echo Screen === */
     .echo-hero {
       padding: 1.2rem 1.2rem 1rem;
@@ -2587,6 +2809,12 @@
       width: 16px; height: 16px;
       stroke: currentColor; fill: none; stroke-width: 2;
     }
+    .home-hero .hero-cta-group {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      flex-wrap: wrap;
+    }
     .home-hero .hero-meta {
       margin-top: 0.8rem;
       font-size: 0.75rem;
@@ -2828,7 +3056,157 @@
       font-size: 0.75rem;
       color: var(--muted);
     }
+
+    /* ====== Wander Screen (记忆盲盒) ====== */
+    #screen-wander {
+      min-height: 100vh;
+      min-height: 100dvh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+    }
+    .wander-wrap {
+      width: 100%;
+      max-width: 480px;
+      text-align: center;
+    }
+    .wander-empty { color: var(--muted); }
+    .wander-empty-icon { margin-bottom: 1rem; opacity: 0.4; }
+    .wander-empty-icon svg { stroke: var(--muted); }
+    .wander-empty-text {
+      font-size: 0.9rem;
+      line-height: 1.8;
+      margin-bottom: 1.5rem;
+    }
+    .wander-start-btn {
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      padding: 0.6rem 1.5rem;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      cursor: pointer;
+      letter-spacing: 0.04em;
+    }
+    .wander-card {
+      animation: wanderFadeIn 0.8s ease both;
+    }
+    @keyframes wanderFadeIn {
+      from { opacity: 0; transform: translateY(20px) scale(0.97); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+    .wander-image-wrap {
+      width: 100%;
+      aspect-ratio: 4/3;
+      border-radius: 0.6rem;
+      overflow: hidden;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+    }
+    .wander-image-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .wander-content { margin-bottom: 1.5rem; }
+    .wander-date {
+      font-size: 0.72rem;
+      color: var(--muted);
+      letter-spacing: 0.08em;
+      margin-bottom: 0.6rem;
+    }
+    .wander-quote {
+      font-family: 'Instrument Serif', 'Noto Serif SC', serif;
+      font-size: 1.4rem;
+      line-height: 1.6;
+      color: var(--ink);
+      margin-bottom: 0.8rem;
+    }
+    .wander-tags {
+      display: flex;
+      gap: 0.4rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .wander-tags span {
+      font-size: 0.7rem;
+      padding: 0.15rem 0.5rem;
+      border-radius: 999px;
+      border: 1px solid var(--rule);
+      color: var(--muted);
+    }
+    .wander-label {
+      font-size: 0.65rem;
+      color: var(--accent2);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 1.2rem;
+      opacity: 0.6;
+    }
+    .wander-again-btn {
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      padding: 0.7rem 1.8rem;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      letter-spacing: 0.04em;
+      transition: opacity 0.2s;
+      margin-bottom: 0.8rem;
+    }
+    .wander-again-btn:hover { opacity: 0.85; }
+    .wander-back-btn {
+      background: none;
+      border: none;
+      color: var(--muted);
+      font-size: 0.78rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      padding: 0.4rem;
+      transition: color 0.2s;
+    }
+    .wander-back-btn:hover { color: var(--ink); }
+
+    /* ====== Hero Ghost Button ====== */
+    .home-hero .hero-cta-ghost {
+      background: transparent;
+      border: 1px solid rgba(255,255,255,0.4);
+      color: #fff;
+    }
+    .home-hero .hero-cta-ghost:hover {
+      background: rgba(255,255,255,0.1);
+      border-color: rgba(255,255,255,0.6);
+      opacity: 1;
+    }
   </style>
+  <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.2/dist/jspdf.umd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+  <script type="module">
+    import { pipeline, env } from 'https://cdn.jsdelivr.net/npm/@huggingface/transformers@3';
+    env.allowLocalModels = false;
+    window.MomentAI = {
+      status: 'loading',
+      textClassifier: null,
+      init: async function() {
+        try {
+          this.textClassifier = await pipeline('text-classification', 'Xenova/bert-base-multilingual-uncased-sentiment', { quantized: true });
+          this.status = 'ready';
+        } catch(e) {
+          console.warn('AI model load failed, falling back to rules', e);
+          this.status = 'error';
+        }
+      }
+    };
+    window.MomentAI.init();
+  </script>
 </head>
 <body>
   <!-- Site Header (outside wrapper for full-width on home) -->
@@ -2854,10 +3232,13 @@
           <div class="hero-label">Private Memory Journal</div>
           <div class="hero-title">你的私人<br>记忆杂志</div>
           <div class="hero-sub">每天只写一句话。AI 负责将这些碎片编织成一本只属于你的生命杂志。</div>
-          <button class="hero-cta" onclick="switchScreen('record')">
-            <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-            开始记录
-          </button>
+          <div class="hero-cta-group">
+            <button class="hero-cta" onclick="switchScreen('record')">
+              <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              开始记录
+            </button>
+            <button class="hero-cta hero-cta-ghost" onclick="openWander()">记忆盲盒</button>
+          </div>
           <div class="hero-meta">免费 · 无账号 · 完全本地</div>
         </div>
         <div class="home-hero-card">
@@ -2992,6 +3373,15 @@
         </button>
       </div>
 
+      <div class="search-bar">
+        <div class="search-input-wrap">
+          <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          <input type="text" id="searchInput" placeholder="搜索记录…" oninput="handleSearchInput(this.value)" onkeydown="if(event.key==='Enter'){performSearch(this.value)}">
+          <span class="search-clear" id="searchClear" onclick="clearSearch()" style="display:none;">×</span>
+        </div>
+        <div class="search-hint" id="searchHint">试试：上个月的高光、关于咖啡的记录、深夜</div>
+      </div>
+
       <div class="waterfall" id="waterfall">
         <div class="clipping" onclick="openClipModal('assets/photo-night-desk.jpg', '屏幕的光又亮到很晚。', '6月18日', ['深夜','屏幕'], '这个月第三次在深夜记录。')">
           <img src="assets/photo-night-desk.jpg" alt="深夜桌面">
@@ -3064,6 +3454,7 @@
       <!-- Data import/export tools -->
       <div style="display:flex;gap:0.5rem;padding:1rem 1.2rem 0;justify-content:flex-end;">
         <button onclick="exportData()" style="font-size:11px;padding:5px 12px;border:1px solid var(--rule);border-radius:4px;background:var(--paper);color:var(--muted);cursor:pointer;font-family:var(--font);letter-spacing:0.04em;">导出数据</button>
+        <button onclick="exportPDF()" style="font-size:11px;padding:5px 12px;border:1px solid var(--accent);border-radius:4px;background:transparent;color:var(--accent);cursor:pointer;font-family:var(--font);letter-spacing:0.04em;">导出 PDF</button>
         <button onclick="document.getElementById('importInput').click()" style="font-size:11px;padding:5px 12px;border:1px solid var(--accent);border-radius:4px;background:transparent;color:var(--accent);cursor:pointer;font-family:var(--font);letter-spacing:0.04em;">导入数据</button>
         <input type="file" id="importInput" accept=".json" style="display:none" onchange="importData(event)">
       </div>
@@ -3077,6 +3468,10 @@
         <div class="mag-stack-item" data-issue="may" onclick="switchMagazine('may')">
           <img src="assets/photo-coffee.jpg" alt="五月刊">
           <div class="stack-label">五月刊</div>
+        </div>
+        <div class="mag-stack-item annual-special" data-issue="annual" onclick="switchMagazine('annual')">
+          <img src="assets/photo-sky.jpg" alt="年度特刊">
+          <div class="stack-label">年度特刊</div>
         </div>
       </div>
 
@@ -3378,6 +3773,188 @@
             </div>
           </div>
         </div>
+
+        <!-- 年度特刊 -->
+        <div class="magazine-issue annual-issue" data-issue="annual">
+          <div class="magazine-cover annual-cover">
+            <img src="assets/photo-sky.jpg" alt="年度特刊封面" onerror="this.parentElement.style.background='var(--ink)'">
+            <div class="cover-overlay annual-overlay">
+              <div class="cover-masthead">
+                <div class="masthead-title">MOMENT</div>
+                <div class="masthead-sub">Annual Special Edition</div>
+              </div>
+              <div class="cover-top">
+                <span>年度特刊 · 第 012 期</span>
+                <span class="cover-barcode">|||| |||| |||| ||||</span>
+              </div>
+              <div class="cover-title-wrap">
+                <div class="cover-divider annual-divider"></div>
+                <div class="cover-title annual-title">这一年，你留下了 142 个瞬间。</div>
+              </div>
+              <div class="cover-bottom">
+                <div class="cover-bottom-left">
+                  <div class="cover-issue-label">SPECIAL</div>
+                  <div class="cover-issue">年度特刊</div>
+                </div>
+                <div class="cover-date-block">
+                  <div class="cover-year">2026</div>
+                  <div class="cover-month-num">ANNUAL</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="magazine-content">
+            <div class="mag-section annual-section">
+              <div class="mag-section-label annual-label">年度卷首</div>
+              <div class="mag-opening annual-opening">
+                这一年，你记录了 142 天。从一月的第一场雪，到十二月的最后一杯咖啡。你写下的最短句子只有两个字，最长的像一封信。有些月份很沉默，有些月份你几乎每天都在说些什么。这是你的年度特刊。
+              </div>
+            </div>
+
+            <div class="mag-section annual-section">
+              <div class="mag-section-label annual-label">年度关键词</div>
+              <div class="annual-keywords">
+                <div class="annual-keyword">
+                  <span class="kw-rank">1</span>
+                  <span class="kw-word">深夜</span>
+                  <span class="kw-count">23 次</span>
+                </div>
+                <div class="annual-keyword">
+                  <span class="kw-rank">2</span>
+                  <span class="kw-word">光</span>
+                  <span class="kw-count">18 次</span>
+                </div>
+                <div class="annual-keyword">
+                  <span class="kw-rank">3</span>
+                  <span class="kw-word">终于</span>
+                  <span class="kw-count">11 次</span>
+                </div>
+                <div class="annual-keyword">
+                  <span class="kw-rank">4</span>
+                  <span class="kw-word">咖啡</span>
+                  <span class="kw-count">9 次</span>
+                </div>
+                <div class="annual-keyword">
+                  <span class="kw-rank">5</span>
+                  <span class="kw-word">空</span>
+                  <span class="kw-count">7 次</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="mag-section annual-section">
+              <div class="mag-section-label annual-label">四季回顾</div>
+              <div class="annual-seasons">
+                <div class="annual-season">
+                  <div class="season-name">春</div>
+                  <div class="season-text">你开始记录光。三月拍了 8 张天空，四月突然安静了。</div>
+                  <div class="season-stat">38 条记录</div>
+                </div>
+                <div class="annual-season">
+                  <div class="season-name">夏</div>
+                  <div class="season-text">深夜变多了。你说"终于"的那几次，都在六月。</div>
+                  <div class="season-stat">47 条记录</div>
+                </div>
+                <div class="annual-season">
+                  <div class="season-name">秋</div>
+                  <div class="season-text">你开始写更长的句子。十月有一条像信，写给不知道谁。</div>
+                  <div class="season-stat">35 条记录</div>
+                </div>
+                <div class="annual-season">
+                  <div class="season-name">冬</div>
+                  <div class="season-text">你回到了咖啡。十二月最后一条是"今年也没白过"。</div>
+                  <div class="season-stat">22 条记录</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="mag-section annual-section">
+              <div class="mag-section-label annual-label">年度精选</div>
+              <div class="selected-pages-grid">
+                <div class="selected-page">
+                  <img src="assets/photo-sky.jpg" alt="天空">
+                  <div class="page-quote">"这次说开阔。"</div>
+                  <div class="page-note">小编注：和去年同一天，隔着整年。</div>
+                  <div class="page-date">6月8日</div>
+                </div>
+                <div class="selected-page">
+                  <img src="assets/photo-night-desk.jpg" alt="深夜桌面">
+                  <div class="page-quote">"屏幕的光又亮到很晚。"</div>
+                  <div class="page-note">小编注：年度第 23 次深夜记录。</div>
+                  <div class="page-date">6月18日</div>
+                </div>
+                <div class="selected-page">
+                  <img src="assets/photo-coffee.jpg" alt="咖啡">
+                  <div class="page-quote">"今年也没白过。"</div>
+                  <div class="page-note">小编注：年度最后一条。</div>
+                  <div class="page-date">12月31日</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="mag-section annual-section">
+              <div class="mag-section-label annual-label">沉默的月份</div>
+              <div class="silent-corner annual-silent">
+                <div class="silent-text">
+                  这一年有 4 个月你几乎消失了。<br>
+                  二月、四月、九月、十一月。<br>
+                  也许那些日子不需要被记住，<br>
+                  也许你需要——但年度特刊尊重空白。
+                </div>
+              </div>
+            </div>
+
+            <div class="mag-section annual-section">
+              <div class="mag-section-label annual-label">跨年回响</div>
+              <div class="echo-card annual-echo">
+                <img class="echo-img" src="assets/photo-sky.jpg" alt="天空">
+                <div class="echo-text">
+                  <strong>去年六月，你也拍过一张类似的天空。</strong><br>
+                  那次你说压抑，今年你说开阔。一年之间，同一片天空变了意思。
+                </div>
+              </div>
+            </div>
+
+            <div class="mag-section annual-section">
+              <div class="mag-section-label annual-label">年度数据</div>
+              <div class="mag-stats annual-stats">
+                <div class="mag-stat-item">
+                  <div class="mag-stat-num">142</div>
+                  <div class="mag-stat-label">总记录数</div>
+                </div>
+                <div class="mag-stat-item">
+                  <div class="mag-stat-num">23</div>
+                  <div class="mag-stat-label">深夜记录</div>
+                </div>
+                <div class="mag-stat-item">
+                  <div class="mag-stat-num">8</div>
+                  <div class="mag-stat-label">月份有记录</div>
+                </div>
+                <div class="mag-stat-item">
+                  <div class="mag-stat-num">4</div>
+                  <div class="mag-stat-label">沉默月份</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="mag-section annual-section">
+              <div class="mag-section-label annual-label">年度之句</div>
+              <div class="mag-qotm annual-qotm">
+                <div class="qotm-label">Quote of the Year</div>
+                <div class="qotm-text">"这次说开阔。"</div>
+                <div class="qotm-date">6月8日 · 和去年隔着整年</div>
+              </div>
+            </div>
+
+            <div class="mag-section annual-section">
+              <div class="mag-section-label annual-label">编辑后记</div>
+              <div class="annual-editor-note">
+                这本年度特刊由 142 个瞬间组成。每一页都是你选择记住的那一天。我们没有替你补充任何文字，只是把它们按时间排列，像一条河流的截面。明年见。
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
 
       <div class="empty-state" id="magazineEmpty">
@@ -3385,6 +3962,40 @@
         <div class="empty-title">还没有杂志</div>
         <div class="empty-desc">你的第一条记录，<br>会成为这本杂志的封面。</div>
         <button class="empty-cta" onclick="switchScreen('record')">开始记录</button>
+      </div>
+    </div>
+
+    <!-- ====== Wander Screen (记忆盲盒) ====== -->
+    <div class="screen" id="screen-wander">
+      <div class="wander-wrap" id="wanderWrap">
+        <!-- 空状态 -->
+        <div class="wander-empty" id="wanderEmpty">
+          <div class="wander-empty-icon">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
+          </div>
+          <div class="wander-empty-text">还没有记录可以回忆。<br>先去记录一个瞬间吧。</div>
+          <button class="wander-start-btn" onclick="switchScreen('record')">记录第一条</button>
+        </div>
+        <!-- 记忆卡片（初始隐藏） -->
+        <div class="wander-card" id="wanderCard" style="display:none;">
+          <div class="wander-image-wrap">
+            <img id="wanderImage" src="" alt="">
+          </div>
+          <div class="wander-content">
+            <div class="wander-date" id="wanderDate"></div>
+            <div class="wander-quote" id="wanderQuote"></div>
+            <div class="wander-tags" id="wanderTags"></div>
+          </div>
+          <div class="wander-label">记忆盲盒</div>
+          <button class="wander-again-btn" id="wanderAgainBtn" onclick="wanderNext()">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
+            再抽一张
+          </button>
+          <button class="wander-back-btn" onclick="switchScreen('home')">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+            返回
+          </button>
+        </div>
       </div>
     </div>
 
@@ -3638,7 +4249,7 @@
               if (blob) return blobToDataUrl(blob);
               if (c.image && c.image.substring(0, 5) === 'data:') return Promise.resolve(c.image);
               return Promise.resolve(c.image || '');
-            });
+            }).catch(function() { return null; });
           });
           Promise.all(blobPromises).then(function(dataUrls) {
             var exportClips = clips.map(function(c, i) {
@@ -3667,11 +4278,171 @@
             document.body.removeChild(a);
             URL.revokeObjectURL(url);
             showToast('已导出 ' + clips.length + ' 条记录');
+          }).catch(function(e) {
+            showToast('部分图片读取失败');
           });
+        }).catch(function(e) {
+          showToast('导出失败');
         });
       } catch (e) {
         showToast('导出失败');
       }
+    }
+
+    // === PDF Export ===
+    async function exportPDF() {
+      var clips = [];
+      try {
+        clips = JSON.parse(localStorage.getItem('momentClips') || '[]');
+      } catch (e) {
+        clips = [];
+      }
+      if (clips.length === 0) {
+        showToast('没有记录可导出');
+        return;
+      }
+
+      showToast('正在生成 PDF…');
+
+      // Preload all image URLs
+      await preloadImgUrls(clips);
+
+      // Build temporary off-screen container for rendering pages
+      var container = document.createElement('div');
+      container.style.cssText = 'position:fixed;left:-9999px;top:0;width:375px;background:#fffdf7;font-family:"PingFang SC","Hiragino Sans GB",sans-serif;';
+      document.body.appendChild(container);
+
+      // Page dimensions (A4-ish ratio, 375x560pt scaled)
+      var PAGE_W = 375;
+      var PAGE_H = 530;
+
+      // --- Cover page ---
+      var cover = document.createElement('div');
+      cover.style.cssText = 'width:' + PAGE_W + 'px;height:' + PAGE_H + 'px;padding:2.5rem 2rem;background:#f4f0e8;display:flex;flex-direction:column;justify-content:center;align-items:center;position:relative;';
+      var now = new Date();
+      var monthNames = ['一月','二月','三月','四月','五月','六月','七月','八月','九月','十月','十一月','十二月'];
+      var issueLabel = monthNames[now.getMonth()] + ' · ' + now.getFullYear();
+      cover.innerHTML =
+        '<div style="font-size:0.65rem;color:#8a8076;letter-spacing:0.3em;margin-bottom:0.5rem;">MOMENT</div>' +
+        '<div style="font-size:2.2rem;color:#1a1714;font-family:Songti SC,STSong,serif;font-weight:400;line-height:1.2;text-align:center;margin-bottom:1rem;">记忆杂志</div>' +
+        '<div style="width:40px;height:2px;background:#9a3f2b;margin-bottom:1rem;"></div>' +
+        '<div style="font-size:0.75rem;color:#8a8076;letter-spacing:0.1em;">' + issueLabel + '</div>' +
+        '<div style="font-size:0.7rem;color:#8a8076;margin-top:2rem;">共 ' + clips.length + ' 个瞬间</div>' +
+        '<div style="position:absolute;bottom:1.5rem;font-size:0.6rem;color:#8a8076;letter-spacing:0.05em;">由 Moment 导出 · ' + now.getFullYear() + '.' + String(now.getMonth()+1).padStart(2,'0') + '.' + String(now.getDate()).padStart(2,'0') + '</div>';
+      container.appendChild(cover);
+
+      // --- Content pages: 2 clips per page ---
+      var pages = [];
+      for (var i = 0; i < clips.length; i += 2) {
+        var page = document.createElement('div');
+        page.style.cssText = 'width:' + PAGE_W + 'px;height:' + PAGE_H + 'px;padding:2rem 1.8rem 1.5rem;background:#fffdf7;display:flex;flex-direction:column;';
+        var html = '';
+
+        // Page header
+        html += '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem;">';
+        html += '<span style="font-size:0.6rem;color:#9a3f2b;letter-spacing:0.15em;">MOMENT</span>';
+        html += '<span style="font-size:0.6rem;color:#8a8076;">' + monthNames[now.getMonth()] + '</span>';
+        html += '</div>';
+        html += '<div style="width:100%;height:1px;background:#ddd4c5;margin-bottom:1rem;"></div>';
+
+        for (var j = i; j < Math.min(i + 2, clips.length); j++) {
+          var clip = clips[j];
+          var imgUrl = await getImgUrl(clip);
+
+          html += '<div style="margin-bottom:1.2rem;page-break-inside:avoid;">';
+
+          // Image
+          if (imgUrl) {
+            html += '<div style="width:100%;height:180px;overflow:hidden;border-radius:4px;margin-bottom:0.6rem;background:#f4f0e8;">';
+            html += '<img src="' + imgUrl + '" style="width:100%;height:100%;object-fit:cover;" crossorigin="anonymous">';
+            html += '</div>';
+          }
+
+          // Date
+          html += '<div style="font-size:0.6rem;color:#8a8076;letter-spacing:0.08em;margin-bottom:0.2rem;">' + (clip.date || '') + '</div>';
+
+          // Quote
+          html += '<div style="font-size:0.95rem;color:#1a1714;font-family:Songti SC,STSong,serif;line-height:1.5;margin-bottom:0.3rem;">' + escapeHtml(clip.quote || '') + '</div>';
+
+          // Tags
+          if (clip.tags && clip.tags.length > 0) {
+            html += '<div style="display:flex;gap:0.3rem;flex-wrap:wrap;margin-bottom:0.3rem;">';
+            clip.tags.forEach(function(t) {
+              html += '<span style="font-size:0.6rem;color:#2f4a45;border:1px solid rgba(47,74,69,0.3);padding:0.05rem 0.35rem;border-radius:999px;">' + escapeHtml(t) + '</span>';
+            });
+            html += '</div>';
+          }
+
+          // Editor note
+          if (clip.note) {
+            html += '<div style="font-size:0.65rem;color:#8a8076;font-style:italic;line-height:1.4;margin-top:0.2rem;">— ' + escapeHtml(clip.note) + '</div>';
+          }
+
+
+
+          html += '</div>';
+        }
+
+        // Page footer
+        html += '<div style="margin-top:auto;width:100%;height:1px;background:#ddd4c5;margin-bottom:0.4rem;"></div>';
+        html += '<div style="display:flex;justify-content:space-between;font-size:0.55rem;color:#8a8076;">';
+        html += '<span>Moment · 记忆杂志</span>';
+        html += '<span>' + Math.floor(i/2 + 1) + '</span>';
+        html += '</div>';
+
+        page.innerHTML = html;
+        container.appendChild(page);
+        pages.push(page);
+      }
+
+      // Wait for images to load
+      var allImgs = container.querySelectorAll('img');
+      await Promise.all(Array.from(allImgs).map(function(img) {
+        if (img.complete) return Promise.resolve();
+        return new Promise(function(resolve) {
+          img.onload = resolve;
+          img.onerror = resolve;
+        });
+      }));
+
+      // Render each page to canvas and add to PDF
+      var pdf = null;
+      var pdfW = PAGE_W;
+      var pdfH = PAGE_H;
+
+      for (var k = 0; k < container.children.length; k++) {
+        var pageEl = container.children[k];
+        var canvas;
+        try {
+          canvas = await html2canvas(pageEl, { scale: 2, useCORS: true, allowTaint: true, backgroundColor: '#fffdf7' });
+          var imgData = canvas.toDataURL('image/jpeg', 0.92);
+
+          if (k === 0) {
+            // Initialize PDF with first page dimensions
+            pdf = new window.jspdf.jsPDF({
+              orientation: 'portrait',
+              unit: 'pt',
+              format: [pdfW, pdfH]
+            });
+            pdf.addImage(imgData, 'JPEG', 0, 0, pdfW, pdfH);
+          } else {
+            pdf.addPage([pdfW, pdfH], 'portrait');
+            pdf.addImage(imgData, 'JPEG', 0, 0, pdfW, pdfH);
+          }
+        } catch (e) {
+          console.warn('Page render failed:', e);
+          continue;
+        }
+      }
+
+      // Cleanup temporary container
+      document.body.removeChild(container);
+
+      // Save
+      var d = new Date();
+      var filename = 'moment-' + d.getFullYear() + String(d.getMonth()+1).padStart(2,'0') + String(d.getDate()).padStart(2,'0') + '.pdf';
+      pdf.save(filename);
+      showToast('已导出 PDF（' + clips.length + ' 条记录）');
     }
 
     function importData(event) {
@@ -3685,6 +4456,14 @@
             showToast('文件格式不正确');
             return;
           }
+          // Validate and sanitize imported clip fields
+          data.clips.forEach(function(c) {
+            if (!c.quote || typeof c.quote !== 'string') c.quote = '';
+            if (!c.date || typeof c.date !== 'string') c.date = '';
+            if (!Array.isArray(c.tags)) c.tags = [];
+            c.tags = c.tags.filter(function(t) { return typeof t === 'string' && t.length <= 8; });
+            if (c.note && typeof c.note !== 'string') c.note = '';
+          });
           // Merge: add imported clips that don't already exist (by id)
           var existing = JSON.parse(localStorage.getItem('momentClips') || '[]');
           var existIds = {};
@@ -3832,6 +4611,13 @@
     }
 
     // === Image URL helpers ===
+    var _urlMap = new Map();
+
+    function cleanupObjectUrls() {
+      _urlMap.forEach(function(url) { URL.revokeObjectURL(url); });
+      _urlMap.clear();
+    }
+
     function getImgUrl(clip) {
       if (clip._objectUrl) return Promise.resolve(clip._objectUrl);
       if (clip.image && clip.image.substring(0, 5) !== 'data:') return Promise.resolve(clip.image);
@@ -3840,8 +4626,12 @@
         if (blob) {
           var url = URL.createObjectURL(blob);
           clip._objectUrl = url;
+          _urlMap.set(clip.id, url);
           return url;
         }
+        return '';
+      }).catch(function(e) {
+        console.warn('IDB getImage failed for clip', clip.id, e);
         return '';
       });
     }
@@ -3864,6 +4654,14 @@
       'assets/photo-rain.jpg'
     ];
     let currentPhotoIndex = 0;
+
+    // === Utility: HTML escaping for XSS prevention ===
+    function escapeHtml(text) {
+      if (!text) return '';
+      var div = document.createElement('div');
+      div.textContent = text;
+      return div.innerHTML;
+    }
 
     // === AI Tag Engine (simulated) ===
     const tagDatabase = {
@@ -3925,6 +4723,132 @@
       '日常': ['今天', '每天', '照例', '又', '还是', '依旧', '习惯'],
     };
 
+    // Moment semantic tag library
+    const MOMENT_TAGS = {
+      emotion: ['平静', '高光', '温暖', '烦躁', '疲惫', '满足', '孤独', '兴奋', '沉思', '共鸣'],
+      scene: ['深夜', '午后', '天空', '雨天', '屏幕', '人群', '旅途', '室内', '室外'],
+      theme: ['日常', '转折', '开始', '结束', '重复', '变化', '逃离', '回归', '等待', '自由'],
+      feeling: ['安静', '喧嚣', '开阔', '温柔', '锋利', '轻盈', '沉重', '模糊', '清澈']
+    };
+
+    async function generateSmartTags(text, imageMood) {
+      var sentiment = 'neutral';
+      var aiReady = window.MomentAI && window.MomentAI.status === 'ready' && window.MomentAI.textClassifier;
+
+      if (aiReady && text && text.trim()) {
+        try {
+          var result = await window.MomentAI.textClassifier(text.trim());
+          if (result && result.length > 0) {
+            var label = result[0].label;
+            var starMatch = label.match(/(\d)/);
+            var stars = starMatch ? parseInt(starMatch[1]) : 3;
+            if (stars >= 4) sentiment = 'positive';
+            else if (stars <= 2) sentiment = 'negative';
+            else sentiment = 'neutral';
+          }
+        } catch(e) {
+          console.warn('Sentiment analysis failed', e);
+        }
+      }
+
+      var tagScores = {};
+      function addTag(tag, score) {
+        if (!tagScores[tag]) tagScores[tag] = 0;
+        tagScores[tag] += score;
+      }
+
+      var positiveEmotions = ['高光', '温暖', '满足', '兴奋'];
+      var negativeEmotions = ['疲惫', '孤独', '烦躁', '沉思'];
+      var neutralEmotions = ['平静', '沉思', '安静'];
+      var positiveThemes = ['开始', '自由'];
+      var negativeThemes = ['结束', '逃离'];
+      var neutralThemes = ['日常', '重复'];
+
+      if (sentiment === 'positive') {
+        positiveEmotions.forEach(function(t) { addTag(t, 3); });
+        positiveThemes.forEach(function(t) { addTag(t, 2); });
+      } else if (sentiment === 'negative') {
+        negativeEmotions.forEach(function(t) { addTag(t, 3); });
+        negativeThemes.forEach(function(t) { addTag(t, 2); });
+      } else {
+        neutralEmotions.forEach(function(t) { addTag(t, 3); });
+        neutralThemes.forEach(function(t) { addTag(t, 2); });
+      }
+
+      if (imageMood) {
+        if (imageMood.color === '暖') {
+          addTag('温暖', 2);
+          addTag('温柔', 2);
+        } else if (imageMood.color === '冷') {
+          addTag('安静', 2);
+          addTag('沉思', 1);
+        } else if (imageMood.color === '暗') {
+          addTag('深夜', 2);
+          addTag('疲惫', 1);
+        }
+        if (imageMood.mood === '温暖') addTag('午后', 1);
+        if (imageMood.mood === '冷静') addTag('雨天', 1);
+        if (imageMood.mood === '沉静') addTag('深夜', 1);
+      }
+
+      for (var tagName in textTagKeywords) {
+        var keywords = textTagKeywords[tagName];
+        for (var i = 0; i < keywords.length; i++) {
+          if (text.indexOf(keywords[i]) !== -1) {
+            addTag(tagName, 2);
+            break;
+          }
+        }
+      }
+
+      var sorted = Object.keys(tagScores).sort(function(a, b) {
+        return tagScores[b] - tagScores[a];
+      });
+
+      if (sorted.length >= 3) {
+        return sorted.slice(0, 3);
+      }
+
+      if (sorted.length === 0) {
+        var pool = moodPools[Math.floor(Math.random() * moodPools.length)];
+        return [pool[0], pool[1], pool[2] || pool[0]];
+      }
+
+      var allTags = MOMENT_TAGS.emotion.concat(MOMENT_TAGS.theme, MOMENT_TAGS.feeling, MOMENT_TAGS.scene);
+      while (sorted.length < 3) {
+        var randomTag = allTags[Math.floor(Math.random() * allTags.length)];
+        if (sorted.indexOf(randomTag) === -1) {
+          sorted.push(randomTag);
+        }
+      }
+      return sorted.slice(0, 3);
+    }
+
+    async function generateImageTags(imageSrc, text) {
+      var src = imageSrc.toLowerCase();
+      var filenameHints = [];
+      for (var key in tagDatabase) {
+        if (src.indexOf(key) !== -1 && Array.isArray(tagDatabase[key])) {
+          filenameHints = filenameHints.concat(tagDatabase[key]);
+        }
+      }
+
+      if (text && text.trim()) {
+        var tags = await generateSmartTags(text, currentImageMood || null);
+        var tagScores = {};
+        tags.forEach(function(t) { tagScores[t] = 2; });
+        filenameHints.forEach(function(t) { tagScores[t] = (tagScores[t] || 0) + 1; });
+        var sorted = Object.keys(tagScores).sort(function(a, b) { return tagScores[b] - tagScores[a]; });
+        return sorted.slice(0, 3);
+      }
+
+      if (filenameHints.length > 0) {
+        return filenameHints.slice(0, 3);
+      }
+      var pool = moodPools[Math.floor(Math.random() * moodPools.length)];
+      return [pool[0], pool[1], pool[2] || pool[0]];
+    }
+
     function analyzeImageMood(imageSrc, callback) {
       var img = new Image();
       img.crossOrigin = 'anonymous';
@@ -3959,7 +4883,7 @@
           var result = { saturation: avgSat, contrast: contrast, brightness: avgBright };
 
           // Tone / warmth
-          if (avgWarmth > 15 && avgBright > 110) result.mood = '温暖'; result.color = '暖'; result.desc = '光很软，像是有什么东西轻轻盖在你身上';
+          if (avgWarmth > 15 && avgBright > 110) { result.mood = '温暖'; result.color = '暖'; result.desc = '光很软，像是有什么东西轻轻盖在你身上'; }
           if (avgWarmth < -15) { result.mood = '冷静'; result.color = '冷'; result.desc = '空气有点凉，时间好像也慢了一点'; }
           else if (avgBright < 70) { result.mood = '沉静'; result.color = '暗'; result.desc = '很暗，但暗得不彻底，像有什么还没说完'; }
           else if (!(result.mood)) { result.mood = '平和'; result.color = '中'; result.desc = '不亮不暗，刚好是生活本身的亮度'; }
@@ -3985,6 +4909,7 @@
       img.src = imageSrc;
     }
 
+    // === OCR Functions ===
     function inferSceneFromImage(imageSrc) {
       var src = imageSrc.toLowerCase();
       var indoorKeys = ['desk', 'room', 'coffee', 'indoor', 'screen', 'bed', 'window-in'];
@@ -4011,15 +4936,6 @@
       return scene;
     }
 
-    function generateTagsForImage(imageSrc) {
-      for (var key in tagDatabase) {
-        if (imageSrc.indexOf(key) !== -1 && Array.isArray(tagDatabase[key])) {
-          return tagDatabase[key];
-        }
-      }
-      return moodPools[Math.floor(Math.random() * moodPools.length)];
-    }
-
     function showAITags(tags) {
       var section = document.getElementById('tagSection');
       var tagList = document.getElementById('tagList');
@@ -4031,7 +4947,11 @@
       document.getElementById('tagInputWrap').classList.remove('show');
       document.getElementById('customTagInput').value = '';
       aiDot.classList.add('analyzing');
-      aiLabel.textContent = '正在阅读这张图片…';
+      if (window.MomentAI && window.MomentAI.status === 'loading') {
+        aiLabel.textContent = 'AI 正在觉醒…';
+      } else {
+        aiLabel.textContent = '正在阅读这张图片…';
+      }
 
       setTimeout(function() {
         aiDot.classList.remove('analyzing');
@@ -4106,9 +5026,14 @@
       input.click();
     }
 
+    var _uploadSession = 0;
+
     function handleFileUpload(event) {
       const file = event.target.files[0];
       if (!file) return;
+
+      _uploadSession++;
+      var session = _uploadSession;
 
       document.getElementById('uploadLoading').classList.add('show');
 
@@ -4117,6 +5042,7 @@
         const rawDataUrl = e.target.result;
         // Compress image immediately
         compressImage(rawDataUrl, 1200, 0.7).then(function(blob) {
+          if (_uploadSession !== session) return; // session 已过期
           document.getElementById('uploadLoading').classList.remove('show');
           if (blob) {
             uploadedImageBlob = blob;
@@ -4129,10 +5055,15 @@
           updatePhotoPreview(uploadedImageData);
           checkSaveReady();
           showToast('图片已上传');
-          showAITags(generateTagsForImage(file.name));
+
+          // Generate AI tags
+          generateImageTags(file.name, null).then(function(tags) {
+            showAITags(tags);
+          });
 
           // Multimodal: analyze image mood via canvas
           analyzeImageMood(uploadedImageData, function(mood) {
+            if (_uploadSession !== session) return; // session 已过期
             currentImageMood = mood;
             showMoodInsight(mood, file.name);
           });
@@ -4203,7 +5134,9 @@
         photoSelected = true;
         document.getElementById('tagSection').style.display = 'block';
         checkSaveReady();
-        showAITags(generateTagsForImage(photos[currentPhotoIndex]));
+        generateImageTags(photos[currentPhotoIndex], null).then(function(tags) {
+          showAITags(tags);
+        });
         analyzeImageMood(photos[currentPhotoIndex], function(mood) {
           currentImageMood = mood;
           showMoodInsight(mood, photos[currentPhotoIndex]);
@@ -4213,7 +5146,9 @@
         currentPhotoIndex = (currentPhotoIndex + 1) % photos.length;
         uploadedImageData = photos[currentPhotoIndex];
         upload.innerHTML = '<img src="' + photos[currentPhotoIndex] + '" alt="今日照片" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;">';
-        showAITags(generateTagsForImage(photos[currentPhotoIndex]));
+        generateImageTags(photos[currentPhotoIndex], null).then(function(tags) {
+          showAITags(tags);
+        });
         analyzeImageMood(photos[currentPhotoIndex], function(mood) {
           currentImageMood = mood;
           showMoodInsight(mood, photos[currentPhotoIndex]);
@@ -4237,33 +5172,16 @@
         if (textAnalysisTimer) clearTimeout(textAnalysisTimer);
         textAnalysisTimer = setTimeout(function() {
           if (!hasUserSelectedTags) {
-            var tags = analyzeTextForTags(text);
-            if (tags.length > 0) showAITags(tags);
+            analyzeTextForTags(text).then(function(tags) {
+              if (tags.length > 0) showAITags(tags);
+            });
           }
         }, 800);
       }
     }
 
-    function analyzeTextForTags(text) {
-      var matched = [];
-      var usedTags = new Set();
-      for (var tagName in textTagKeywords) {
-        var keywords = textTagKeywords[tagName];
-        for (var i = 0; i < keywords.length; i++) {
-          if (text.indexOf(keywords[i]) !== -1) {
-            if (!usedTags.has(tagName)) {
-              matched.push(tagName);
-              usedTags.add(tagName);
-            }
-            break;
-          }
-        }
-      }
-      if (matched.length === 0) {
-        var pool = moodPools[Math.floor(Math.random() * moodPools.length)];
-        return [pool[0], pool[1]];
-      }
-      return matched.slice(0, 3);
+    async function analyzeTextForTags(text) {
+      return await generateSmartTags(text, null);
     }
 
     function checkTextImageAlignment(text, imageMood) {
@@ -4322,7 +5240,12 @@
     }
 
     // === Save Record ===
+    var _isSaving = false;
     function saveRecord() {
+      if (_isSaving) {
+        showToast('正在保存中，请稍候…');
+        return;
+      }
       const input = document.getElementById('sentenceInput');
       const quote = input.value.trim();
 
@@ -4337,6 +5260,11 @@
         input.focus();
         return;
       }
+
+      _isSaving = true;
+      var btn = document.getElementById('saveBtn');
+      var btnOriginalText = btn ? btn.textContent : '';
+      if (btn) { btn.disabled = true; btn.textContent = '保存中…'; }
 
       const overlay = document.getElementById('successOverlay');
       const img = document.getElementById('successImg');
@@ -4386,6 +5314,12 @@
       saveClipToStorage(imageSrc, quote, tagList, isFirstClip);
 
       overlay.classList.add('show');
+
+      // Reset saving state after a short delay to prevent double-click
+      setTimeout(function() {
+        _isSaving = false;
+        if (btn) { btn.textContent = btnOriginalText; }
+      }, 800);
     }
 
     function saveClipToStorage(imageSrc, quote, tags, isFirstClip) {
@@ -4393,35 +5327,46 @@
       const dateStr = (recordDate.getMonth() + 1) + '月' + recordDate.getDate() + '日';
       const clipId = Date.now();
 
-      var isBase64 = imageSrc && imageSrc.substring(0, 5) === 'data:';
+      var isDataUrl = imageSrc && imageSrc.substring(0, 5) === 'data:';
+      var isBlobUrl = imageSrc && imageSrc.substring(0, 5) === 'blob:';
       var clip = {
         id: clipId,
-        image: isBase64 ? null : imageSrc,
+        image: (!isDataUrl && !isBlobUrl && imageSrc) ? imageSrc : null,
         quote: quote,
         date: dateStr,
         tags: tags,
         note: '今天的新记录。'
       };
 
-      // Save metadata to localStorage
-      try {
-        let clips = JSON.parse(localStorage.getItem('momentClips') || '[]');
-        clips.unshift(clip);
-        localStorage.setItem('momentClips', JSON.stringify(clips));
-      } catch (e) {
-        showToast('保存失败，请重试。');
-        return;
-      }
-
-      // Save image blob to IndexedDB
+      // Save image blob to IndexedDB first (metadata already in clip, but we delay localStorage)
+      var saveToStorage = function() {
+        try {
+          let clips = JSON.parse(localStorage.getItem('momentClips') || '[]');
+          clips.unshift(clip);
+          localStorage.setItem('momentClips', JSON.stringify(clips));
+        } catch (e) {
+          showToast('保存失败，请重试。');
+        }
+      };
       if (uploadedImageBlob) {
         IDB.putImage(clipId, uploadedImageBlob).then(function() {
           clip._objectUrl = uploadedImageData;
+          saveToStorage();
+        }).catch(function() {
+          // Even if image fails, still save metadata
+          saveToStorage();
+          showToast('图片保存失败，但文字记录已保存');
         });
-      } else if (isBase64) {
+      } else if (imageSrc && imageSrc.substring(0, 5) === 'data:') {
         compressImage(imageSrc, 1200, 0.7).then(function(blob) {
-          if (blob) IDB.putImage(clipId, blob);
+          if (blob) {
+            IDB.putImage(clipId, blob).then(saveToStorage).catch(function() { saveToStorage(); });
+          } else {
+            saveToStorage();
+          }
         });
+      } else {
+        saveToStorage();
       }
 
       // Also update the timeline display
@@ -4456,12 +5401,12 @@
       const waterfall = document.getElementById('waterfall');
       const div = document.createElement('div');
       div.className = 'clipping';
-      const tagsHtml = clip.tags.map(t => '<span>' + t + '</span>').join('');
+      const tagsHtml = clip.tags.map(t => '<span>' + escapeHtml(t) + '</span>').join('');
       div.innerHTML = `
-        <img data-cid="${clip.id}" src="" alt="${clip.quote}" onerror="this.style.display='none'">
-        <div class="clip-text">${clip.quote}</div>
+        <img data-cid="${clip.id}" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="${escapeHtml(clip.quote)}" onerror="this.style.display='none'">
+        <div class="clip-text">${escapeHtml(clip.quote)}</div>
         <div class="clip-tags">${tagsHtml}</div>
-        <div class="clip-date">${clip.date}</div>
+        <div class="clip-date">${escapeHtml(clip.date)}</div>
       `;
       div.onclick = function() {
         openClipModal(clip.id, clip.quote, clip.date, clip.tags, clip.note);
@@ -4473,6 +5418,8 @@
           var img = div.querySelector('img[data-cid="' + clip.id + '"]');
           if (img) { img.src = url; img.style.display = ''; }
         }
+      }).catch(function(e) {
+        console.warn('Timeline image load failed for clip', clip.id, e);
       });
     }
 
@@ -4528,17 +5475,229 @@
     }
 
     function finishLoadClips(clips) {
+      const waterfall = document.getElementById('waterfall');
+      // Always clean up search-empty messages
+      var empties = waterfall.querySelectorAll('.search-empty');
+      empties.forEach(function(e) { e.remove(); });
+
       if (clips.length === 0) {
         updateTimelineStats();
         return;
       }
-      const waterfall = document.getElementById('waterfall');
       const existingClips = waterfall.querySelectorAll('.clipping');
       existingClips.forEach(c => c.remove());
       clips.forEach(clip => {
         addClipToTimeline(clip);
       });
       updateTimelineStats();
+    }
+
+    // === Natural Language Search ===
+    function handleSearchInput(value) {
+      var clearBtn = document.getElementById('searchClear');
+      if (clearBtn) clearBtn.style.display = value.trim() ? 'flex' : 'none';
+    }
+
+    function clearSearch() {
+      var input = document.getElementById('searchInput');
+      if (input) {
+        input.value = '';
+        handleSearchInput('');
+      }
+      var hint = document.getElementById('searchHint');
+      if (hint) hint.textContent = '试试：上个月的高光、关于咖啡的记录、深夜';
+      // Remove search-empty messages before reloading
+      var wf = document.getElementById('waterfall');
+      if (wf) {
+        var empties = wf.querySelectorAll('.search-empty');
+        empties.forEach(function(e) { e.remove(); });
+      }
+      loadClipsFromStorage();
+    }
+
+    function parseSearchQuery(query) {
+      var result = { keywords: [], tags: [], months: [], days: [], timeFilter: null };
+      var lower = query.toLowerCase();
+
+      // Time filters
+      if (/上个月/.test(query)) result.timeFilter = 'lastMonth';
+      else if (/最近|这几天|这周/.test(query)) result.timeFilter = 'recent7';
+      else if (/今年/.test(query)) result.timeFilter = 'thisYear';
+
+      // Month parse (e.g. "6月", "12月")
+      var monthMatches = query.match(/(\d{1,2})月/g);
+      if (monthMatches) {
+        monthMatches.forEach(function(m) {
+          var num = parseInt(m.replace('月', ''));
+          if (num >= 1 && num <= 12 && result.months.indexOf(num) === -1) {
+            result.months.push(num);
+          }
+        });
+      }
+
+      // Date parse (e.g. "6月18日")
+      var dateMatch = query.match(/(\d{1,2})月(\d{1,2})[日号]/);
+      if (dateMatch) {
+        var m = parseInt(dateMatch[1]);
+        var d = parseInt(dateMatch[2]);
+        if (m >= 1 && m <= 12 && result.months.indexOf(m) === -1) result.months.push(m);
+        if (d >= 1 && d <= 31 && result.days.indexOf(d) === -1) result.days.push(d);
+      }
+
+      // Tag matching against known tags
+      if (typeof MOMENT_TAGS !== 'undefined') {
+        var allTags = MOMENT_TAGS.emotion.concat(MOMENT_TAGS.theme, MOMENT_TAGS.feeling, MOMENT_TAGS.scene);
+        allTags.forEach(function(tag) {
+          if (lower.indexOf(tag.toLowerCase()) !== -1 && result.tags.indexOf(tag) === -1) {
+            result.tags.push(tag);
+          }
+        });
+      }
+
+      // Keyword extraction (remove stop words, time expressions, tag names)
+      var stopWords = ['的', '了', '在', '是', '我', '有', '和', '就', '不', '人', '都', '一', '一个', '上', '也', '很', '到', '说', '要', '去', '你', '会', '着', '没有', '看', '好', '自己', '这', '那', '关于', '记录', '搜索', '试试', '找到', '一些', '个', '张', '条', '张', '份', '次', '个瞬间'];
+      var words = query.split(/[\s，。、！？；：""''（）《》]+/).filter(function(w) {
+        if (w.length < 2) return false;
+        if (stopWords.indexOf(w) !== -1) return false;
+        // Skip if it's a recognized tag or time expression
+        if (result.tags.indexOf(w) !== -1) return false;
+        if (/\d+月/.test(w) || /\d+日/.test(w) || /\d+号/.test(w)) return false;
+        return true;
+      });
+      result.keywords = words;
+
+      return result;
+    }
+
+    function filterClipsByQuery(clips, parsed) {
+      var now = new Date();
+      var currentYear = now.getFullYear();
+
+      return clips.filter(function(clip) {
+        var textToSearch = ((clip.quote || '') + ' ' + (clip.note || '')).toLowerCase();
+        var tagsArr = clip.tags || [];
+        var tagsStr = tagsArr.join(' ').toLowerCase();
+
+        // Keyword matching on quote, ocr, note, and tags
+        if (parsed.keywords.length > 0) {
+          var matchedKeyword = parsed.keywords.some(function(kw) {
+            var kl = kw.toLowerCase();
+            return textToSearch.indexOf(kl) !== -1 || tagsStr.indexOf(kl) !== -1;
+          });
+          if (!matchedKeyword) return false;
+        }
+
+        // Tag matching
+        if (parsed.tags.length > 0) {
+          var hasTag = parsed.tags.some(function(t) {
+            return tagsArr.indexOf(t) !== -1;
+          });
+          if (!hasTag) return false;
+        }
+
+        // Parse clip date to Date object for comparison
+        var clipMonth = null, clipDay = null, clipYear = currentYear;
+        if (clip.date) {
+          var dm = clip.date.match(/(\d{1,2})月(\d{1,2})[日号]/);
+          if (dm) {
+            clipMonth = parseInt(dm[1]);
+            clipDay = parseInt(dm[2]);
+          } else {
+            var mOnly = clip.date.match(/(\d{1,2})月/);
+            if (mOnly) clipMonth = parseInt(mOnly[1]);
+          }
+        }
+
+        // Time filters
+        if (parsed.timeFilter && clipMonth !== null) {
+          if (parsed.timeFilter === 'lastMonth') {
+            var lastMonth = now.getMonth(); // 0-indexed: last month from current
+            var lastMonthYear = currentYear;
+            if (now.getMonth() === 0) { lastMonth = 11; lastMonthYear--; }
+            if (clipMonth - 1 !== lastMonth) return false;
+          } else if (parsed.timeFilter === 'recent7') {
+            // Approximate: if clip date is within last 7 days from now
+            if (clipMonth !== null && clipDay !== null) {
+              var clipDateObj = new Date(currentYear, clipMonth - 1, clipDay);
+              var sevenDaysAgo = new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000);
+              if (clipDateObj < sevenDaysAgo) return false;
+            }
+          }
+        }
+
+        // Month filter
+        if (parsed.months.length > 0) {
+          if (clipMonth === null || parsed.months.indexOf(clipMonth) === -1) return false;
+        }
+
+        // Day filter
+        if (parsed.days.length > 0) {
+          if (clipDay === null || parsed.days.indexOf(clipDay) === -1) return false;
+        }
+
+        return true;
+      });
+    }
+
+    function performSearch(query) {
+      query = query.trim();
+      if (!query) {
+        clearSearch();
+        return;
+      }
+
+      // Hide calendar view when searching
+      var calView = document.getElementById('calendarView');
+      var waterfall = document.getElementById('waterfall');
+      if (calView) calView.classList.remove('active');
+      if (waterfall) waterfall.classList.remove('hidden');
+
+      var parsed = parseSearchQuery(query);
+      var clips = [];
+      try {
+        clips = JSON.parse(localStorage.getItem('momentClips') || '[]');
+      } catch (e) {
+        clips = [];
+      }
+
+      var filtered = filterClipsByQuery(clips, parsed);
+
+      // Re-render with filtered results
+      const wf = document.getElementById('waterfall');
+      const existing = wf.querySelectorAll('.clipping');
+      existing.forEach(function(c) { c.remove(); });
+
+      if (filtered.length === 0) {
+        var emptyDiv = document.createElement('div');
+        emptyDiv.className = 'search-empty';
+        emptyDiv.style.cssText = 'column-span:all; text-align:center; padding:3rem 1rem; color:var(--muted); font-size:0.85rem; font-family:var(--serif);';
+        emptyDiv.textContent = '没找到相关记录。换个说法试试？';
+        wf.appendChild(emptyDiv);
+      } else {
+        filtered.forEach(function(clip) {
+          addClipToTimeline(clip);
+        });
+      }
+
+      // Update stats
+      var statsEl = document.getElementById('timelineStats');
+      if (statsEl) {
+        statsEl.textContent = '找到 ' + filtered.length + ' 个结果';
+      }
+
+      // Update hint
+      var hint = document.getElementById('searchHint');
+      if (hint) {
+        var parts = [];
+        if (parsed.tags.length) parts.push('标签：' + parsed.tags.join('、'));
+        if (parsed.months.length) parts.push('月份：' + parsed.months.join('、') + '月');;
+        if (parsed.timeFilter) {
+          var tfMap = { lastMonth: '上个月', recent7: '最近7天', thisYear: '今年' };
+          parts.push('时间：' + tfMap[parsed.timeFilter]);
+        }
+        if (parsed.keywords.length) parts.push('关键词：' + parsed.keywords.join('、'));
+        hint.textContent = parts.length ? '搜索条件：' + parts.join(' · ') : '自然语言搜索中…';
+      }
     }
 
     function closeSuccess() {
@@ -4563,6 +5722,7 @@
       // Reset form
       photoSelected = false;
       uploadedImageData = null;
+      uploadedImageBlob = null;
       const upload = document.getElementById('photoUpload');
       upload.classList.remove('has-image');
       upload.innerHTML = `
@@ -4616,6 +5776,8 @@
       if (targetClip) {
         getImgUrl(targetClip).then(function(url) {
           if (url) document.getElementById('clipModalImg').src = url;
+        }).catch(function(e) {
+          console.warn('Modal image load failed for clip', targetClip.id, e);
         });
       }
     }
@@ -4738,12 +5900,12 @@
         var monthNum = parseInt(month, 10);
         var issueId = 'month-' + month;
 
-        // Use first clip's image as stack thumbnail
-        var thumbImg = monthClips[0].image || '';
+        // Use first clip's image as stack thumbnail (via data-cid for IndexedDB loaded images)
+        var thumbClipId = monthClips[0].id;
         var issueLabel = month + '月刊';
 
         stackHtml += '<div class="mag-stack-item' + (isFirst ? ' active' : '') + '" data-issue="' + issueId + '" onclick="switchMagazine(\'' + issueId + '\')">';
-        stackHtml += '<img src="' + thumbImg + '" alt="' + issueLabel + '">';
+        stackHtml += '<img data-cid="' + thumbClipId + '" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="' + issueLabel + '">';
         stackHtml += '<div class="stack-label">' + issueLabel + '</div>';
         stackHtml += '</div>';
 
@@ -4758,6 +5920,15 @@
         stackHtml += '<div class="mag-stack-item' + (isMayActive ? ' active' : '') + '" data-issue="may" onclick="switchMagazine(\'may\')">';
         stackHtml += '<img src="assets/photo-coffee.jpg" alt="五月刊">';
         stackHtml += '<div class="stack-label">五月刊</div>';
+        stackHtml += '</div>';
+      }
+
+      // Keep annual special issue in stack
+      var staticAnnualIssue = issuesEl.querySelector('.magazine-issue[data-issue="annual"]');
+      if (staticAnnualIssue) {
+        stackHtml += '<div class="mag-stack-item annual-special" data-issue="annual" onclick="switchMagazine(\'annual\')">';
+        stackHtml += '<img src="assets/photo-sky.jpg" alt="年度特刊">';
+        stackHtml += '<div class="stack-label">年度特刊</div>';
         stackHtml += '</div>';
       }
 
@@ -4796,6 +5967,40 @@
           var c = allMagClips.find(function(x) { return x.id === cid; });
           if (c && c._objectUrl) img.src = c._objectUrl;
         });
+        // Fix covers: for each dynamic issue, if cover image failed to load,
+        // find the first clip in that month with an image and use it
+        issuesEl.querySelectorAll('.magazine-issue[data-issue^="month-"]').forEach(function(issue) {
+          var issueId = issue.getAttribute('data-issue');
+          var month = issueId.replace('month-', '');
+          var monthClips = monthGroups[month] || [];
+          var coverImg = issue.querySelector('.magazine-cover > img');
+          if (!coverImg) return;
+          var coverCid = parseInt(coverImg.getAttribute('data-cid'));
+          var coverClip = allMagClips.find(function(x) { return x.id === coverCid; });
+          // If cover clip has no image, find first clip with image in this month
+          if (!coverClip || !coverClip._objectUrl) {
+            var firstWithImg = monthClips.find(function(c) {
+              var ac = allMagClips.find(function(x) { return x.id === c.id; });
+              return ac && ac._objectUrl;
+            });
+            if (firstWithImg) {
+              var ac = allMagClips.find(function(x) { return x.id === firstWithImg.id; });
+              if (ac && ac._objectUrl) {
+                coverImg.src = ac._objectUrl;
+                coverImg.setAttribute('data-cid', ac.id);
+              }
+            } else {
+              // No image available: show a text-based fallback cover
+              coverImg.style.display = 'none';
+              var coverEl = issue.querySelector('.magazine-cover');
+              if (coverEl) {
+                coverEl.style.background = 'linear-gradient(145deg, #2d2722 0%, #1a1714 50%, #3d2b1f 100%)';
+              }
+            }
+          }
+        });
+      }).catch(function(e) {
+        console.warn('Magazine image preload failed:', e);
       });
     }
 
@@ -4819,7 +6024,7 @@
       var openingParts = [];
       openingParts.push(month + '你有 ' + count + ' 天留下了记录。');
       if (topTag) {
-        openingParts.push('AI 注意到你频繁提到「' + topTag + '」');
+        openingParts.push('AI 注意到你频繁提到「' + escapeHtml(topTag) + '」');
       }
       if (shortTexts.length > Math.floor(count / 2)) {
         openingParts.push('其中有 ' + shortTexts.length + ' 次你只写了很少的字，像是不想打扰什么。');
@@ -4839,9 +6044,9 @@
       var themeParts = [];
       themeParts.push('这个月你记录了 ' + count + ' 次。');
       if (sortedTags.length >= 2) {
-        themeParts.push('AI 发现「' + topTags + '」是你最常出现的主题。');
+        themeParts.push('AI 发现「' + escapeHtml(topTags) + '」是你最常出现的主题。');
       } else if (sortedTags.length === 1) {
-        themeParts.push('「' + topTag + '」是你这个月唯一的主题。');
+        themeParts.push('「' + escapeHtml(topTag) + '」是你这个月唯一的主题。');
       }
       if (shortTexts.length > Math.floor(count / 2)) {
         themeParts.push(Math.floor(count / 2) + ' 次记录写得很短，像是在赶时间。');
@@ -4850,7 +6055,7 @@
         var firstClip = clips[clips.length - 1];
         var lastClip = clips[0];
         if (firstClip.quote !== lastClip.quote) {
-          themeParts.push('从「' + firstClip.quote + '」到「' + lastClip.quote + '」，好像过了很久。');
+          themeParts.push('从「' + escapeHtml(firstClip.quote) + '」到「' + escapeHtml(lastClip.quote) + '」，好像过了很久。');
         }
       }
       var themeText = themeParts.join('');
@@ -4876,9 +6081,9 @@
         var last = clips[0];
         var commonTags = first.tags.filter(function(t) { return last.tags.indexOf(t) !== -1; });
         if (commonTags.length > 0) {
-          echoText = '<strong>你的第一条记录是「' + first.quote + '」</strong><br>最新一条是「' + last.quote + '」。它们都和「' + commonTags[0] + '」有关。';
+          echoText = '<strong>你的第一条记录是「' + escapeHtml(first.quote) + '」</strong><br>最新一条是「' + escapeHtml(last.quote) + '」。它们都和「' + escapeHtml(commonTags[0]) + '」有关。';
         } else {
-          echoText = '<strong>你的第一条记录是「' + first.quote + '」</strong><br>最新一条是「' + last.quote + '」。AI 觉得它们很不一样。';
+          echoText = '<strong>你的第一条记录是「' + escapeHtml(first.quote) + '」</strong><br>最新一条是「' + escapeHtml(last.quote) + '」。AI 觉得它们很不一样。';
         }
       }
 
@@ -4888,10 +6093,10 @@
       selectedPages.forEach(function(clip) {
         var editorNote = generateEditorNote(clip, tagFreq, sortedTags);
         pagesHtml += '<div class="selected-page">';
-        pagesHtml += '<img data-cid="' + clip.id + '" src="" alt="">';
-        pagesHtml += '<div class="page-quote">"' + clip.quote + '"</div>';
-        pagesHtml += '<div class="page-note">小编注：' + editorNote + '</div>';
-        pagesHtml += '<div class="page-date">' + clip.date + '</div>';
+        pagesHtml += '<img data-cid="' + clip.id + '" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="" onerror="this.style.display=\'none\'">';
+        pagesHtml += '<div class="page-quote">"' + escapeHtml(clip.quote) + '"</div>';
+        pagesHtml += '<div class="page-note">小编注：' + escapeHtml(editorNote) + '</div>';
+        pagesHtml += '<div class="page-date">' + escapeHtml(clip.date) + '</div>';
         pagesHtml += '</div>';
       });
 
@@ -4900,7 +6105,7 @@
 
       var html = '<div class="magazine-issue' + (isActive ? ' active' : '') + '" data-issue="' + issueId + '">';
       html += '<div class="magazine-cover">';
-      html += '<img data-cid="' + coverImgId + '" src="" alt="杂志封面" onerror="this.parentElement.style.background=\'var(--ink)\'">';
+      html += '<img data-cid="' + coverImgId + '" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="杂志封面" onerror="this.parentElement.style.background=\'var(--ink)\'">';
       html += '<div class="cover-overlay">';
       // Masthead - magazine title at top like Time Magazine
       html += '<div class="cover-masthead">';
@@ -4915,9 +6120,9 @@
       // Title area - bottom heavy like magazine covers
       html += '<div class="cover-title-wrap">';
       html += '<div class="cover-divider"></div>';
-      html += '<div class="cover-title">' + coverTitleText + '</div>';
+      html += '<div class="cover-title">' + escapeHtml(coverTitleText) + '</div>';
       if (count > 1) {
-        html += '<div class="cover-title-sub">这个月你记录了 ' + count + ' 次 · 在' + (sortedTags[0] || '日常') + '中度过</div>';
+        html += '<div class="cover-title-sub">这个月你记录了 ' + count + ' 次 · 在' + escapeHtml(sortedTags[0] || '日常') + '中度过</div>';
       }
       html += '</div>';
       // Bottom info bar
@@ -4937,7 +6142,7 @@
 
       // Opening
       html += '<div class="mag-section"><div class="mag-section-label">卷首语</div>';
-      html += '<div class="mag-opening">' + openingText + '</div></div>';
+      html += '<div class="mag-opening">' + escapeHtml(openingText) + '</div></div>';
 
       // Selected pages
       html += '<div class="mag-section"><div class="mag-section-label">精选内页</div>';
@@ -4946,19 +6151,19 @@
       // Theme column
       if (clips.length >= 2) {
         html += '<div class="mag-section"><div class="mag-section-label">主题专栏</div>';
-        html += '<div class="theme-column"><div class="theme-text">' + themeText + '</div></div></div>';
+        html += '<div class="theme-column"><div class="theme-text">' + escapeHtml(themeText) + '</div></div></div>';
       }
 
       // Silent corner
       html += '<div class="mag-section"><div class="mag-section-label">沉默的角落</div>';
-      html += '<div class="silent-corner"><div class="silent-text">' + silentText + '</div></div></div>';
+      html += '<div class="silent-corner"><div class="silent-text">' + escapeHtml(silentText) + '</div></div></div>';
 
       // Cross-period echo
       if (echoText) {
         var echoClip = clips.length >= 2 ? clips[clips.length - 1] : latest;
         html += '<div class="mag-section"><div class="mag-section-label">跨期回响</div>';
         html += '<div class="echo-card">';
-        html += '<img class="echo-img" data-cid="' + echoClip.id + '" src="" alt="">';
+        html += '<img class="echo-img" data-cid="' + echoClip.id + '" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="" onerror="this.style.display=\'none\'">';
         html += '<div class="echo-text">' + echoText + '</div>';
         html += '</div></div>';
       }
@@ -4978,12 +6183,15 @@
         note = '那天有话要说。';
       } else {
         var templates = [
-          clip.tags[0] + ' · ' + clip.date,
-          clip.date + '的记录。',
-          '和「' + (sortedTags[0] || '日常') + '」有关。',
+          escapeHtml(clip.tags[0] || '') + ' · ' + escapeHtml(clip.date),
+          escapeHtml(clip.date) + '的记录。',
+          '和「' + escapeHtml(sortedTags[0] || '日常') + '」有关。',
         ];
         note = templates[Math.floor(Math.random() * templates.length)];
       }
+
+
+
       return note;
     }
 
@@ -5177,12 +6385,12 @@
       homeClips.forEach(function(clip) {
         var div = document.createElement('div');
         div.className = 'clipping';
-        var tagsHtml = clip.tags.map(function(t) { return '<span>' + t + '</span>'; }).join('');
+        var tagsHtml = clip.tags.map(function(t) { return '<span>' + escapeHtml(t) + '</span>'; }).join('');
         div.innerHTML =
-          '<img data-cid="' + clip.id + '" src="" alt="" onerror="this.style.display=\'none\'">' +
-          '<div class="clip-text">\u300c' + clip.quote + '\u300d</div>' +
+          '<img data-cid="' + clip.id + '" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="" onerror="this.style.display=\'none\'">' +
+          '<div class="clip-text">\u300c' + escapeHtml(clip.quote) + '\u300d</div>' +
           '<div class="clip-tags">' + tagsHtml + '</div>' +
-          '<div class="clip-date">' + clip.date + '</div>';
+          '<div class="clip-date">' + escapeHtml(clip.date) + '</div>';
         div.onclick = function() {
           openClipModal(clip.id, clip.quote, clip.date, clip.tags, clip.note);
         };
@@ -5194,12 +6402,66 @@
             var img = div.querySelector('img[data-cid="' + clip.id + '"]');
             if (img) { img.src = url; img.style.display = ''; }
           }
+        }).catch(function(e) {
+          console.warn('Timeline image load failed for clip', clip.id, e);
         });
       });
     }
 
     // === Init ===
+    // === Data Migration: Fix old clips where clip.image was always null ===
+    var MOMENT_DATA_VERSION = 2;
+    function migrateMomentData() {
+      try {
+        var ver = localStorage.getItem('momentDataVersion');
+        if (ver === String(MOMENT_DATA_VERSION)) return; // Already migrated
+        var clips = JSON.parse(localStorage.getItem('momentClips') || '[]');
+        if (clips.length === 0) {
+          localStorage.setItem('momentDataVersion', String(MOMENT_DATA_VERSION));
+          return;
+        }
+        var demoPhotos = [
+          'assets/photo-night-desk.jpg',
+          'assets/photo-coffee.jpg',
+          'assets/photo-game.jpg',
+          'assets/photo-crowd.jpg',
+          'assets/photo-sky.jpg',
+          'assets/photo-rain.jpg'
+        ];
+        var changed = false;
+        clips.forEach(function(clip) {
+          if (clip.image === null || clip.image === undefined) {
+            // Old clip saved with null image — check if IndexedDB has the blob
+            // If not, it was likely a demo photo that was lost; assign a demo photo based on clip id
+            IDB.getImage(clip.id).then(function(blob) {
+              if (!blob) {
+                // No blob in IndexedDB either — this was a demo photo
+                // Assign a deterministic demo photo based on clip id
+                var idx = Math.abs(clip.id) % demoPhotos.length;
+                clip.image = demoPhotos[idx];
+                // Persist fix
+                try {
+                  var updated = JSON.parse(localStorage.getItem('momentClips') || '[]');
+                  for (var i = 0; i < updated.length; i++) {
+                    if (updated[i].id === clip.id) {
+                      updated[i].image = clip.image;
+                      break;
+                    }
+                  }
+                  localStorage.setItem('momentClips', JSON.stringify(updated));
+                } catch (e) {}
+              }
+            });
+          }
+        });
+        localStorage.setItem('momentDataVersion', String(MOMENT_DATA_VERSION));
+      } catch (e) {
+        console.warn('Data migration failed:', e);
+      }
+    }
+
     document.addEventListener('DOMContentLoaded', function() {
+      migrateMomentData();
       loadClipsFromStorage();
       renderMagazineFromStorage();
       updateEmptyStates();
@@ -5286,7 +6548,7 @@
 
         var inner = '<span class="day-num' + (hasRecord ? ' on-photo' : ' dark') + '">' + d + '</span>';
         if (hasRecord) {
-          inner = '<img data-cid="' + dateClipMap[d] + '" src="" alt="" loading="lazy">' + inner;
+          inner = '<img data-cid="' + dateClipMap[d] + '" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="" loading="lazy">' + inner;
         }
         html += '<div class="' + cls + '">' + inner + '</div>';
       }
@@ -5324,8 +6586,9 @@
       if (issueId && issueId.indexOf('month-') === 0) month = issueId.replace('month-', '');
       else if (issueId === 'june') month = '6';
       else if (issueId === 'may') month = '5';
+      else if (issueId === 'annual') month = ''; // Annual special: show all clips
 
-      var ic = month ? clips.filter(function(c) { return c.date && c.date.indexOf(month + '\u6708') !== -1; }) : clips;
+      var ic = month ? clips.filter(function(c) { return c.date && c.date.match(new RegExp('^' + month + '\u6708')); }) : clips;
       if (ic.length === 0) ic = clips;
 
       _bp = makePages(ic, month);
@@ -5340,17 +6603,28 @@
       var book = document.getElementById('magBook');
       if (book) book.className = 'mag-book closed';
 
-      // Set cover content from records
-      var latest = clips[0] || {};
+      // Set cover content from current issue records (not all clips)
+      var coverClip = ic[0] || {};
       var imgEl = document.getElementById('mcHero');
       if (imgEl) {
-        getImgUrl(latest).then(function(url) {
-          if (url) { imgEl.src = url; imgEl.style.display = ''; }
+        imgEl.style.display = '';
+        getImgUrl(coverClip).then(function(url) {
+          if (url) {
+            imgEl.src = url;
+            imgEl.style.display = '';
+          } else {
+            imgEl.style.display = 'none';
+            cover.style.background = 'linear-gradient(145deg, #2d2722 0%, #1a1714 50%, #3d2b1f 100%)';
+          }
+        }).catch(function(e) {
+          console.warn('Cover hero load failed:', e);
+          imgEl.style.display = 'none';
+          cover.style.background = 'linear-gradient(145deg, #2d2722 0%, #1a1714 50%, #3d2b1f 100%)';
         });
       }
       var titleEl = document.getElementById('mcTitle');
       if (titleEl) {
-        var q = latest.quote || '';
+        var q = coverClip.quote || '';
         titleEl.textContent = q.length > 30 ? q.substring(0, 28) + '\u2026' : q;
       }
       var topEl = document.getElementById('mcTopLabel');
@@ -5365,6 +6639,23 @@
 
       // Pre-load all clip images for reader
       preloadImgUrls(clips).then(function() {
+        // After preload, try to find any clip in current issue with an image for cover
+        if (imgEl && imgEl.style.display === 'none') {
+          var found = ic.find(function(c) { return c._objectUrl; });
+          if (found) {
+            getImgUrl(found).then(function(url) {
+              if (url) {
+                imgEl.src = url;
+                imgEl.style.display = '';
+                cover.style.background = '';
+              }
+            });
+          }
+        }
+        setView(0);
+        fillReaderImages();
+      }).catch(function(e) {
+        console.warn('Reader image preload failed:', e);
         setView(0);
         fillReaderImages();
       });
@@ -5396,6 +6687,8 @@
         if (clip) {
           getImgUrl(clip).then(function(url) {
             if (url) img.src = url;
+          }).catch(function(e) {
+            console.warn('fillReaderImages failed for cid', cid, e);
           });
         }
       });
@@ -5475,7 +6768,7 @@
       for (var ti = 0; ti < Math.min(clips.length, 8); ti++) {
         var tq = clips[ti].quote || '';
         if (tq.length > 16) tq = tq.substring(0, 14) + '\u2026';
-        tocItems += '<div class="toc-item"><div class="toc-title">\u300c' + tq + '\u300d</div><div class="toc-page">' + (ti + 4) + '</div></div>';
+        tocItems += '<div class="toc-item"><div class="toc-title">\u300c' + escapeHtml(tq) + '\u300d</div><div class="toc-page">' + (ti + 4) + '</div></div>';
       }
       if (clips.length > 8) {
         tocItems += '<div class="toc-item"><div class="toc-title">\u00b7 \u00b7 \u00b7</div><div class="toc-page"></div></div>';
@@ -5496,7 +6789,7 @@
         '<div class="pg-body">' +
         '<p>\u6bcf\u4e00\u6761\u8bb0\u5f55\u90fd\u662f\u4e00\u6b21\u5fae\u5c0f\u7684\u505c\u987f\u3002</p>' +
         '<p>\u8fd9\u4e2a\u6708\u4f60\u5171\u8bb0\u5f55\u4e86 <b>' + clips.length + '</b> \u6b21\u3002' +
-        (st.length > 0 ? 'AI \u89c9\u5f97\u300c' + st[0] + '\u300d\u662f\u8fd9\u4e2a\u6708\u7684\u5173\u952e\u8bcd\u3002' : '') +
+        (st.length > 0 ? 'AI \u89c9\u5f97\u300c' + escapeHtml(st[0]) + '\u300d\u662f\u8fd9\u4e2a\u6708\u7684\u5173\u952e\u8bcd\u3002' : '') +
         '</p>' +
         '</div>' +
         '<div class="pg-rule"></div>' +
@@ -5522,11 +6815,11 @@
       var dim = new Date(now.getFullYear(), mNum, 0).getDate();
       var sd = dim - clips.length;
       var tp = ['\u8fd9\u4e2a\u6708\u4f60\u8bb0\u5f55\u4e86 ' + clips.length + ' \u6b21\u3002'];
-      if (st.length >= 2) tp.push('\u300c' + st.slice(0, 2).join('\u300d\u3001\u300c') + '\u300d\u662f\u4f60\u6700\u5e38\u51fa\u73b0\u7684\u4e3b\u9898\u3002');
+      if (st.length >= 2) tp.push('\u300c' + escapeHtml(st.slice(0, 2).join('\u300d\u3001\u300c')) + '\u300d\u662f\u4f60\u6700\u5e38\u51fa\u73b0\u7684\u4e3b\u9898\u3002');
       if (clips.length >= 2) {
         var a = clips[clips.length - 1], b = clips[0];
         if (a.quote && b.quote && a.quote !== b.quote) {
-          tp.push('\u4ece\u300c' + a.quote + '\u300d\u5230\u300c' + b.quote + '\u300d\u3002');
+          tp.push('\u4ece\u300c' + escapeHtml(a.quote) + '\u300d\u5230\u300c' + escapeHtml(b.quote) + '\u300d\u3002');
         }
       }
 
@@ -5552,17 +6845,17 @@
           '<div class="pg-rule"></div>' +
           '<div class="pg-line"></div>' +
           '<div class="rc-pullquote">' +
-          '<div class="rc-pq-text">\u300c' + (a2.quote || '') + '\u300d</div>' +
-          '<div class="rc-pq-meta">\u2014\u2014 \u7b2c\u4e00\u6761 \u00b7 ' + (a2.date || '') + '</div>' +
+          '<div class="rc-pq-text">\u300c' + escapeHtml(a2.quote || '') + '\u300d</div>' +
+          '<div class="rc-pq-meta">\u2014\u2014 \u7b2c\u4e00\u6761 \u00b7 ' + escapeHtml(a2.date || '') + '</div>' +
           '</div>' +
           '<div class="pg-line"></div>' +
           '<div class="rc-pullquote">' +
-          '<div class="rc-pq-text">\u300c' + (b2.quote || '') + '\u300d</div>' +
-          '<div class="rc-pq-meta">\u2014\u2014 \u6700\u65b0\u4e00\u6761 \u00b7 ' + (b2.date || '') + '</div>' +
+          '<div class="rc-pq-text">\u300c' + escapeHtml(b2.quote || '') + '\u300d</div>' +
+          '<div class="rc-pq-meta">\u2014\u2014 \u6700\u65b0\u4e00\u6761 \u00b7 ' + escapeHtml(b2.date || '') + '</div>' +
           '</div>' +
           '<div class="pg-line"></div>' +
           '<div class="sp-body" style="margin-top:0.5rem;">' +
-          '<p>' + (cm.length > 0 ? '\u4e24\u6761\u8bb0\u5f55\u90fd\u548c\u300c' + cm[0] + '\u300d\u6709\u5173\u3002\u65f6\u95f4\u6d41\u8fc7\uff0c\u4f46\u67d0\u4e9b\u4e1c\u897f\u4f3c\u4e4e\u5e76\u6ca1\u53d8\u3002' : '\u5b83\u4eec\u5f88\u4e0d\u4e00\u6837\u3002\u4e5f\u8bb8\u8fd9\u5c31\u662f\u65f6\u95f4\u7684\u610f\u4e49\u3002') + '</p>' +
+          '<p>' + (cm.length > 0 ? '\u4e24\u6761\u8bb0\u5f55\u90fd\u548c\u300c' + escapeHtml(cm[0]) + '\u300d\u6709\u5173\u3002\u65f6\u95f4\u6d41\u8fc7\uff0c\u4f46\u67d0\u4e9b\u4e1c\u897f\u4f3c\u4e4e\u5e76\u6ca1\u53d8\u3002' : '\u5b83\u4eec\u5f88\u4e0d\u4e00\u6837\u3002\u4e5f\u8bb8\u8fd9\u5c31\u662f\u65f6\u95f4\u7684\u610f\u4e49\u3002') + '</p>' +
           '</div>' +
           '<div class="pg-footer"><span>\u8de8\u671f\u56de\u54cd</span><span>MOMENT</span></div>' +
           '</div>';
@@ -5579,7 +6872,7 @@
       try { note = generateEditorNote(c, tf, st); } catch (e) { note = ''; }
       var dateStr = c.date || '';
       var quote = c.quote || '';
-      var tags = (c.tags || []).map(function(t) { return '<span>' + t + '</span>'; }).join('');
+      var tags = (c.tags || []).map(function(t) { return '<span>' + escapeHtml(t) + '</span>'; }).join('');
       var layout = idx % 4;
       var cid = c.id;
 
@@ -5588,45 +6881,45 @@
       if (layout === 0) {
         // A: Full-bleed hero image with overlay text + note below
         inner += '<div class="rc-hero-wrap">' +
-          '<img data-cid="' + cid + '" src="" class="rc-hero-img" alt="" onerror="this.style.display=\'none\'">' +
+          '<img data-cid="' + cid + '" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" class="rc-hero-img" alt="" onerror="this.style.display=\'none\'">' +
           '<div class="rc-hero-text">' +
-          '<div class="rc-hero-quote">\u300c' + quote + '\u300d</div>' +
-          '<div class="rc-hero-meta">' + dateStr + '</div>' +
+          '<div class="rc-hero-quote">\u300c' + escapeHtml(quote) + '\u300d</div>' +
+          '<div class="rc-hero-meta">' + escapeHtml(dateStr) + '</div>' +
           '</div></div>' +
           '<div style="padding:1rem 0 0.4rem;">' +
           '<div class="rc-tags">' + tags + '</div>' +
-          (note ? '<div class="rc-note">' + note + '</div>' : '') +
+          (note ? '<div class="rc-note">' + escapeHtml(note) + '</div>' : '') +
           '</div>';
       }
       else if (layout === 1) {
         // B: Side-by-side image + text
-        inner += '<div class="rc-date">' + dateStr + '</div>' +
+        inner += '<div class="rc-date">' + escapeHtml(dateStr) + '</div>' +
           '<div class="rc-side">' +
-          '<img data-cid="' + cid + '" src="" class="rc-side-img" alt="" onerror="this.style.display=\'none\'">' +
+          '<img data-cid="' + cid + '" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" class="rc-side-img" alt="" onerror="this.style.display=\'none\'">' +
           '<div class="rc-side-body">' +
-          '<div class="rc-quote">\u300c' + quote + '\u300d</div>' +
+          '<div class="rc-quote">\u300c' + escapeHtml(quote) + '\u300d</div>' +
           '<div class="rc-tags" style="margin-top:0.4rem;">' + tags + '</div>' +
           '</div></div>' +
-          (note ? '<div class="rc-note">' + note + '</div>' : '');
+          (note ? '<div class="rc-note">' + escapeHtml(note) + '</div>' : '');
       }
       else if (layout === 2) {
         // C: Pull quote style with big quote mark
-        inner += '<div class="rc-date">' + dateStr + '</div>' +
-          '<img data-cid="' + cid + '" src="" class="rc-img" alt="" onerror="this.style.display=\'none\'" style="max-height:160px;aspect-ratio:16/9;">' +
+        inner += '<div class="rc-date">' + escapeHtml(dateStr) + '</div>' +
+          '<img data-cid="' + cid + '" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" class="rc-img" alt="" onerror="this.style.display=\'none\'" style="max-height:160px;aspect-ratio:16/9;">' +
           '<div class="pg-line"></div>' +
           '<div class="rc-pullquote">' +
-          '<div class="rc-pq-text">' + quote + '</div>' +
+          '<div class="rc-pq-text">' + escapeHtml(quote) + '</div>' +
           '</div>' +
           '<div class="rc-tags" style="margin-top:0.3rem;">' + tags + '</div>' +
-          (note ? '<div class="rc-note" style="margin-top:0.6rem;">' + note + '</div>' : '');
+          (note ? '<div class="rc-note" style="margin-top:0.6rem;">' + escapeHtml(note) + '</div>' : '');
       }
       else {
         // D: Minimal / poetic — centered
         inner += '<div class="rc-minimal">' +
-          '<div class="rc-min-date">' + dateStr + '</div>' +
-          '<img data-cid="' + cid + '" src="" class="rc-min-img" alt="" onerror="this.style.display=\'none\'">' +
-          '<div class="rc-min-quote">\u300c' + quote + '\u300d</div>' +
-          (note ? '<div class="rc-min-note">' + note + '</div>' : '') +
+          '<div class="rc-min-date">' + escapeHtml(dateStr) + '</div>' +
+          '<img data-cid="' + cid + '" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" class="rc-min-img" alt="" onerror="this.style.display=\'none\'">' +
+          '<div class="rc-min-quote">\u300c' + escapeHtml(quote) + '\u300d</div>' +
+          (note ? '<div class="rc-min-note">' + escapeHtml(note) + '</div>' : '') +
           '<div class="rc-min-tags">' + tags + '</div>' +
           '</div>';
       }
@@ -5640,6 +6933,7 @@
       var p = _bp[idx];
       document.getElementById('mL').innerHTML = p.l;
       document.getElementById('mR').innerHTML = p.r;
+      fillReaderImages();
       var f = document.getElementById('mF');
       f.className = 'mag-flip';
       f.style.transform = '';
@@ -5742,12 +7036,17 @@
       // Reset cover and book for next open
       var cover = document.getElementById('mCover');
       var book = document.getElementById('magBook');
-      if (cover) { cover.className = 'mag-cover'; cover.style.transform = ''; }
+      if (cover) { cover.className = 'mag-cover'; cover.style.transform = ''; cover.style.background = ''; }
       if (book) book.className = 'mag-book closed';
     }
 
     // Keyboard
     document.addEventListener('keydown', function(e) {
+      // Wander screen: Escape to go home
+      if (e.key === 'Escape' && document.getElementById('screen-wander').classList.contains('active')) {
+        switchScreen('home');
+        return;
+      }
       var r = document.getElementById('magReader');
       if (!r || !r.classList.contains('show')) return;
       var cover = document.getElementById('mCover');
@@ -5802,6 +7101,75 @@
       }, { passive: true });
     })();
 
+    window.addEventListener('beforeunload', cleanupObjectUrls);
+
+    // === Wander (记忆盲盒) ===
+    var _wanderHistory = [];
+
+    function openWander() {
+      switchScreen('wander');
+      renderWanderCard();
+    }
+
+    function renderWanderCard() {
+      var clips;
+      try {
+        clips = JSON.parse(localStorage.getItem('momentClips') || '[]');
+      } catch(e) { clips = []; }
+
+      var emptyEl = document.getElementById('wanderEmpty');
+      var cardEl = document.getElementById('wanderCard');
+
+      if (clips.length === 0) {
+        emptyEl.style.display = 'block';
+        cardEl.style.display = 'none';
+        return;
+      }
+
+      emptyEl.style.display = 'none';
+      cardEl.style.display = 'block';
+
+      // 随机选一条，避免和上一次重复
+      var available = clips.filter(function(c) {
+        return _wanderHistory.indexOf(c.id) === -1;
+      });
+      if (available.length === 0) {
+        _wanderHistory = [];
+        available = clips;
+      }
+
+      var clip = available[Math.floor(Math.random() * available.length)];
+      _wanderHistory.push(clip.id);
+
+      // 触发动画：先隐藏再显示
+      cardEl.style.animation = 'none';
+      cardEl.offsetHeight; // 强制 reflow
+      cardEl.style.animation = 'wanderFadeIn 0.8s ease both';
+
+      // 填充内容
+      document.getElementById('wanderDate').textContent = clip.date || '';
+      document.getElementById('wanderQuote').textContent = '「' + (clip.quote || '') + '」';
+
+      var tagsHtml = (clip.tags || []).map(function(t) {
+        return '<span>' + escapeHtml(t) + '</span>';
+      }).join('');
+      document.getElementById('wanderTags').innerHTML = tagsHtml;
+
+      // 加载图片（异步）
+      var imgEl = document.getElementById('wanderImage');
+      imgEl.src = '';
+      if (clip.image) {
+        imgEl.src = clip.image;
+      } else {
+        getImgUrl(clip).then(function(url) {
+          if (url) { imgEl.src = url; }
+        });
+      }
+    }
+
+    function wanderNext() {
+      renderWanderCard();
+    }
 
   </script>
 
