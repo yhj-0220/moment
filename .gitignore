@@ -1,3 +1,4 @@
 .DS_Store
 .uploads/
 .trae-html-share-packages/
+*-backup-*.json

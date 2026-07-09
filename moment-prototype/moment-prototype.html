@@ -2646,111 +2646,169 @@
       color: var(--muted);
     }
 
-    /* Home preview clipping */
-    .home-preview {
-      padding: 3rem 0;
-      border-top: 1px solid var(--rule);
-    }
-    .home-preview-label {
-      font-size: 0.72rem;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 1.5rem;
-    }
-    .home-preview-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 1rem;
-    }
-    @media (min-width: 768px) {
-      .home-preview-grid { grid-template-columns: repeat(3, 1fr); }
-    }
-    .home-preview-card {
-      background: var(--paper);
-      border: 1px solid var(--rule);
-      border-radius: 0.3rem;
-      overflow: hidden;
-      cursor: pointer;
-      transition: transform 0.2s;
-      box-shadow: 0 4px 16px rgba(0,0,0,0.04);
-    }
-    .home-preview-card:hover { transform: translateY(-4px); }
-    .home-preview-card img {
-      width: 100%;
-      display: block;
-    }
-    .home-preview-card .preview-text {
-      padding: 0.8rem 1rem 0.2rem;
-      font-family: var(--serif);
-      font-size: 1.1rem;
-      color: var(--ink);
-    }
-    .home-preview-card .preview-tags {
-      padding: 0 1rem;
+    /* Home Wall Stats */
+    .wall-stats {
       display: flex;
-      gap: 0.3rem;
-      flex-wrap: wrap;
-    }
-    .home-preview-card .preview-tags span {
-      font-size: 0.65rem;
-      color: var(--accent2);
-      border: 1px solid color-mix(in srgb, var(--accent2) 20%, transparent);
-      padding: 0.1rem 0.4rem;
-      border-radius: 999px;
-    }
-    .home-preview-card .preview-date {
-      padding: 0.3rem 1rem 0.8rem;
-      font-size: 0.7rem;
-      color: var(--muted);
-    }
-
-    /* Home features */
-    .home-features {
-      padding: 3rem 0 4rem;
+      gap: 2.5rem;
+      padding: 2.5rem 0;
       border-top: 1px solid var(--rule);
     }
-    .home-features .feat-label {
-      font-size: 0.72rem;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 0.5rem;
-    }
-    .home-features .feat-title {
+    .wall-stat { display: flex; flex-direction: column; }
+    .wall-stat .num {
       font-family: var(--serif);
-      font-size: 1.8rem;
+      font-size: 2rem;
       color: var(--ink);
+      line-height: 1;
+    }
+    .wall-stat .label {
+      font-size: 0.72rem;
+      color: var(--muted);
+      margin-top: 0.3rem;
+      letter-spacing: 0.05em;
+    }
+    .wall-stat .plus { font-size: 1.2rem; color: var(--accent); }
+
+    /* Issue Banner */
+    .issue-banner {
+      background: var(--ink);
+      color: var(--paper);
+      border-radius: 0.3rem;
+      padding: 1.2rem 1.5rem;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+      position: relative;
       margin-bottom: 2rem;
     }
-    .home-features .feat-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 2.5rem;
+    .issue-banner:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.12);
     }
-    @media (min-width: 768px) {
-      .home-features .feat-grid { grid-template-columns: repeat(3, 1fr); }
-    }
-    .feat-item {
+    .issue-banner .banner-top {
       display: flex;
-      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.6rem;
     }
-    .feat-item .feat-num {
-      font-size: 0.7rem;
+    .issue-banner .status-label {
+      font-size: 0.65rem;
+      letter-spacing: 0.08em;
       color: var(--accent);
-      letter-spacing: 0.1em;
-      margin-bottom: 0.8rem;
     }
-    .feat-item .feat-name {
+    .issue-banner .banner-issue {
+      font-family: var(--serif);
+      font-size: 1.3rem;
+      margin-bottom: 0.3rem;
+    }
+    .issue-banner .banner-editorial {
+      font-size: 0.85rem;
+      color: var(--muted-light);
+      line-height: 1.5;
+      margin-bottom: 0.5rem;
+    }
+    .issue-banner .banner-footnote {
+      font-size: 0.75rem;
+      color: var(--muted-light);
+      opacity: 0.7;
+    }
+    .issue-banner .banner-bottom {
+      display: flex;
+      justify-content: flex-end;
+      margin-top: 0.8rem;
+    }
+    .issue-banner .past-link {
+      background: none;
+      border: none;
+      color: var(--paper);
+      font-size: 0.8rem;
+      cursor: pointer;
+      padding: 0;
+      opacity: 0.7;
+      transition: opacity 0.2s;
+    }
+    .issue-banner .past-link:hover { opacity: 1; }
+    .unread-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent);
+      display: none;
+    }
+    .unread-dot.show { display: block; }
+
+    /* Home Wall Header */
+    .home-wall-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding: 1.5rem 0 1rem;
+      border-top: 1px solid var(--rule);
+    }
+    .home-wall-header h2 {
       font-family: var(--serif);
       font-size: 1.3rem;
       color: var(--ink);
-      margin-bottom: 0.8rem;
+      margin: 0;
     }
-    .feat-item .feat-desc {
+    .home-wall-more {
+      background: none;
+      border: none;
+      color: var(--accent);
+      font-size: 0.8rem;
+      cursor: pointer;
+      padding: 0;
+    }
+
+    /* Home Waterfall */
+    .home-waterfall {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.8rem;
+    }
+    @media (min-width: 768px) {
+      .home-waterfall { grid-template-columns: repeat(4, 1fr); }
+    }
+    .home-waterfall .clipping {
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+    .home-waterfall .clipping:hover { transform: translateY(-2px); }
+    .home-waterfall .clipping img {
+      width: 100%;
+      aspect-ratio: 4/5;
+      object-fit: cover;
+      display: block;
+      border-radius: 0.2rem;
+      background: var(--surface);
+    }
+    .home-waterfall .clip-text {
+      font-family: var(--serif);
       font-size: 0.85rem;
+      color: var(--ink);
+      margin-top: 0.4rem;
+      line-height: 1.3;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+    }
+    .home-waterfall .clip-tags {
+      display: flex;
+      gap: 0.25rem;
+      flex-wrap: wrap;
+      margin-top: 0.2rem;
+    }
+    .home-waterfall .clip-tags span {
+      font-size: 0.6rem;
+      color: var(--accent2);
+      border: 1px solid color-mix(in srgb, var(--accent2) 20%, transparent);
+      padding: 0.05rem 0.3rem;
+      border-radius: 999px;
+    }
+    .home-waterfall .clip-date {
+      font-size: 0.65rem;
       color: var(--muted);
-      line-height: 1.6;
+      margin-top: 0.15rem;
     }
 
     /* Home footer */
@@ -2816,51 +2874,33 @@
     <!-- Home content (constrained width) -->
     <div class="site-wrapper">
 
-      <div class="home-preview">
-        <div class="home-preview-label">杂志剪报卡片 — 记录的最小单元</div>
-        <div class="home-preview-grid">
-          <div class="home-preview-card" onclick="switchScreen('timeline')">
-            <img src="assets/photo-night-desk.jpg" alt="示例剪报">
-            <div class="preview-text">终于</div>
-            <div class="preview-tags"><span>平静</span><span>结束</span></div>
-            <div class="preview-date">2025 · 06 · 20</div>
-          </div>
-          <div class="home-preview-card" onclick="switchScreen('timeline')">
-            <img src="assets/photo-coffee.jpg" alt="示例剪报">
-            <div class="preview-text">今天慢了一点</div>
-            <div class="preview-tags"><span>平静</span></div>
-            <div class="preview-date">2025 · 06 · 15</div>
-          </div>
-          <div class="home-preview-card" onclick="switchScreen('timeline')">
-            <img src="assets/photo-game.jpg" alt="示例剪报">
-            <div class="preview-text">今天手感神了</div>
-            <div class="preview-tags"><span>高光</span><span>战绩</span></div>
-            <div class="preview-date">2025 · 06 · 14</div>
-          </div>
+      <!-- Wall Stats -->
+      <div class="wall-stats" id="homeWallStats">
+        <div class="wall-stat"><span class="num" id="homeStatMoments">0</span><span class="label">瞬间</span></div>
+        <div class="wall-stat"><span class="num" id="homeStatMags">0</span><span class="label">期杂志</span></div>
+        <div class="wall-stat"><span class="num" id="homeStatDays"><span class="plus">—</span></span><span class="label">陪伴</span></div>
+      </div>
+
+      <!-- Issue Banner -->
+      <div class="issue-banner" id="homeIssueBanner" onclick="switchScreen('magazine')">
+        <div class="banner-top">
+          <span class="status-label">✦ 新刊上架</span>
+          <span class="unread-dot" id="homeUnreadDot"></span>
+        </div>
+        <div class="banner-issue" id="homeIssueTitle">打开杂志，看看 AI 主编写了什么</div>
+        <div class="banner-editorial" id="homeIssueDesc">记录的第一个瞬间，会成为杂志的封面</div>
+        <div class="banner-footnote" id="homeIssueFootnote"></div>
+        <div class="banner-bottom">
+          <button class="past-link" onclick="event.stopPropagation();switchScreen('magazine')">前往杂志 →</button>
         </div>
       </div>
 
-      <div class="home-features">
-        <div class="feat-label">Core Features</div>
-        <div class="feat-title">三个核心</div>
-        <div class="feat-grid">
-          <div class="feat-item">
-            <div class="feat-num">01</div>
-            <div class="feat-name">一图一言</div>
-            <div class="feat-desc">每天只上传一张照片，写一句话。不追求完整，只捕捉此刻。</div>
-          </div>
-          <div class="feat-item">
-            <div class="feat-num">02</div>
-            <div class="feat-name">AI 编织</div>
-            <div class="feat-desc">AI 自动识别情绪、生成标签、撰写主编注，把碎片变成杂志。</div>
-          </div>
-          <div class="feat-item">
-            <div class="feat-num">03</div>
-            <div class="feat-name">时间回响</div>
-            <div class="feat-desc">去年的今天、跨期主题回响，让过去的自己与现在对话。</div>
-          </div>
-        </div>
+      <!-- Home Wall Grid -->
+      <div class="home-wall-header" id="homeWallHeader">
+        <h2>最新剪报</h2>
+        <button class="home-wall-more" onclick="switchScreen('timeline')">查看全部 →</button>
       </div>
+      <div class="home-waterfall" id="homeWaterfall"></div>
 
       <div class="home-footer">
         <div class="footer-brand">Moment<span>.</span></div>
@@ -3590,22 +3630,45 @@
       try {
         var clips = JSON.parse(localStorage.getItem('momentClips') || '[]');
         if (clips.length === 0) { showToast('没有数据可导出'); return; }
-        var data = {
-          version: 1,
-          exportedAt: new Date().toISOString(),
-          clips: clips
-        };
-        var blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
-        var url = URL.createObjectURL(blob);
-        var a = document.createElement('a');
-        var d = new Date();
-        a.href = url;
-        a.download = 'moment-backup-' + d.getFullYear() + String(d.getMonth() + 1).padStart(2, '0') + String(d.getDate()).padStart(2, '0') + '.json';
-        document.body.appendChild(a);
-        a.click();
-        document.body.removeChild(a);
-        URL.revokeObjectURL(url);
-        showToast('已导出 ' + clips.length + ' 条记录');
+        showToast('正在准备导出…');
+        // Convert blobs to base64 for export
+        preloadImgUrls(clips).then(function() {
+          var blobPromises = clips.map(function(c) {
+            return IDB.getImage(c.id).then(function(blob) {
+              if (blob) return blobToDataUrl(blob);
+              if (c.image && c.image.substring(0, 5) === 'data:') return Promise.resolve(c.image);
+              return Promise.resolve(c.image || '');
+            });
+          });
+          Promise.all(blobPromises).then(function(dataUrls) {
+            var exportClips = clips.map(function(c, i) {
+              return {
+                id: c.id,
+                image: dataUrls[i] || c.image || '',
+                quote: c.quote,
+                date: c.date,
+                tags: c.tags,
+                note: c.note
+              };
+            });
+            var data = {
+              version: 2,
+              exportedAt: new Date().toISOString(),
+              clips: exportClips
+            };
+            var blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+            var url = URL.createObjectURL(blob);
+            var a = document.createElement('a');
+            var d = new Date();
+            a.href = url;
+            a.download = 'moment-backup-' + d.getFullYear() + String(d.getMonth() + 1).padStart(2, '0') + String(d.getDate()).padStart(2, '0') + '.json';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+            showToast('已导出 ' + clips.length + ' 条记录');
+          });
+        });
       } catch (e) {
         showToast('导出失败');
       }
@@ -3622,27 +3685,40 @@
             showToast('文件格式不正确');
             return;
           }
-          // Merge: add imported clips that don't already exist (by quote+date)
+          // Merge: add imported clips that don't already exist (by id)
           var existing = JSON.parse(localStorage.getItem('momentClips') || '[]');
-          var existSet = {};
-          existing.forEach(function(c) {
-            existSet[(c.quote || '') + '|' + (c.date || '')] = true;
+          var existIds = {};
+          existing.forEach(function(c) { existIds[c.id] = true; });
+          var newClips = data.clips.filter(function(c) { return !existIds[c.id]; });
+          if (newClips.length === 0) {
+            showToast('所有记录已存在，无需导入');
+            return;
+          }
+          showToast('正在导入 ' + newClips.length + ' 条记录…');
+          // Compress images and store in IndexedDB
+          var chain = Promise.resolve();
+          newClips.forEach(function(c) {
+            chain = chain.then(function() {
+              if (c.image && c.image.substring(0, 5) === 'data:') {
+                return compressImage(c.image, 1200, 0.7).then(function(blob) {
+                  if (blob) {
+                    return IDB.putImage(c.id, blob).then(function() {
+                      c.image = null;
+                    });
+                  }
+                });
+              }
+              return Promise.resolve();
+            });
           });
-          var newCount = 0;
-          data.clips.forEach(function(c) {
-            var key = (c.quote || '') + '|' + (c.date || '');
-            if (!existSet[key]) {
-              existing.push(c);
-              existSet[key] = true;
-              newCount++;
-            }
+          chain.then(function() {
+            existing = newClips.concat(existing);
+            localStorage.setItem('momentClips', JSON.stringify(existing));
+            showToast('导入完成，新增 ' + newClips.length + ' 条');
+            setTimeout(function() { location.reload(); }, 1200);
+          }).catch(function() {
+            showToast('导入过程中出错');
           });
-          // Sort by date descending
-          existing.sort(function(a, b) { return (b.date || '').localeCompare(a.date || ''); });
-          localStorage.setItem('momentClips', JSON.stringify(existing));
-          showToast('导入完成，新增 ' + newCount + ' 条');
-          // Refresh the page to reflect changes
-          setTimeout(function() { location.reload(); }, 1200);
         } catch (err) {
           showToast('解析文件失败');
         }
@@ -3652,9 +3728,132 @@
       event.target.value = '';
     }
 
+    // === IndexedDB Layer (images) ===
+    const IDB = {
+      db: null,
+      DB_NAME: 'moment_db',
+      DB_VER: 1,
+      STORE: 'images',
+
+      open: function() {
+        return new Promise(function(resolve, reject) {
+          if (IDB.db) { resolve(IDB.db); return; }
+          var req = indexedDB.open(IDB.DB_NAME, IDB.DB_VER);
+          req.onupgradeneeded = function(e) {
+            var db = e.target.result;
+            if (!db.objectStoreNames.contains(IDB.STORE)) {
+              db.createObjectStore(IDB.STORE, { keyPath: 'id' });
+            }
+          };
+          req.onsuccess = function(e) { IDB.db = e.target.result; resolve(IDB.db); };
+          req.onerror = function(e) { reject(e); };
+        });
+      },
+
+      putImage: function(id, blob) {
+        return IDB.open().then(function(db) {
+          return new Promise(function(resolve, reject) {
+            var tx = db.transaction(IDB.STORE, 'readwrite');
+            tx.objectStore(IDB.STORE).put({ id: id, blob: blob });
+            tx.oncomplete = function() { resolve(); };
+            tx.onerror = function(e) { reject(e); };
+          });
+        });
+      },
+
+      getImage: function(id) {
+        return IDB.open().then(function(db) {
+          return new Promise(function(resolve, reject) {
+            var tx = db.transaction(IDB.STORE, 'readonly');
+            var req = tx.objectStore(IDB.STORE).get(id);
+            req.onsuccess = function() { resolve(req.result ? req.result.blob : null); };
+            req.onerror = function(e) { reject(e); };
+          });
+        });
+      },
+
+      deleteImage: function(id) {
+        return IDB.open().then(function(db) {
+          return new Promise(function(resolve, reject) {
+            var tx = db.transaction(IDB.STORE, 'readwrite');
+            tx.objectStore(IDB.STORE).delete(id);
+            tx.oncomplete = function() { resolve(); };
+            tx.onerror = function(e) { reject(e); };
+          });
+        });
+      },
+
+      getAllBlobs: function() {
+        return IDB.open().then(function(db) {
+          return new Promise(function(resolve, reject) {
+            var tx = db.transaction(IDB.STORE, 'readonly');
+            var req = tx.objectStore(IDB.STORE).getAll();
+            req.onsuccess = function() { resolve(req.result || []); };
+            req.onerror = function(e) { reject(e); };
+          });
+        });
+      }
+    };
+
+    // === Image Compression ===
+    function compressImage(dataUrl, maxDim, quality) {
+      maxDim = maxDim || 1200;
+      quality = quality || 0.7;
+      return new Promise(function(resolve) {
+        var img = new Image();
+        img.onload = function() {
+          var w = img.width, h = img.height;
+          if (w <= maxDim && h <= maxDim) {
+            var c = document.createElement('canvas');
+            c.width = w; c.height = h;
+            c.getContext('2d').drawImage(img, 0, 0);
+            c.toBlob(function(blob) { resolve(blob); }, 'image/jpeg', quality);
+            return;
+          }
+          if (w > h) { h = Math.round(h * maxDim / w); w = maxDim; }
+          else { w = Math.round(w * maxDim / h); h = maxDim; }
+          var c = document.createElement('canvas');
+          c.width = w; c.height = h;
+          c.getContext('2d').drawImage(img, 0, 0, w, h);
+          c.toBlob(function(blob) { resolve(blob); }, 'image/jpeg', quality);
+        };
+        img.onerror = function() { resolve(null); };
+        img.src = dataUrl;
+      });
+    }
+
+    function blobToDataUrl(blob) {
+      return new Promise(function(resolve) {
+        var r = new FileReader();
+        r.onload = function() { resolve(r.result); };
+        r.onerror = function() { resolve(null); };
+        r.readAsDataURL(blob);
+      });
+    }
+
+    // === Image URL helpers ===
+    function getImgUrl(clip) {
+      if (clip._objectUrl) return Promise.resolve(clip._objectUrl);
+      if (clip.image && clip.image.substring(0, 5) !== 'data:') return Promise.resolve(clip.image);
+      if (clip.image && clip.image.substring(0, 5) === 'data:') return Promise.resolve(clip.image);
+      return IDB.getImage(clip.id).then(function(blob) {
+        if (blob) {
+          var url = URL.createObjectURL(blob);
+          clip._objectUrl = url;
+          return url;
+        }
+        return '';
+      });
+    }
+
+    function preloadImgUrls(clips) {
+      return Promise.all(clips.map(function(c) { return getImgUrl(c); }));
+    }
+
     // === Photo Upload ===
     let photoSelected = false;
     let uploadedImageData = null;
+    let uploadedImageBlob = null;
     let currentImageMood = null; // { mood, color } from canvas analysis
     const photos = [
       'assets/photo-night-desk.jpg',
@@ -3915,18 +4114,28 @@
 
       const reader = new FileReader();
       reader.onload = function(e) {
-        uploadedImageData = e.target.result;
-        photoSelected = true;
-        updatePhotoPreview(uploadedImageData);
-        checkSaveReady();
-        document.getElementById('uploadLoading').classList.remove('show');
-        showToast('图片已上传');
-        showAITags(generateTagsForImage(file.name));
+        const rawDataUrl = e.target.result;
+        // Compress image immediately
+        compressImage(rawDataUrl, 1200, 0.7).then(function(blob) {
+          document.getElementById('uploadLoading').classList.remove('show');
+          if (blob) {
+            uploadedImageBlob = blob;
+            uploadedImageData = URL.createObjectURL(blob);
+          } else {
+            uploadedImageBlob = null;
+            uploadedImageData = rawDataUrl;
+          }
+          photoSelected = true;
+          updatePhotoPreview(uploadedImageData);
+          checkSaveReady();
+          showToast('图片已上传');
+          showAITags(generateTagsForImage(file.name));
 
-        // Multimodal: analyze image mood via canvas
-        analyzeImageMood(uploadedImageData, function(mood) {
-          currentImageMood = mood;
-          showMoodInsight(mood, file.name);
+          // Multimodal: analyze image mood via canvas
+          analyzeImageMood(uploadedImageData, function(mood) {
+            currentImageMood = mood;
+            showMoodInsight(mood, file.name);
+          });
         });
       };
       reader.onerror = function() {
@@ -4182,23 +4391,37 @@
     function saveClipToStorage(imageSrc, quote, tags, isFirstClip) {
       const recordDate = window._recordDate || new Date();
       const dateStr = (recordDate.getMonth() + 1) + '月' + recordDate.getDate() + '日';
-      const clip = {
-        id: Date.now(),
-        image: imageSrc,
+      const clipId = Date.now();
+
+      var isBase64 = imageSrc && imageSrc.substring(0, 5) === 'data:';
+      var clip = {
+        id: clipId,
+        image: isBase64 ? null : imageSrc,
         quote: quote,
         date: dateStr,
         tags: tags,
         note: '今天的新记录。'
       };
 
+      // Save metadata to localStorage
       try {
         let clips = JSON.parse(localStorage.getItem('momentClips') || '[]');
         clips.unshift(clip);
         localStorage.setItem('momentClips', JSON.stringify(clips));
       } catch (e) {
-        // localStorage might be full or unavailable
-        showToast('存储空间不足，无法保存。请清除浏览器数据后重试。');
+        showToast('保存失败，请重试。');
         return;
+      }
+
+      // Save image blob to IndexedDB
+      if (uploadedImageBlob) {
+        IDB.putImage(clipId, uploadedImageBlob).then(function() {
+          clip._objectUrl = uploadedImageData;
+        });
+      } else if (isBase64) {
+        compressImage(imageSrc, 1200, 0.7).then(function(blob) {
+          if (blob) IDB.putImage(clipId, blob);
+        });
       }
 
       // Also update the timeline display
@@ -4224,6 +4447,9 @@
       if (isFirstClip) {
         window._ahaNavigateToMagazine = true;
       }
+
+      // Refresh home wall
+      renderHomeWall();
     }
 
     function addClipToTimeline(clip) {
@@ -4232,15 +4458,22 @@
       div.className = 'clipping';
       const tagsHtml = clip.tags.map(t => '<span>' + t + '</span>').join('');
       div.innerHTML = `
-        <img src="${clip.image}" alt="${clip.quote}" onerror="this.style.display='none'">
+        <img data-cid="${clip.id}" src="" alt="${clip.quote}" onerror="this.style.display='none'">
         <div class="clip-text">${clip.quote}</div>
         <div class="clip-tags">${tagsHtml}</div>
         <div class="clip-date">${clip.date}</div>
       `;
       div.onclick = function() {
-        openClipModal(clip.image, clip.quote, clip.date, clip.tags, clip.note);
+        openClipModal(clip.id, clip.quote, clip.date, clip.tags, clip.note);
       };
       waterfall.insertBefore(div, waterfall.firstChild);
+      // Async load image
+      getImgUrl(clip).then(function(url) {
+        if (url) {
+          var img = div.querySelector('img[data-cid="' + clip.id + '"]');
+          if (img) { img.src = url; img.style.display = ''; }
+        }
+      });
     }
 
     function updateTimelineStats() {
@@ -4257,25 +4490,54 @@
       try {
         clips = JSON.parse(localStorage.getItem('momentClips') || '[]');
       } catch (e) {
-        // localStorage corrupted, start fresh
         clips = [];
       }
       updateEmptyStates();
 
+      // Migrate old data: clips with base64 image data
+      var needsMigration = clips.some(function(c) { return c.image && c.image.length > 200 && c.image.substring(0, 5) === 'data:'; });
+      if (needsMigration) {
+        showToast('正在迁移数据，请稍候…');
+        var chain = Promise.resolve();
+        clips.forEach(function(c) {
+          chain = chain.then(function() {
+            if (c.image && c.image.length > 200 && c.image.substring(0, 5) === 'data:') {
+              return compressImage(c.image, 1200, 0.7).then(function(blob) {
+                if (blob) {
+                  return IDB.putImage(c.id, blob).then(function() {
+                    c.image = null;
+                  });
+                }
+              });
+            }
+            return Promise.resolve();
+          });
+        });
+        chain.then(function() {
+          localStorage.setItem('momentClips', JSON.stringify(clips));
+          showToast('数据迁移完成');
+          finishLoadClips(clips);
+        }).catch(function() {
+          showToast('部分数据迁移失败');
+          finishLoadClips(clips);
+        });
+        return;
+      }
+
+      finishLoadClips(clips);
+    }
+
+    function finishLoadClips(clips) {
       if (clips.length === 0) {
         updateTimelineStats();
         return;
       }
-
       const waterfall = document.getElementById('waterfall');
-      // Remove demo clips if user has saved clips
       const existingClips = waterfall.querySelectorAll('.clipping');
       existingClips.forEach(c => c.remove());
-
       clips.forEach(clip => {
         addClipToTimeline(clip);
       });
-
       updateTimelineStats();
     }
 
@@ -4327,8 +4589,7 @@
     }
 
     // === Clip Detail Modal ===
-    function openClipModal(img, quote, date, tags, note) {
-      document.getElementById('clipModalImg').src = img;
+    function openClipModal(clipId, quote, date, tags, note) {
       document.getElementById('clipModalQuote').textContent = '"' + quote + '"';
       document.getElementById('clipModalDate').textContent = date;
       const tagsEl = document.getElementById('clipModalTags');
@@ -4338,6 +4599,25 @@
       });
       document.getElementById('clipModalNote').textContent = note;
       document.getElementById('clipModal').classList.add('show');
+
+      // Backward compatibility: if clipId is a string (image path), use it directly
+      if (typeof clipId === 'string') {
+        document.getElementById('clipModalImg').src = clipId;
+        return;
+      }
+
+      // Find clip by id and async load image
+      var targetClip = null;
+      var allClips = [];
+      try { allClips = JSON.parse(localStorage.getItem('momentClips') || '[]'); } catch(e) {}
+      for (var i = 0; i < allClips.length; i++) {
+        if (allClips[i].id === clipId) { targetClip = allClips[i]; break; }
+      }
+      if (targetClip) {
+        getImgUrl(targetClip).then(function(url) {
+          if (url) document.getElementById('clipModalImg').src = url;
+        });
+      }
     }
 
     function closeClipModal() {
@@ -4459,7 +4739,7 @@
         var issueId = 'month-' + month;
 
         // Use first clip's image as stack thumbnail
-        var thumbImg = monthClips[0].image;
+        var thumbImg = monthClips[0].image || '';
         var issueLabel = month + '月刊';
 
         stackHtml += '<div class="mag-stack-item' + (isFirst ? ' active' : '') + '" data-issue="' + issueId + '" onclick="switchMagazine(\'' + issueId + '\')">';
@@ -4495,6 +4775,28 @@
       // Show the correct first issue
       var firstIssue = issuesEl.querySelector('.magazine-issue');
       if (firstIssue) firstIssue.classList.add('active');
+
+      // Async load all magazine images
+      var allMagClips = [];
+      sortedMonths.forEach(function(m) {
+        monthGroups[m].forEach(function(c) { allMagClips.push(c); });
+      });
+      preloadImgUrls(allMagClips).then(function() {
+        // Fill stack thumbnails
+        var stackImgs = stackEl.querySelectorAll('img[data-cid]');
+        stackImgs.forEach(function(img) {
+          var cid = parseInt(img.getAttribute('data-cid'));
+          var c = allMagClips.find(function(x) { return x.id === cid; });
+          if (c && c._objectUrl) img.src = c._objectUrl;
+        });
+        // Fill issue images
+        var issueImgs = issuesEl.querySelectorAll('img[data-cid]');
+        issueImgs.forEach(function(img) {
+          var cid = parseInt(img.getAttribute('data-cid'));
+          var c = allMagClips.find(function(x) { return x.id === cid; });
+          if (c && c._objectUrl) img.src = c._objectUrl;
+        });
+      });
     }
 
     function renderDynamicIssue(issueId, month, clips, isActive, issueNum) {
@@ -4531,6 +4833,7 @@
       var latest = clips[0];
       var coverTitleText = latest.quote;
       if (coverTitleText.length > 25) coverTitleText = coverTitleText.substring(0, 22) + '…';
+      var coverImgId = latest.id;
 
       // Generate theme text
       var themeParts = [];
@@ -4585,7 +4888,7 @@
       selectedPages.forEach(function(clip) {
         var editorNote = generateEditorNote(clip, tagFreq, sortedTags);
         pagesHtml += '<div class="selected-page">';
-        pagesHtml += '<img src="' + clip.image + '" alt="">';
+        pagesHtml += '<img data-cid="' + clip.id + '" src="" alt="">';
         pagesHtml += '<div class="page-quote">"' + clip.quote + '"</div>';
         pagesHtml += '<div class="page-note">小编注：' + editorNote + '</div>';
         pagesHtml += '<div class="page-date">' + clip.date + '</div>';
@@ -4597,7 +4900,7 @@
 
       var html = '<div class="magazine-issue' + (isActive ? ' active' : '') + '" data-issue="' + issueId + '">';
       html += '<div class="magazine-cover">';
-      html += '<img src="' + coverImg + '" alt="杂志封面" onerror="this.parentElement.style.background=\'var(--ink)\'">';
+      html += '<img data-cid="' + coverImgId + '" src="" alt="杂志封面" onerror="this.parentElement.style.background=\'var(--ink)\'">';
       html += '<div class="cover-overlay">';
       // Masthead - magazine title at top like Time Magazine
       html += '<div class="cover-masthead">';
@@ -4652,9 +4955,10 @@
 
       // Cross-period echo
       if (echoText) {
+        var echoClip = clips.length >= 2 ? clips[clips.length - 1] : latest;
         html += '<div class="mag-section"><div class="mag-section-label">跨期回响</div>';
         html += '<div class="echo-card">';
-        html += '<img class="echo-img" src="' + (clips.length >= 2 ? clips[clips.length - 1].image : latest.image) + '" alt="">';
+        html += '<img class="echo-img" data-cid="' + echoClip.id + '" src="" alt="">';
         html += '<div class="echo-text">' + echoText + '</div>';
         html += '</div></div>';
       }
@@ -4805,12 +5109,102 @@
       }
     }
 
+    // === Home Wall Rendering ===
+    function renderHomeWall() {
+      let clips = [];
+      try {
+        clips = JSON.parse(localStorage.getItem('momentClips') || '[]');
+      } catch (e) {
+        clips = [];
+      }
+
+      // Stats
+      var statMoments = document.getElementById('homeStatMoments');
+      var statMags = document.getElementById('homeStatMags');
+      var statDays = document.getElementById('homeStatDays');
+      if (statMoments) statMoments.textContent = clips.length;
+
+      // Calculate magazine count (unique months)
+      var monthSet = {};
+      clips.forEach(function(c) {
+        var m = c.date.match(/(\d+)\u6708/);
+        if (m) monthSet[m[1]] = true;
+      });
+      var magCount = Object.keys(monthSet).length;
+      if (statMags) statMags.textContent = magCount;
+
+      // Calculate days
+      if (clips.length > 0 && statDays) {
+        statDays.innerHTML = clips.length + ' <span class="plus">\u5929</span>';
+      }
+
+      // Issue banner
+      var issueBanner = document.getElementById('homeIssueBanner');
+      var issueTitle = document.getElementById('homeIssueTitle');
+      var issueDesc = document.getElementById('homeIssueDesc');
+      var issueFootnote = document.getElementById('homeIssueFootnote');
+      var unreadDot = document.getElementById('homeUnreadDot');
+      if (issueBanner) {
+        if (clips.length > 0) {
+          var latestClip = clips[0];
+          var monthNames = ['','一月','二月','三月','四月','五月','六月','七月','八月','九月','十月','十一月','十二月'];
+          var mMatch = latestClip.date.match(/(\d+)\u6708/);
+          var monthName = mMatch ? monthNames[parseInt(mMatch[1])] : '';
+          if (issueTitle) issueTitle.textContent = monthName + ' · \u6700\u65b0\u4e00\u671f';
+          if (issueDesc) issueDesc.textContent = '\u300c' + latestClip.quote + '\u300d';
+          if (issueFootnote) issueFootnote.textContent = '\u5171\u6536\u5f55 ' + clips.length + ' \u4e2a\u77ac\u95f4';
+          if (unreadDot) unreadDot.classList.add('show');
+        } else {
+          if (issueTitle) issueTitle.textContent = '\u6253\u5f00\u6742\u5fd7\uff0c\u770b\u770b AI \u4e3b\u7f16\u5199\u4e86\u4ec0\u4e48';
+          if (issueDesc) issueDesc.textContent = '\u8bb0\u5f55\u7684\u7b2c\u4e00\u4e2a\u77ac\u95f4\uff0c\u4f1a\u6210\u4e3a\u6742\u5fd7\u7684\u5c01\u9762';
+          if (issueFootnote) issueFootnote.textContent = '';
+          if (unreadDot) unreadDot.classList.remove('show');
+        }
+      }
+
+      // Waterfall
+      var waterfall = document.getElementById('homeWaterfall');
+      if (!waterfall) return;
+      waterfall.innerHTML = '';
+
+      if (clips.length === 0) {
+        waterfall.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:3rem 1rem;color:var(--muted);font-size:0.9rem;">\u8fd8\u6ca1\u6709\u8bb0\u5f55\u3002<br>\u70b9\u51fb\u300c\u5f00\u59cb\u8bb0\u5f55\u300d\uff0c\u7559\u4e0b\u4f60\u7684\u7b2c\u4e00\u4e2a\u77ac\u95f4\u3002</div>';
+        return;
+      }
+
+      // Show latest 8 clips on home
+      var homeClips = clips.slice(0, 8);
+      homeClips.forEach(function(clip) {
+        var div = document.createElement('div');
+        div.className = 'clipping';
+        var tagsHtml = clip.tags.map(function(t) { return '<span>' + t + '</span>'; }).join('');
+        div.innerHTML =
+          '<img data-cid="' + clip.id + '" src="" alt="" onerror="this.style.display=\'none\'">' +
+          '<div class="clip-text">\u300c' + clip.quote + '\u300d</div>' +
+          '<div class="clip-tags">' + tagsHtml + '</div>' +
+          '<div class="clip-date">' + clip.date + '</div>';
+        div.onclick = function() {
+          openClipModal(clip.id, clip.quote, clip.date, clip.tags, clip.note);
+        };
+        waterfall.appendChild(div);
+
+        // Async load image
+        getImgUrl(clip).then(function(url) {
+          if (url) {
+            var img = div.querySelector('img[data-cid="' + clip.id + '"]');
+            if (img) { img.src = url; img.style.display = ''; }
+          }
+        });
+      });
+    }
+
     // === Init ===
     document.addEventListener('DOMContentLoaded', function() {
       loadClipsFromStorage();
       renderMagazineFromStorage();
       updateEmptyStates();
       initDatePicker();
+      renderHomeWall();
     });
 
     // === Calendar View Toggle ===
@@ -4852,6 +5246,7 @@
       // Build date -> image map from real records
       // clip.date format: "6月28日"
       const dateImageMap = {};
+      const dateClipMap = {}; // day -> clip id
       const dateSet = new Set();
       clips.forEach(function(clip) {
         var dateMatch = clip.date.match(/(\d+)月(\d+)日/);
@@ -4861,6 +5256,7 @@
           if (clipMonth === monthDisplay && !dateSet.has(clipDay)) {
             dateSet.add(clipDay);
             dateImageMap[clipDay] = clip.image;
+            dateClipMap[clipDay] = clip.id;
           }
         }
       });
@@ -4890,11 +5286,29 @@
 
         var inner = '<span class="day-num' + (hasRecord ? ' on-photo' : ' dark') + '">' + d + '</span>';
         if (hasRecord) {
-          inner = '<img src="' + dateImageMap[d] + '" alt="" loading="lazy">' + inner;
+          inner = '<img data-cid="' + dateClipMap[d] + '" src="" alt="" loading="lazy">' + inner;
         }
         html += '<div class="' + cls + '">' + inner + '</div>';
       }
       grid.innerHTML = html;
+      // Async load calendar images
+      var calClips = [];
+      clips.forEach(function(clip) {
+        var dm = clip.date.match(/(\d+)月(\d+)日/);
+        if (dm) {
+          var cm = parseInt(dm[1], 10);
+          if (cm === monthDisplay) calClips.push(clip);
+        }
+      });
+      preloadImgUrls(calClips).then(function() {
+        calClips.forEach(function(c) {
+          var dm = c.date.match(/(\d+)月(\d+)日/);
+          if (dm) {
+            var img = grid.querySelector('img[data-cid="' + c.id + '"]');
+            if (img && c._objectUrl) img.src = c._objectUrl;
+          }
+        });
+      });
     }
 
     // === Magazine Reader ===
@@ -4929,7 +5343,11 @@
       // Set cover content from records
       var latest = clips[0] || {};
       var imgEl = document.getElementById('mcHero');
-      if (imgEl) { imgEl.src = latest.image || ''; imgEl.style.display = ''; }
+      if (imgEl) {
+        getImgUrl(latest).then(function(url) {
+          if (url) { imgEl.src = url; imgEl.style.display = ''; }
+        });
+      }
       var titleEl = document.getElementById('mcTitle');
       if (titleEl) {
         var q = latest.quote || '';
@@ -4945,8 +5363,11 @@
       var mnEl = document.getElementById('mcMonthNum');
       if (mnEl) mnEl.textContent = String(month).padStart(2, '0');
 
-      // Pre-load first spread content but keep hidden under cover
-      setView(0);
+      // Pre-load all clip images for reader
+      preloadImgUrls(clips).then(function() {
+        setView(0);
+        fillReaderImages();
+      });
 
       // Nav dots
       var nh = '';
@@ -4958,6 +5379,26 @@
       document.getElementById('magReader').classList.add('show');
       document.body.style.overflow = 'hidden';
       document.getElementById('readerPageInfo').textContent = '';
+    }
+
+    function fillReaderImages() {
+      var container = document.getElementById('magBook');
+      if (!container) return;
+      var imgs = container.querySelectorAll('img[data-cid]');
+      imgs.forEach(function(img) {
+        var cid = parseInt(img.getAttribute('data-cid'));
+        // Find clip in state
+        var clip = null;
+        try {
+          var all = JSON.parse(localStorage.getItem('momentClips') || '[]');
+          for (var i = 0; i < all.length; i++) { if (all[i].id === cid) { clip = all[i]; break; } }
+        } catch(e) {}
+        if (clip) {
+          getImgUrl(clip).then(function(url) {
+            if (url) img.src = url;
+          });
+        }
+      });
     }
 
     function flipCover() {
@@ -5140,13 +5581,14 @@
       var quote = c.quote || '';
       var tags = (c.tags || []).map(function(t) { return '<span>' + t + '</span>'; }).join('');
       var layout = idx % 4;
+      var cid = c.id;
 
       var inner = '<div class="pg-inner">';
 
       if (layout === 0) {
         // A: Full-bleed hero image with overlay text + note below
         inner += '<div class="rc-hero-wrap">' +
-          '<img src="' + imgSrc + '" class="rc-hero-img" alt="" onerror="this.style.display=\'none\'">' +
+          '<img data-cid="' + cid + '" src="" class="rc-hero-img" alt="" onerror="this.style.display=\'none\'">' +
           '<div class="rc-hero-text">' +
           '<div class="rc-hero-quote">\u300c' + quote + '\u300d</div>' +
           '<div class="rc-hero-meta">' + dateStr + '</div>' +
@@ -5160,7 +5602,7 @@
         // B: Side-by-side image + text
         inner += '<div class="rc-date">' + dateStr + '</div>' +
           '<div class="rc-side">' +
-          '<img src="' + imgSrc + '" class="rc-side-img" alt="" onerror="this.style.display=\'none\'">' +
+          '<img data-cid="' + cid + '" src="" class="rc-side-img" alt="" onerror="this.style.display=\'none\'">' +
           '<div class="rc-side-body">' +
           '<div class="rc-quote">\u300c' + quote + '\u300d</div>' +
           '<div class="rc-tags" style="margin-top:0.4rem;">' + tags + '</div>' +
@@ -5170,7 +5612,7 @@
       else if (layout === 2) {
         // C: Pull quote style with big quote mark
         inner += '<div class="rc-date">' + dateStr + '</div>' +
-          '<img src="' + imgSrc + '" class="rc-img" alt="" onerror="this.style.display=\'none\'" style="max-height:160px;aspect-ratio:16/9;">' +
+          '<img data-cid="' + cid + '" src="" class="rc-img" alt="" onerror="this.style.display=\'none\'" style="max-height:160px;aspect-ratio:16/9;">' +
           '<div class="pg-line"></div>' +
           '<div class="rc-pullquote">' +
           '<div class="rc-pq-text">' + quote + '</div>' +
@@ -5182,7 +5624,7 @@
         // D: Minimal / poetic — centered
         inner += '<div class="rc-minimal">' +
           '<div class="rc-min-date">' + dateStr + '</div>' +
-          '<img src="' + imgSrc + '" class="rc-min-img" alt="" onerror="this.style.display=\'none\'">' +
+          '<img data-cid="' + cid + '" src="" class="rc-min-img" alt="" onerror="this.style.display=\'none\'">' +
           '<div class="rc-min-quote">\u300c' + quote + '\u300d</div>' +
           (note ? '<div class="rc-min-note">' + note + '</div>' : '') +
           '<div class="rc-min-tags">' + tags + '</div>' +
@@ -5225,6 +5667,7 @@
       setTimeout(function() {
         document.getElementById('mL').innerHTML = np.l;
         document.getElementById('mR').innerHTML = np.r;
+        fillReaderImages();
       }, 500);
 
       // Put current right content in flip layer (matches what's underneath visually)
@@ -5259,6 +5702,7 @@
       setTimeout(function() {
         document.getElementById('mL').innerHTML = pp.l;
         document.getElementById('mR').innerHTML = pp.r;
+        fillReaderImages();
       }, 500);
 
       // Put current left content in flip layer
@@ -5287,6 +5731,7 @@
       _bf = true;
       _bi = i;
       setView(i);
+      fillReaderImages();
       updInfo();
       setTimeout(function() { _bf = false; }, 60);
     }
